@@ -274,15 +274,15 @@ export function OrganizePdfView() {
   };
 
   return (
-    <main className="w-full max-w-4xl mx-auto px-8 py-8 flex flex-col">
+    <main className="w-full max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-8 flex flex-col">
       <div className="flex flex-col mb-6">
         <span className="text-xs font-bold uppercase tracking-wider text-[#800020] mb-1.5">
           ORGANIZE PDF
         </span>
-        <h1 className="text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Reorder, rotate & manage PDF pages
         </h1>
-        <p className="text-sm text-neutral-500">
+        <p className="text-xs sm:text-sm text-neutral-500">
           Reorder pages, rotate individual sheets, and delete unwanted pages
           before creating the final document.
         </p>
@@ -305,13 +305,13 @@ export function OrganizePdfView() {
         <DropZone onFilesSelected={handleFilesSelected} />
       ) : (
         <div className="flex flex-col space-y-6">
-          <div className="border border-neutral-200 rounded-xl bg-white p-4 flex items-center justify-between shadow-2xs">
-            <div className="flex items-center gap-3.5">
+          <div className="border border-neutral-200 rounded-xl bg-white p-3.5 sm:p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+            <div className="flex items-center gap-3.5 min-w-0">
               <div className="w-10 h-10 rounded-lg bg-[#fdf2f4] text-[#800020] flex items-center justify-center shrink-0">
                 <HiDocumentText className="w-6 h-6" />
               </div>
-              <div className="flex flex-col">
-                <span className="text-sm font-semibold text-neutral-900">
+              <div className="flex flex-col min-w-0">
+                <span className="text-sm font-semibold text-neutral-900 truncate">
                   {fileName}
                 </span>
                 <span className="text-xs text-neutral-400 mt-0.5">
@@ -328,14 +328,14 @@ export function OrganizePdfView() {
                 setPages([]);
                 setErrorMessage(null);
               }}
-              className="text-xs font-semibold text-[#800020] hover:text-[#66001a] flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-100 bg-red-50 hover:bg-red-100 transition-colors cursor-pointer"
+              className="text-xs font-semibold text-[#800020] hover:text-[#66001a] flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-100 bg-red-50 hover:bg-red-100 transition-colors cursor-pointer shrink-0 self-end sm:self-auto"
             >
               <HiArrowPath className="w-3.5 h-3.5" />
               <span>Change file</span>
             </button>
           </div>
 
-          <div className="border border-neutral-200 rounded-2xl bg-white p-6 shadow-2xs flex flex-col space-y-5">
+          <div className="border border-neutral-200 rounded-2xl bg-white p-4 sm:p-6 shadow-2xs flex flex-col space-y-5">
             <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
               <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
                 Page Sequence & Orientation
@@ -395,7 +395,7 @@ export function OrganizePdfView() {
             </DragDropProvider>
           </div>
 
-          <div className="w-full rounded-2xl p-4 bg-[#fdf2f4] border border-[#f8cfd5] flex items-center justify-between shadow-2xs">
+          <div className="w-full rounded-2xl p-4 bg-[#fdf2f4] border border-[#f8cfd5] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 shadow-2xs">
             <div className="flex items-center gap-3.5">
               <div className="w-7 h-7 rounded-full bg-[#800020] text-white flex items-center justify-center shrink-0">
                 <HiInformationCircle className="w-4 h-4" />
@@ -415,7 +415,7 @@ export function OrganizePdfView() {
               type="button"
               disabled={pages.length === 0 || isOrganizing}
               onClick={handleSaveOrganized}
-              className={`px-7 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 shadow-xs transition-colors duration-150 ${
+              className={`w-full sm:w-auto justify-center px-7 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 shadow-xs transition-colors duration-150 ${
                 pages.length > 0 && !isOrganizing
                   ? "bg-[#800020] hover:bg-[#66001a] text-white cursor-pointer"
                   : "bg-neutral-200 text-neutral-400 cursor-not-allowed"

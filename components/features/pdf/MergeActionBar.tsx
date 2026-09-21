@@ -12,7 +12,7 @@ export function MergeActionBar({ fileCount, onMerge, isMerging = false }: MergeA
   const canMerge = fileCount >= 2 && !isMerging;
 
   return (
-    <div className="w-full rounded-2xl p-4 bg-[#fdf2f4] border border-[#f8cfd5] flex items-center justify-between mt-5 shadow-2xs">
+    <div className="w-full rounded-2xl p-4 bg-[#fdf2f4] border border-[#f8cfd5] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mt-5 shadow-2xs">
       <div className="flex items-center gap-3.5">
         <div className="w-7 h-7 rounded-full bg-[#800020] text-white flex items-center justify-center shrink-0 shadow-2xs">
           <InfoIcon className="w-4 h-4" />
@@ -33,7 +33,7 @@ export function MergeActionBar({ fileCount, onMerge, isMerging = false }: MergeA
         type="button"
         disabled={!canMerge}
         onClick={onMerge}
-        className={`px-7 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 shadow-xs transition-colors duration-150 ${
+        className={`w-full sm:w-auto justify-center px-7 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 shadow-xs transition-colors duration-150 ${
           canMerge
             ? "bg-[#800020] hover:bg-[#66001a] text-white cursor-pointer"
             : "bg-neutral-300 text-neutral-500 cursor-not-allowed"
