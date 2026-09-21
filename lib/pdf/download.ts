@@ -1,22 +1,16 @@
 import { sanitizeFilename } from "./validation";
 
 /**
- * Client-side utility to trigger a browser file download of generated PDF data.
- *
- * Requirements:
- * - Creates a Blob with type "application/pdf"
- * - Creates an Object URL
- * - Triggers download via simulated click on a detached <a> element
- * - Cleans up and revokes the Object URL afterward
- * - Sanitizes filenames before triggering download
+ * Client-side utility to trigger a browser file download of any binary data or Blob.
  */
-export function downloadPdf(
+export function downloadFile(
   data: Uint8Array | ArrayBuffer | Blob,
   filename: string,
-  fallbackFilename = "document.pdf"
+  mimeType = "application/octet-stream",
+  fallbackFilename = "download"
 ): void {
   if (typeof window === "undefined" || typeof document === "undefined") {
-    throw new Error("downloadPdf can only be executed in a browser environment.");
+    throw new Error("Download utility can only be executed in a browser environment.");
   }
 
   const safeFilename = sanitizeFilename(filename, fallbackFilename);
@@ -25,10 +19,12 @@ export function downloadPdf(
   if (data instanceof Blob) {
     blob = data;
   } else {
-    // Uint8Array or ArrayBuffer
     const bytes = data instanceof Uint8Array ? data : new Uint8Array(data);
-    // Note: create a copy of the buffer slice if needed, or pass directly to Blob
-    blob = new Blob([bytes.buffer as ArrayBuffer], { type: "application/pdf" });
+    const arrayBuffer =
+      bytes.byteOffset === 0 && bytes.byteLength === bytes.buffer.byteLength
+        ? bytes.buffer
+        : bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+    blob = new Blob([arrayBuffer as ArrayBuffer], { type: mimeType });
   }
 
   const objectUrl = URL.createObjectURL(blob);
@@ -49,3 +45,18 @@ export function downloadPdf(
     }, 1000);
   }
 }
+
+/**
+ * Client-side utility to trigger a browser file download of generated PDF data.
+ * Standard across Merge, Split, Remove, Organize, Compress, etc.
+ */
+export function downloadPdf(
+  data: Uint8Array | ArrayBuffer | Blob,
+  filename: string,
+  fallbackFilename = "document.pdf"
+): void {
+  downloadFile(data, filename, "application/pdf", fallbackFilename);
+}
+
+// Alias for compatibility
+export const triggerDownload = downloadFile;

@@ -61,7 +61,7 @@ export function clearThumbnailCache(): void {
 /**
  * Lazy loads pdfjs-dist on client-side and configures worker
  */
-async function getPdfJs() {
+export async function getPdfJs() {
   if (typeof window === "undefined") {
     throw new Error("PDF.js rendering can only be executed in a browser environment.");
   }

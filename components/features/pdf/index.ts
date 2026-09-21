@@ -6,3 +6,7 @@ export * from "./SplitPdfView";
 export * from "./RemovePagesView";
 export * from "./OrganizePdfView";
 export * from "./CompressPdfView";
+export * from "./ImageToPdfView";
+export * from "./PdfToImageView";
+export * from "./PageNumbersView";
+export * from "./WatermarkPdfView";

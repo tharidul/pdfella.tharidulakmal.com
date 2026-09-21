@@ -1,0 +1,222 @@
+import type { Metadata } from "next";
+import { AppLayout, Footer } from "@/components/layout";
+import { JsonLd } from "@/components/seo";
+import {
+  HiShieldCheck,
+  HiBolt,
+  HiLockClosed,
+  HiGlobeAlt,
+  HiArrowTopRightOnSquare,
+} from "react-icons/hi2";
+
+export const metadata: Metadata = {
+  title: "About PDF-X",
+  description:
+    "Learn about PDF-X's mission, technology architecture, and commitment to total document privacy with zero server uploads.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About PDF-X",
+    description:
+      "Why we built PDF-X: a zero-server, privacy-first PDF utility suite that keeps your files 100% safe in your local browser memory.",
+    url: "https://pdfx.tharidulakmal.com/about",
+  },
+};
+
+const PRINCIPLES = [
+  {
+    icon: HiShieldCheck,
+    title: "Client-Side Processing",
+    description:
+      "PDF-X never uploads your documents to remote servers. All computation runs exclusively inside your browser memory.",
+  },
+  {
+    icon: HiBolt,
+    title: "Instant Execution",
+    description:
+      "No waiting for large uploads or remote processing queues. Tasks happen locally at native speeds.",
+  },
+  {
+    icon: HiLockClosed,
+    title: "Confidentiality & Compliance",
+    description:
+      "Because confidential data never leaves your device, PDF-X is inherently compatible with NDAs and privacy standards.",
+  },
+  {
+    icon: HiGlobeAlt,
+    title: "Offline Capable",
+    description:
+      "Once loaded in your browser, PDF-X continues to work without an active internet connection.",
+  },
+];
+
+const ECOSYSTEM = [
+  {
+    name: "IMG-X",
+    description:
+      "Private client-side image editing, compression, and conversion studio.",
+    url: "https://imgx.tharidulakmal.com",
+  },
+  {
+    name: "Vinci AI",
+    description:
+      "Creative AI tooling and canvas workflow for modern builders.",
+    url: "https://vinci.tharidulakmal.com",
+  },
+  {
+    name: "Tharidu Lakmal Portfolio",
+    description:
+      "Engineering portfolio, open-source projects, and technical writings.",
+    url: "https://tharidulakmal.com",
+  },
+];
+
+export default function AboutPage() {
+  return (
+    <AppLayout>
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        {/* Header */}
+        <div className="mb-10 text-left">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+            About PDF-X
+          </h1>
+          <p className="text-sm sm:text-base text-neutral-600 mt-2 leading-relaxed">
+            A fast, private PDF utility suite that executes all operations locally in browser memory with zero server uploads.
+          </p>
+        </div>
+
+        <div className="space-y-6">
+          {/* Why We Built PDF-X */}
+          <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs space-y-3">
+            <h2 className="text-base font-bold text-neutral-900">
+              Why We Built PDF-X
+            </h2>
+            <div className="space-y-3 text-xs sm:text-sm text-neutral-600 leading-relaxed">
+              <p>
+                Most online PDF converters require uploading confidential files to remote servers where documents are processed and temporarily stored on third-party cloud infrastructure.
+              </p>
+              <p>
+                Modern browsers are powerful execution environments with access to WebAssembly and native memory. PDF-X runs the entire PDF engine directly on your device rather than transmitting your files over the network.
+              </p>
+              <p className="text-neutral-800 font-medium">
+                Your files never leave your computer, and when you close or reload the browser tab, all data is immediately erased from memory.
+              </p>
+            </div>
+          </section>
+
+          {/* Principles */}
+          <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs">
+            <h2 className="text-base font-bold text-neutral-900 mb-4">
+              Core Principles
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {PRINCIPLES.map((principle) => {
+                const IconComponent = principle.icon;
+                return (
+                  <div
+                    key={principle.title}
+                    className="p-4 rounded-lg bg-neutral-50/60 border border-neutral-100 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="w-8 h-8 rounded-lg bg-[#fdf2f4] text-[#800020] flex items-center justify-center mb-2.5">
+                        <IconComponent className="w-4 h-4" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-neutral-900 mb-1">
+                        {principle.title}
+                      </h3>
+                      <p className="text-xs text-neutral-600 leading-relaxed">
+                        {principle.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Technology Stack */}
+          <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs">
+            <h2 className="text-base font-bold text-neutral-900 mb-2">
+              Technology
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 mb-4 leading-relaxed">
+              PDF-X is built using open-source client-side libraries:
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="p-3.5 rounded-lg bg-neutral-50/60 border border-neutral-100">
+                <h3 className="text-xs font-bold text-neutral-900 mb-1">
+                  pdf-lib
+                </h3>
+                <p className="text-[11px] text-neutral-600 leading-relaxed">
+                  In-memory PDF binary manipulation, page tree modifications, and stream composition.
+                </p>
+              </div>
+              <div className="p-3.5 rounded-lg bg-neutral-50/60 border border-neutral-100">
+                <h3 className="text-xs font-bold text-neutral-900 mb-1">
+                  PDF.js (Mozilla)
+                </h3>
+                <p className="text-[11px] text-neutral-600 leading-relaxed">
+                  Client rendering engine rasterizing page thumbnails in isolated web workers.
+                </p>
+              </div>
+              <div className="p-3.5 rounded-lg bg-neutral-50/60 border border-neutral-100">
+                <h3 className="text-xs font-bold text-neutral-900 mb-1">
+                  Next.js & React
+                </h3>
+                <p className="text-[11px] text-neutral-600 leading-relaxed">
+                  Modern responsive interface built for keyboard navigation, touch screens, and speed.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Ecosystem */}
+          <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs">
+            <h2 className="text-base font-bold text-neutral-900 mb-2">
+              Ecosystem
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 mb-4 leading-relaxed">
+              Other client-side applications created by Tharidu Lakmal:
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {ECOSYSTEM.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 rounded-lg bg-neutral-50/60 border border-neutral-100 hover:border-[#800020]/40 transition-colors flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <h3 className="text-xs font-bold text-neutral-900 group-hover:text-[#800020] transition-colors">
+                        {item.name}
+                      </h3>
+                      <HiArrowTopRightOnSquare className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[#800020] transition-colors" />
+                    </div>
+                    <p className="text-[11px] text-neutral-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        </div>
+      </main>
+      <Footer />
+      <JsonLd
+        toolName="About PDF-X"
+        toolDescription="About PDF-X - 100% private, client-side PDF utility suite created by Tharidu Lakmal."
+        url="https://pdfx.tharidulakmal.com/about"
+        breadcrumbs={[
+          { name: "Home", item: "/" },
+          { name: "About", item: "/about" },
+        ]}
+      />
+    </AppLayout>
+  );
+}

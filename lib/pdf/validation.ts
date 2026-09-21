@@ -157,9 +157,11 @@ export function sanitizeFilename(filename: string, fallback = "document.pdf"): s
     clean = ext ? `${base}.${ext}` : base;
   }
 
-  // Ensure it ends with .pdf
-  if (!clean.toLowerCase().endsWith(".pdf")) {
-    clean = `${clean}.pdf`;
+  // If filename doesn't have an extension, default to fallback's extension
+  const fallbackExt = getFileExtension(fallback) || "pdf";
+  const currentExt = getFileExtension(clean);
+  if (!currentExt) {
+    clean = `${clean}.${fallbackExt}`;
   }
 
   return clean;

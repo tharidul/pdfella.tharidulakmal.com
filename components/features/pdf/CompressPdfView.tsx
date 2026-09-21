@@ -22,7 +22,6 @@ import {
 interface CompressionOptionView {
   id: CompressionTier;
   title: string;
-  badge?: string;
   description: string;
   reductionPercentage: number;
 }
@@ -37,7 +36,6 @@ const COMPRESSION_OPTIONS: CompressionOptionView[] = [
   {
     id: "recommended",
     title: "Recommended Compression",
-    badge: "Best Value",
     description: "Good quality, standard compression for everyday sharing",
     reductionPercentage: 55,
   },
@@ -128,9 +126,6 @@ export function CompressPdfView() {
   return (
     <main className="w-full max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-8 flex flex-col">
       <div className="flex flex-col mb-6">
-        <span className="text-xs font-bold uppercase tracking-wider text-[#800020] mb-1.5">
-          COMPRESS PDF
-        </span>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Reduce PDF file size
         </h1>
@@ -182,7 +177,7 @@ export function CompressPdfView() {
                   {fileName}
                 </span>
                 <span className="text-xs text-neutral-400 mt-0.5">
-                  Original: {formatFileSize(originalBytes)} • {pageCount} pages
+                  Original: {formatFileSize(originalBytes)}, {pageCount} pages
                 </span>
               </div>
             </div>
@@ -223,16 +218,9 @@ export function CompressPdfView() {
                     }`}
                   >
                     <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-bold text-neutral-900">
-                          {option.title}
-                        </span>
-                        {option.badge && (
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#800020] text-white">
-                            {option.badge}
-                          </span>
-                        )}
-                      </div>
+                      <h2 className="text-sm font-bold text-neutral-900 mb-2">
+                        {option.title}
+                      </h2>
                       <p className="text-xs text-neutral-500 mb-4 leading-relaxed">
                         {option.description}
                       </p>

@@ -13,6 +13,10 @@ import {
   CompressIcon,
   ImageIcon,
   VinciAiIcon,
+  ImagesToPdfIcon,
+  PdfToImageIcon,
+  PageNumbersIcon,
+  WatermarkIcon,
 } from "@/components/common/icons";
 import { useMobileNav } from "../MobileNavContext";
 
@@ -60,6 +64,34 @@ const PRIMARY_TOOLS: NavItem[] = [
     icon: CompressIcon,
     href: "/compress",
   },
+  {
+    id: "image-to-pdf",
+    name: "Images to PDF",
+    description: "Convert JPG/PNG to PDF",
+    icon: ImagesToPdfIcon,
+    href: "/image-to-pdf",
+  },
+  {
+    id: "pdf-to-image",
+    name: "PDF to Images",
+    description: "Export PNG/JPG or ZIP",
+    icon: PdfToImageIcon,
+    href: "/pdf-to-image",
+  },
+  {
+    id: "page-numbers",
+    name: "Page Numbers",
+    description: "Add headers & numbering",
+    icon: PageNumbersIcon,
+    href: "/page-numbers",
+  },
+  {
+    id: "watermark",
+    name: "Watermark PDF",
+    description: "Stamp text or logo",
+    icon: WatermarkIcon,
+    href: "/watermark",
+  },
 ];
 
 const SECONDARY_TOOLS: NavItem[] = [
@@ -98,7 +130,7 @@ export function Sidebar() {
       />
 
       <aside
-        className={`fixed inset-y-0 left-0 w-72 max-w-[85vw] bg-white z-50 shadow-2xl flex flex-col justify-between py-6 px-5 transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed inset-y-0 left-0 w-72 max-w-[85vw] bg-white z-50 shadow-2xl flex flex-col justify-between py-6 px-5 overflow-y-auto transition-transform duration-300 ease-in-out md:hidden ${
           isMobileOpen ? "translate-x-0" : "-translate-x-full pointer-events-none"
         }`}
         aria-label="Mobile Navigation"
@@ -162,8 +194,42 @@ export function Sidebar() {
           </nav>
         </div>
 
-        {/* Mobile Drawer Footer: Ecosystem & Info */}
+        {/* Mobile Drawer Footer: Resources & Ecosystem */}
         <div className="flex flex-col pt-4 border-t border-neutral-100 space-y-4">
+          <div className="flex flex-col space-y-1">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 px-3 mb-1">
+              Resources & Info
+            </span>
+            <Link
+              href="/how-to-use"
+              onClick={closeMobile}
+              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-[#800020] transition-colors"
+            >
+              How to Use
+            </Link>
+            <Link
+              href="/faq"
+              onClick={closeMobile}
+              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-[#800020] transition-colors"
+            >
+              Frequently Asked Questions (FAQ)
+            </Link>
+            <Link
+              href="/about"
+              onClick={closeMobile}
+              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-[#800020] transition-colors"
+            >
+              About PDF-X
+            </Link>
+            <Link
+              href="/privacy"
+              onClick={closeMobile}
+              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-[#800020] transition-colors"
+            >
+              Privacy Policy & Security
+            </Link>
+          </div>
+
           <div className="flex flex-col space-y-1">
             <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 px-3 mb-1">
               Ecosystem Tools
@@ -190,17 +256,15 @@ export function Sidebar() {
             })}
           </div>
 
-          <div className="flex items-center justify-between text-xs text-neutral-500 px-3 pt-2 border-t border-neutral-100">
+          <div className="flex items-center text-xs text-neutral-500 px-3 pt-2 border-t border-neutral-100">
             <a
               href="https://tharidulakmal.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#800020] transition-colors"
             >
-              About Author
+              By Tharidu Lakmal
             </a>
-            <span>&bull;</span>
-            <span className="text-emerald-700 font-medium">100% Private</span>
           </div>
         </div>
       </aside>
@@ -209,7 +273,7 @@ export function Sidebar() {
       {/* 2. DESKTOP STICKY COLLAPSIBLE SIDEBAR (>= md)                */}
       {/* ============================================================ */}
       <aside
-        className={`hidden md:flex flex-col justify-between h-screen sticky top-0 py-6 select-none transition-[width] duration-300 ease-in-out shrink-0 z-30 border-r border-neutral-200 bg-white ${
+        className={`hidden md:flex flex-col justify-between h-screen sticky top-0 py-6 select-none transition-[width] duration-300 ease-in-out shrink-0 z-30 border-r border-neutral-200 bg-white overflow-y-auto ${
           isCollapsed ? "w-20 min-w-20" : "w-64 min-w-64"
         }`}
         aria-label="Desktop Navigation"
@@ -373,25 +437,33 @@ export function Sidebar() {
             className={`transition-[max-height,opacity] duration-200 overflow-hidden ${
               isCollapsed
                 ? "max-h-0 opacity-0 border-transparent pointer-events-none"
-                : "max-h-12 opacity-100 flex items-center gap-4 text-xs text-neutral-400 pt-3 border-t border-neutral-100"
+                : "max-h-24 opacity-100 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-neutral-500 pt-3 border-t border-neutral-100"
             }`}
           >
-            <a
-              href="https://tharidulakmal.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-neutral-600 transition-colors duration-150"
+            <Link
+              href="/how-to-use"
+              className="hover:text-[#800020] transition-colors duration-150"
+            >
+              How to Use
+            </Link>
+            <Link
+              href="/faq"
+              className="hover:text-[#800020] transition-colors duration-150"
+            >
+              FAQ
+            </Link>
+            <Link
+              href="/about"
+              className="hover:text-[#800020] transition-colors duration-150"
             >
               About
-            </a>
-            <a
-              href="https://tharidulakmal.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-neutral-600 transition-colors duration-150"
+            </Link>
+            <Link
+              href="/privacy"
+              className="hover:text-[#800020] transition-colors duration-150"
             >
-              Contact
-            </a>
+              Privacy
+            </Link>
           </div>
         </div>
       </aside>

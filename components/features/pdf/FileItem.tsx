@@ -75,7 +75,7 @@ export function FileItem({
             {file.name}
           </span>
           <span className="text-[11px] sm:text-xs text-neutral-400 mt-0.5 truncate">
-            {file.size} • {file.pages} pages
+            {file.size}, {file.pages} pages
           </span>
         </div>
       </div>

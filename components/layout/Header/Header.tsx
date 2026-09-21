@@ -39,30 +39,33 @@ export function Header() {
 
       {/* Right side navigation */}
       <div className="flex items-center gap-4 sm:gap-6">
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-6">
+          <Link
+            href="/how-to-use"
+            className="text-sm font-medium text-neutral-700 hover:text-[#800020] transition-colors"
+          >
+            How to Use
+          </Link>
+          <Link
+            href="/faq"
+            className="text-sm font-medium text-neutral-700 hover:text-[#800020] transition-colors"
+          >
+            FAQ
+          </Link>
+          <Link
+            href="/about"
+            className="text-sm font-medium text-neutral-700 hover:text-[#800020] transition-colors"
+          >
+            About
+          </Link>
+          <div className="w-px h-4 bg-neutral-200" />
           <a
             href="https://imgx.tharidulakmal.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-neutral-700 hover:text-[#800020] transition-colors"
+            className="text-sm font-medium text-neutral-500 hover:text-[#800020] transition-colors"
           >
             IMG-X
-          </a>
-          <a
-            href="https://vinci.tharidulakmal.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium text-neutral-700 hover:text-[#800020] transition-colors"
-          >
-            Vinci AI
-          </a>
-          <a
-            href="https://tharidulakmal.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium text-neutral-700 hover:text-[#800020] transition-colors"
-          >
-            About
           </a>
         </nav>
 

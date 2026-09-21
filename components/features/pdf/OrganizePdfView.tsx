@@ -276,9 +276,6 @@ export function OrganizePdfView() {
   return (
     <main className="w-full max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-8 flex flex-col">
       <div className="flex flex-col mb-6">
-        <span className="text-xs font-bold uppercase tracking-wider text-[#800020] mb-1.5">
-          ORGANIZE PDF
-        </span>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Reorder, rotate & manage PDF pages
         </h1>
@@ -315,7 +312,7 @@ export function OrganizePdfView() {
                   {fileName}
                 </span>
                 <span className="text-xs text-neutral-400 mt-0.5">
-                  {fileSize} • {pages.length} pages
+                  {fileSize}, {pages.length} pages
                 </span>
               </div>
             </div>

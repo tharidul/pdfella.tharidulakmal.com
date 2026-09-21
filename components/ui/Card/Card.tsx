@@ -10,7 +10,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
 }
 
-const CARD_BASE_STYLES = "rounded-2xl transition-all";
+const CARD_BASE_STYLES = "rounded-xl transition-[border-color,box-shadow] duration-150";
 
 const CARD_PADDING_STYLES: Record<CardPadding, string> = {
   none: "p-0",

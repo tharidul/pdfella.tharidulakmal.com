@@ -194,7 +194,7 @@ export function Select({
         onClick={handleToggle}
         onKeyDown={handleKeyDown}
         className={cn(
-          "flex w-full items-center justify-between rounded-xl border bg-white px-4 py-3 text-left text-sm transition-all outline-hidden cursor-pointer select-none",
+          "flex w-full items-center justify-between rounded-xl border bg-white px-4 py-3 text-left text-sm transition-colors duration-150 outline-hidden cursor-pointer select-none",
           "dark:bg-neutral-800",
           error
             ? "border-rich-mahogany ring-2 ring-rich-mahogany/20"
@@ -229,7 +229,7 @@ export function Select({
           role="listbox"
           tabIndex={-1}
           className={cn(
-            "absolute left-0 right-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border border-neutral-200/90 bg-white/95 p-1.5 shadow-md backdrop-blur-md dark:border-neutral-700/80 dark:bg-neutral-800/95",
+            "absolute left-0 right-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border border-neutral-200 bg-white p-1.5 shadow-md dark:border-neutral-700 dark:bg-neutral-800",
             dropdownClassName
           )}
         >

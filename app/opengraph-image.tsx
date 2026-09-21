@@ -148,9 +148,9 @@ export default async function Image() {
           }}
         >
           <div style={{ display: "flex", gap: "28px" }}>
-            <span>• No file size limits</span>
-            <span>• No registration needed</span>
-            <span>• Works offline</span>
+            <span>No file size limits</span>
+            <span>No registration needed</span>
+            <span>Works offline</span>
           </div>
           <span style={{ fontWeight: 700, color: "#800020" }}>pdfx.tharidulakmal.com</span>
         </div>

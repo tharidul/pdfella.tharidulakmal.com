@@ -13,6 +13,9 @@ import {
   HiArrowRight,
   HiInformationCircle,
   HiSparkles,
+  HiHashtag,
+  HiArrowDownTray,
+  HiShieldCheck,
 } from "react-icons/hi2";
 import { FaScissors } from "react-icons/fa6";
 import { RxDragHandleDots2 } from "react-icons/rx";
@@ -45,3 +48,7 @@ export const ArrowUpIcon = HiArrowUp;
 export const ArrowDownIcon = HiArrowDown;
 export const ArrowRightIcon = HiArrowRight;
 export const InfoIcon = HiInformationCircle;
+export const ImagesToPdfIcon = HiPhoto;
+export const PdfToImageIcon = HiArrowDownTray;
+export const PageNumbersIcon = HiHashtag;
+export const WatermarkIcon = HiShieldCheck;

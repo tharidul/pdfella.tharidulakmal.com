@@ -102,7 +102,70 @@ The PDF Page Remover allows users to delete specific unnecessary or sensitive pa
 
 ---
 
-## 5. Universal Platform & UX Features
+## 5. Feature 4: Images to PDF (Convert JPG, PNG & WebP to PDF)
+
+The Images to PDF utility converts multiple image files into a single, standardized, professional PDF document.
+
+### Key Capabilities
+- **Multi-Format Image Support:** Upload JPG, PNG, WebP, or BMP images via drag-and-drop or file selector.
+- **Reorderable Visual Gallery:**
+  - Card gallery showing thumbnail preview, exact file dimensions, and file size.
+  - Reorder items up/down or remove individual images.
+- **Customizable Layout Controls:**
+  - **Page Size:** Fit to Image (preserves original dimensions), A4 (210 × 297 mm), or US Letter (8.5 × 11 in).
+  - **Orientation:** Auto (smart ratio matching), Portrait, or Landscape.
+  - **Margins:** No Margin (full bleed), Small (20pt), or Large (40pt).
+- **Client-Side Export:** Assembles clean PDF document with embedded images and triggers download.
+
+---
+
+## 6. Feature 5: PDF to Images (High-Res JPG/PNG & ZIP Export)
+
+The PDF to Images tool extracts individual pages of a PDF document into crisp, high-resolution standalone images.
+
+### Key Capabilities
+- **Dual Export Formats:**
+  - **PNG:** Lossless format for sharp typography and vector graphics.
+  - **JPG:** Compact format with high image quality.
+- **Resolution Control:** Standard (150 DPI) or High-Resolution (300 DPI).
+- **Interactive Page Grid:** Progressive page thumbnail rendering with selection checkboxes.
+- **Single or Batch Download:**
+  - Download individual page images on demand.
+  - "Download Selected as ZIP" bundles all chosen pages into a single uncompressed ZIP archive generated entirely in-browser.
+
+---
+
+## 7. Feature 6: Add Page Numbers (Bates & Header/Footer Numbering)
+
+The Page Numbers tool stamps clean page numbering across documents with customizable placement and formatting.
+
+### Key Capabilities
+- **6-Quadrant Positioning:** Bottom Center, Bottom Right, Bottom Left, Top Center, Top Right, Top Left.
+- **Customizable Number Formats:** `Page X of Y`, `X / Y`, `X`, or `Page X`.
+- **Styling Options:** Adjustable font size (9pt–18pt) and color presets (Dark Gray, Deep Black, Muted Gray, Burgundy).
+- **Cover Page Skip:** Exclude the first/title page from numbering.
+- **Start Number Offset:** Set custom starting sequence numbers.
+- **Real-Time Interactive Preview:** Visual thumbnail mockup showing live position and typography.
+
+---
+
+## 8. Feature 7: Watermark PDF (Confidential Stamps & Image Logos)
+
+The Watermark PDF tool stamps customized text or logo watermarks onto PDF pages to protect sensitive documents.
+
+### Key Capabilities
+- **Text Watermark Mode:**
+  - Custom text input with 1-click presets: `CONFIDENTIAL`, `DRAFT`, `SAMPLE`, `COPY`, `URGENT`, `ORIGINAL`.
+  - Adjustable font size (24pt–80pt), colors, rotation (-45°, 0°, 45°), and opacity (10%–80%).
+- **Image / Logo Stamp Mode:**
+  - Upload PNG/JPG brand logos or official stamps.
+  - Scale adjustment and transparency controls.
+- **Cover Page Skip:** Option to leave the document title page clean.
+- **Real-Time Superimposed Preview:** Live mockup reflecting text/logo, angle, color, and opacity.
+
+---
+
+## 9. Universal Platform & UX Features
 
 ### 5.1 Responsive Glassmorphism Design
 - **Color-Coded Tool Themes:**

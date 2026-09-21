@@ -9,3 +9,8 @@ export * from "./split";
 export * from "./remove";
 export * from "./organize";
 export * from "./compress";
+export * from "./zip";
+export * from "./imageToPdf";
+export * from "./pdfToImage";
+export * from "./pageNumbers";
+export * from "./watermark";
