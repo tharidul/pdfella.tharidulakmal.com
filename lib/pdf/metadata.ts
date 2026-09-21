@@ -1,4 +1,4 @@
-import { PDFDocument } from "pdf-lib";
+import { loadPdfLib } from "./loader";
 import type { PdfDocumentMetadata } from "./types";
 import { formatFileSize, sanitizeFilename } from "./validation";
 
@@ -30,6 +30,7 @@ export async function extractPdfMetadata(
   }
 
   const cleanName = sanitizeFilename(name);
+  const { PDFDocument } = await loadPdfLib();
   const pdfDoc = await PDFDocument.load(buffer, {
     ignoreEncryption: true,
     updateMetadata: false,

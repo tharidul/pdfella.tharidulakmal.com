@@ -9,8 +9,7 @@
 - **100% Client-Side Privacy:** Zero server uploads. Files remain strictly on the user's device, ensuring total privacy for sensitive legal, financial, or personal documents.
 - **No Sign-Up & No Limits:** Instant access without accounts, subscriptions, watermarks, or artificial file limits.
 - **Offline Capable:** Works without an active internet connection once loaded in the browser.
-- **Unified Hub:** A single, responsive workspace with seamless mode switching between PDF tools.
-- **Ecosystem:** Part of the **Tharidu Lakmal** tools ecosystem (`https://tharidulakmal.com`), connecting to sister tools such as **IMG-X** (image tools) and **Vinci AI** (creative AI tools).
+- **Created By:** Created by **Tharidu Lakmal** (`https://tharidulakmal.com`).
 
 ---
 
@@ -204,8 +203,6 @@ The Watermark PDF tool stamps customized text or logo watermarks onto PDF pages 
 
 ## 6. Ecosystem & Navigation
 
-- **Header Ecosystem Menu:** Direct links to companion creative and utility apps:
+- **Navigation & Links:** Direct links to documentation, privacy policy, and author portfolio:
   - **Portfolio:** `https://tharidulakmal.com`
-  - **IMG-X:** Image processing tools (`https://imgx.tharidulakmal.com`)
-  - **Vinci AI:** AI creative art generation (`https://vinci.tharidulakmal.com`)
-- **Footer:** Direct links to portfolio, blog, ecosystem products, and copyright attribution.
+- **Footer:** Direct links to portfolio, privacy policy, and copyright attribution.

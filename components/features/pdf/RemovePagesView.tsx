@@ -11,14 +11,11 @@ import {
   HiCheckCircle,
 } from "react-icons/hi2";
 import { DropZone } from "./DropZone";
-import {
-  validatePdfFile,
-  extractPdfMetadata,
-  renderPageThumbnail,
-  removeAndDownloadPdfPages,
-  formatPageRange,
-  safeParsePageRange,
-} from "@/lib/pdf";
+import { validatePdfFile } from "@/lib/pdf/validation";
+import { extractPdfMetadata } from "@/lib/pdf/metadata";
+import { renderPageThumbnail } from "@/lib/pdf/render";
+import { removeAndDownloadPdfPages } from "@/lib/pdf/remove";
+import { formatPageRange, safeParsePageRange } from "@/lib/pdf/range";
 
 interface RemovePageItem {
   number: number;

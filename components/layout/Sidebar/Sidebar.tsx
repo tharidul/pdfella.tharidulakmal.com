@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HiChevronLeft, HiXMark } from "react-icons/hi2";
+import { HiXMark } from "react-icons/hi2";
 import Image from "next/image";
 import {
   MergePdfIcon,
@@ -11,8 +11,6 @@ import {
   TrashIcon,
   LayersIcon,
   CompressIcon,
-  ImageIcon,
-  VinciAiIcon,
   ImagesToPdfIcon,
   PdfToImageIcon,
   PageNumbersIcon,
@@ -94,22 +92,42 @@ const PRIMARY_TOOLS: NavItem[] = [
   },
 ];
 
-const SECONDARY_TOOLS: NavItem[] = [
-  {
-    id: "img-x",
-    name: "IMG-X",
-    description: "Image tools",
-    icon: ImageIcon,
-    href: "https://imgx.tharidulakmal.com",
-  },
-  {
-    id: "vinci-ai",
-    name: "Vinci AI",
-    description: "Creative tools",
-    icon: VinciAiIcon,
-    href: "https://vinci.tharidulakmal.com",
-  },
-];
+function PanelLeftCloseIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect width="18" height="18" x="3" y="3" rx="3.5" />
+      <line x1="9" y1="3" x2="9" y2="21" />
+    </svg>
+  );
+}
+
+function PanelLeftOpenIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect width="18" height="18" x="3" y="3" rx="3.5" />
+      <line x1="9" y1="3" x2="9" y2="21" />
+      <polyline points="13 9 16 12 13 15" />
+    </svg>
+  );
+}
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -159,8 +177,8 @@ export function Sidebar() {
           </div>
 
           {/* Primary Tools Navigation */}
-          <nav className="flex flex-col space-y-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 px-3 mb-1">
+          <nav aria-label="Mobile Tools Navigation" className="flex flex-col space-y-1">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 px-3 mb-1">
               PDF Utilities
             </span>
             {PRIMARY_TOOLS.map((item) => {
@@ -174,6 +192,7 @@ export function Sidebar() {
                 <Link
                   key={item.id}
                   href={item.href}
+                  prefetch={false}
                   onClick={closeMobile}
                   className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-colors ${
                     isActive
@@ -184,7 +203,7 @@ export function Sidebar() {
                   <IconComponent className="w-5 h-5 text-[#800020] shrink-0" />
                   <div className="flex flex-col min-w-0">
                     <span className="text-sm leading-snug">{item.name}</span>
-                    <span className="text-xs text-neutral-400 leading-none mt-0.5">
+                    <span className="text-xs text-neutral-600 leading-none mt-0.5">
                       {item.description}
                     </span>
                   </div>
@@ -197,7 +216,7 @@ export function Sidebar() {
         {/* Mobile Drawer Footer: Resources & Ecosystem */}
         <div className="flex flex-col pt-4 border-t border-neutral-100 space-y-4">
           <div className="flex flex-col space-y-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 px-3 mb-1">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 px-3 mb-1">
               Resources & Info
             </span>
             <Link
@@ -230,31 +249,7 @@ export function Sidebar() {
             </Link>
           </div>
 
-          <div className="flex flex-col space-y-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 px-3 mb-1">
-              Ecosystem Tools
-            </span>
-            {SECONDARY_TOOLS.map((item) => {
-              const IconComponent = item.icon;
-              return (
-                <a
-                  key={item.id}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-3.5 py-2 rounded-lg text-neutral-700 hover:bg-neutral-50 transition-colors"
-                >
-                  <IconComponent className="w-5 h-5 text-[#800020] shrink-0" />
-                  <div className="flex flex-col min-w-0">
-                    <span className="text-sm font-medium leading-snug">{item.name}</span>
-                    <span className="text-xs text-neutral-400 leading-none mt-0.5">
-                      {item.description}
-                    </span>
-                  </div>
-                </a>
-              );
-            })}
-          </div>
+
 
           <div className="flex items-center text-xs text-neutral-500 px-3 pt-2 border-t border-neutral-100">
             <a
@@ -273,61 +268,75 @@ export function Sidebar() {
       {/* 2. DESKTOP STICKY COLLAPSIBLE SIDEBAR (>= md)                */}
       {/* ============================================================ */}
       <aside
-        className={`hidden md:flex flex-col justify-between h-screen sticky top-0 py-6 select-none transition-[width] duration-300 ease-in-out shrink-0 z-30 border-r border-neutral-200 bg-white overflow-y-auto ${
-          isCollapsed ? "w-20 min-w-20" : "w-64 min-w-64"
+        className={`hidden md:flex flex-col justify-between h-screen sticky top-0 select-none transition-[width] duration-300 ease-[cubic-bezier(0.2,0,0,1)] shrink-0 z-30 border-r border-neutral-200 bg-white overflow-hidden ${
+          isCollapsed ? "w-20" : "w-64"
         }`}
         aria-label="Desktop Navigation"
       >
-        <div className="flex flex-col">
-          <div
-            className={`flex items-center mb-7 transition-[padding] duration-200 ${
-              isCollapsed ? "flex-col gap-3 px-3" : "justify-between px-5"
-            }`}
-          >
-            <Link
-              href="/"
-              className="flex items-center min-w-0"
-              title="PDF-X Home"
-            >
-              {isCollapsed ? (
-                <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shrink-0 shadow-xs border border-neutral-100 bg-white">
+        {/* Scrollable inner content container with hidden scrollbar */}
+        <div className="flex-1 flex flex-col justify-between overflow-y-auto overflow-x-hidden py-4 scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex flex-col">
+            {/* Header: Gemini Style Brand & Sidebar Toggle */}
+            <div className="flex items-center h-12 mb-5 px-5 relative">
+              {/* Collapsed Logo Button (visible when collapsed) */}
+              <button
+                type="button"
+                onClick={() => setIsCollapsed(false)}
+                aria-label="Expand sidebar"
+                title="Expand sidebar"
+                className={`group absolute left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 transition-[opacity,transform] duration-200 cursor-pointer shrink-0 ${
+                  isCollapsed ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"
+                }`}
+              >
+                <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center transition-opacity duration-150 group-hover:opacity-0 shrink-0">
                   <Image
                     src="/logo.webp"
                     alt="PDF-X"
-                    width={40}
-                    height={40}
+                    width={32}
+                    height={32}
                     priority
-                    className="w-full h-full object-contain p-0.5"
+                    className="w-full h-full object-contain"
                   />
                 </div>
-              ) : (
-                <Image
-                  src="/logo-2.webp"
-                  alt="PDF-X"
-                  width={150}
-                  height={44}
-                  priority
-                  className="h-11 w-auto object-contain"
-                />
-              )}
-            </Link>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                  <PanelLeftOpenIcon className="w-5 h-5 text-neutral-700" />
+                </div>
+              </button>
 
-            <button
-              type="button"
-              onClick={() => setIsCollapsed(!isCollapsed)}
-              aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-              title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-800 hover:bg-neutral-100 transition-colors duration-150 cursor-pointer shrink-0"
-            >
-              <HiChevronLeft
-                className={`w-4 h-4 transition-transform duration-200 ease-in-out ${
-                  isCollapsed ? "rotate-180" : ""
+              {/* Expanded Header View (visible when expanded) */}
+              <div
+                className={`flex items-center justify-between w-full transition-[opacity,transform] duration-250 ease-out ${
+                  isCollapsed ? "opacity-0 scale-98 pointer-events-none" : "opacity-100 scale-100 pointer-events-auto"
                 }`}
-              />
-            </button>
-          </div>
+              >
+                <Link
+                  href="/"
+                  className="flex items-center min-w-0"
+                  title="PDF-X Home"
+                >
+                  <Image
+                    src="/logo-2.webp"
+                    alt="PDF-X"
+                    width={130}
+                    height={38}
+                    priority
+                    className="h-9 w-auto object-contain"
+                  />
+                </Link>
 
-          <nav className="flex flex-col space-y-1">
+                <button
+                  type="button"
+                  onClick={() => setIsCollapsed(true)}
+                  aria-label="Collapse sidebar"
+                  title="Collapse sidebar"
+                  className="w-9 h-9 rounded-lg flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-colors duration-150 cursor-pointer shrink-0"
+                >
+                  <PanelLeftCloseIcon className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+          <nav aria-label="Tools Navigation" className="flex flex-col space-y-1">
             {PRIMARY_TOOLS.map((item) => {
               const IconComponent = item.icon;
               const isActive =
@@ -340,23 +349,23 @@ export function Sidebar() {
                   <div
                     key={item.id}
                     title={item.name}
-                    className={`relative flex items-center bg-[#fdf2f4] rounded-r-xl transition-[padding,colors] duration-200 cursor-pointer ${
-                      isCollapsed ? "justify-center px-2 py-3" : "px-5 py-3"
-                    }`}
+                    className="relative flex items-center px-5 py-3 bg-[#fdf2f4] rounded-r-xl transition-colors duration-200 cursor-pointer"
                   >
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#800020] rounded-r" />
-                    <IconComponent className="w-5 h-5 text-[#800020] shrink-0" />
+                    <div className="absolute left-0 top-1 bottom-1 w-1 bg-[#800020] rounded-r" />
+                    <div className="w-10 h-6 flex items-center justify-center shrink-0">
+                      <IconComponent className="w-5 h-5 text-[#800020]" />
+                    </div>
                     <div
-                      className={`flex flex-col transition-[max-width,opacity,transform] duration-200 ease-in-out overflow-hidden whitespace-nowrap ${
+                      className={`flex flex-col overflow-hidden whitespace-nowrap transition-[max-width,opacity] duration-300 ease-[cubic-bezier(0.2,0,0,1)] ${
                         isCollapsed
-                          ? "max-w-0 opacity-0 -translate-x-2 pointer-events-none"
-                          : "max-w-[170px] opacity-100 translate-x-0 ml-3.5"
+                          ? "max-w-0 opacity-0 pointer-events-none"
+                          : "max-w-[170px] opacity-100 ml-2"
                       }`}
                     >
                       <span className="text-sm font-semibold text-[#800020] leading-snug">
                         {item.name}
                       </span>
-                      <span className="text-xs text-neutral-500 leading-none mt-0.5">
+                      <span className="text-xs text-neutral-600 leading-none mt-0.5">
                         {item.description}
                       </span>
                     </div>
@@ -368,23 +377,24 @@ export function Sidebar() {
                 <Link
                   key={item.id}
                   href={item.href}
+                  prefetch={false}
                   title={item.name}
-                  className={`relative flex items-center text-neutral-800 hover:bg-neutral-50 rounded-r-xl transition-[padding,colors] duration-200 ${
-                    isCollapsed ? "justify-center px-2 py-3" : "px-5 py-3"
-                  }`}
+                  className="relative flex items-center px-5 py-3 text-neutral-800 hover:bg-neutral-50 rounded-r-xl transition-colors duration-200"
                 >
-                  <IconComponent className="w-5 h-5 text-[#800020] shrink-0" />
+                  <div className="w-10 h-6 flex items-center justify-center shrink-0">
+                    <IconComponent className="w-5 h-5 text-[#800020]" />
+                  </div>
                   <div
-                    className={`flex flex-col transition-[max-width,opacity,transform] duration-200 ease-in-out overflow-hidden whitespace-nowrap ${
+                    className={`flex flex-col overflow-hidden whitespace-nowrap transition-[max-width,opacity] duration-300 ease-[cubic-bezier(0.2,0,0,1)] ${
                       isCollapsed
-                        ? "max-w-0 opacity-0 -translate-x-2 pointer-events-none"
-                        : "max-w-[170px] opacity-100 translate-x-0 ml-3.5"
+                        ? "max-w-0 opacity-0 pointer-events-none"
+                        : "max-w-[170px] opacity-100 ml-2"
                     }`}
                   >
                     <span className="text-sm font-medium text-neutral-900 leading-snug">
                       {item.name}
                     </span>
-                    <span className="text-xs text-neutral-400 leading-none mt-0.5">
+                    <span className="text-xs text-neutral-600 leading-none mt-0.5">
                       {item.description}
                     </span>
                   </div>
@@ -394,44 +404,7 @@ export function Sidebar() {
           </nav>
         </div>
 
-        <div
-          className={`flex flex-col transition-[padding] duration-200 ${
-            isCollapsed ? "px-2 pt-4" : "px-5 pt-6"
-          }`}
-        >
-          <div className="flex flex-col space-y-1.5 mb-6">
-            {SECONDARY_TOOLS.map((item) => {
-              const IconComponent = item.icon;
-              return (
-                <a
-                  key={item.id}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={item.name}
-                  className={`flex items-center text-neutral-800 hover:bg-neutral-50 rounded-lg transition-[padding,colors] duration-200 ${
-                    isCollapsed ? "justify-center p-2.5" : "px-3 py-2"
-                  }`}
-                >
-                  <IconComponent className="w-5 h-5 text-[#800020] shrink-0" />
-                  <div
-                    className={`flex flex-col transition-[max-width,opacity,transform] duration-200 ease-in-out overflow-hidden whitespace-nowrap ${
-                      isCollapsed
-                        ? "max-w-0 opacity-0 -translate-x-2 pointer-events-none"
-                        : "max-w-[170px] opacity-100 translate-x-0 ml-3.5"
-                    }`}
-                  >
-                    <span className="text-sm font-medium text-neutral-900 leading-snug">
-                      {item.name}
-                    </span>
-                    <span className="text-xs text-neutral-400 leading-none mt-0.5">
-                      {item.description}
-                    </span>
-                  </div>
-                </a>
-              );
-            })}
-          </div>
+        <div className="flex flex-col px-5 pt-2">
 
           <div
             className={`transition-[max-height,opacity] duration-200 overflow-hidden ${
@@ -466,7 +439,8 @@ export function Sidebar() {
             </Link>
           </div>
         </div>
-      </aside>
+      </div>
+    </aside>
     </>
   );
 }

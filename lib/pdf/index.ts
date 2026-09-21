@@ -14,3 +14,4 @@ export * from "./imageToPdf";
 export * from "./pdfToImage";
 export * from "./pageNumbers";
 export * from "./watermark";
+export * from "./loader";

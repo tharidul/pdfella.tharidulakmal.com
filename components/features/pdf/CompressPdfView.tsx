@@ -9,15 +9,14 @@ import {
   HiCheckCircle,
 } from "react-icons/hi2";
 import { DropZone } from "./DropZone";
+import { formatFileSize, validatePdfFile } from "@/lib/pdf/validation";
+import { extractPdfMetadata } from "@/lib/pdf/metadata";
 import {
-  validatePdfFile,
-  extractPdfMetadata,
   compressAndDownloadPdf,
   estimateCompressedSize,
-  formatFileSize,
   type CompressionTier,
   type CompressPdfResult,
-} from "@/lib/pdf";
+} from "@/lib/pdf/compress";
 
 interface CompressionOptionView {
   id: CompressionTier;

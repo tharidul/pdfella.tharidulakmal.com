@@ -1,4 +1,4 @@
-import { PDFDocument } from "pdf-lib";
+import { loadPdfLib } from "./loader";
 import { downloadPdf } from "./download";
 import { formatPageRange } from "./range";
 import { sanitizeFilename, validatePdfBuffer } from "./validation";
@@ -43,6 +43,7 @@ export async function splitPdf(input: SplitPdfInput): Promise<SplitPdfResult> {
     throw new Error(`Invalid PDF document "${name}": ${validation.error}`);
   }
 
+  const { PDFDocument } = await loadPdfLib();
   const srcDoc = await PDFDocument.load(data, { ignoreEncryption: true });
   const totalPages = srcDoc.getPageCount();
 

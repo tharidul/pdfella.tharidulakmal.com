@@ -11,15 +11,14 @@ import {
   HiSquares2X2,
 } from "react-icons/hi2";
 import { DropZone } from "./DropZone";
+import { formatFileSize, validatePdfFile } from "@/lib/pdf/validation";
+import { extractPdfMetadata } from "@/lib/pdf/metadata";
+import { renderPageThumbnail } from "@/lib/pdf/render";
 import {
-  validatePdfFile,
-  extractPdfMetadata,
-  renderPageThumbnail,
   addPageNumbersAndDownload,
-  formatFileSize,
   type PageNumberPosition,
   type PageNumberFormat,
-} from "@/lib/pdf";
+} from "@/lib/pdf/pageNumbers";
 
 const POSITIONS: Array<{ id: PageNumberPosition; label: string; gridArea: string }> = [
   { id: "top-left", label: "Top Left", gridArea: "1 / 1" },

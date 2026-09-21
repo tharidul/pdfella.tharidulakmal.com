@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AppLayout } from "@/components/layout";
-import { RemovePagesView } from "@/components/features";
+import { RemovePagesView } from "@/components/features/pdf/RemovePagesView";
 import { JsonLd } from "@/components/seo";
 
 export const metadata: Metadata = {

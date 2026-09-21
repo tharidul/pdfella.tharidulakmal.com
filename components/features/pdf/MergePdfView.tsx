@@ -1,65 +1,25 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { DragDropProvider } from "@dnd-kit/react";
-import { useSortable } from "@dnd-kit/react/sortable";
-import { arrayMove } from "@dnd-kit/helpers";
-import { TrashIcon } from "@/components/common/icons";
+import dynamic from "next/dynamic";
 import { DropZone } from "./DropZone";
-import { FileItem, type PdfFileItemData } from "./FileItem";
-import { MergeActionBar } from "./MergeActionBar";
-import {
-  validatePdfFile,
-  extractPdfMetadata,
-  renderPageThumbnail,
-  mergeAndDownloadPdfs,
-  type MergeInputItem,
-} from "@/lib/pdf";
+import type { PdfFileItemData } from "./FileItem";
+import { validatePdfFile } from "@/lib/pdf/validation";
+import { extractPdfMetadata } from "@/lib/pdf/metadata";
+import { renderPageThumbnail } from "@/lib/pdf/render";
+import { mergeAndDownloadPdfs, type MergeInputItem } from "@/lib/pdf/merge";
 
-interface SortableFileItemProps {
-  file: PdfFileItemData;
-  index: number;
-  isFirst: boolean;
-  isLast: boolean;
-  onMoveUp: () => void;
-  onMoveDown: () => void;
-  onDelete: () => void;
-}
-
-function SortableFileItem({
-  file,
-  index,
-  isFirst,
-  isLast,
-  onMoveUp,
-  onMoveDown,
-  onDelete,
-}: SortableFileItemProps) {
-  const { ref, handleRef, isDragging } = useSortable({
-    id: file.id,
-    index,
-  });
-
-  return (
-    <div
-      ref={ref}
-      style={{
-        opacity: isDragging ? 0.4 : 1,
-        transition: "opacity 150ms ease",
-      }}
-    >
-      <FileItem
-        file={file}
-        isFirst={isFirst}
-        isLast={isLast}
-        onMoveUp={onMoveUp}
-        onMoveDown={onMoveDown}
-        onDelete={onDelete}
-        dragHandleRef={handleRef}
-      />
-    </div>
-  );
-}
+const MergeFileList = dynamic(
+  () => import("./MergeFileList").then((mod) => mod.MergeFileList),
+  {
+    loading: () => (
+      <div className="py-6 text-center text-xs text-neutral-500">
+        Loading document list...
+      </div>
+    ),
+    ssr: false,
+  }
+);
 
 export function MergePdfView() {
   const [files, setFiles] = useState<PdfFileItemData[]>([]);
@@ -68,13 +28,21 @@ export function MergePdfView() {
 
   const handleMoveUp = useCallback((index: number) => {
     if (index === 0) return;
-    setFiles((prev) => arrayMove(prev, index, index - 1));
+    setFiles((prev) => {
+      const copy = [...prev];
+      const item = copy.splice(index, 1)[0];
+      if (item !== undefined) copy.splice(index - 1, 0, item);
+      return copy;
+    });
   }, []);
 
   const handleMoveDown = useCallback((index: number) => {
     setFiles((prev) => {
       if (index >= prev.length - 1) return prev;
-      return arrayMove(prev, index, index + 1);
+      const copy = [...prev];
+      const item = copy.splice(index, 1)[0];
+      if (item !== undefined) copy.splice(index + 1, 0, item);
+      return copy;
     });
   }, []);
 
@@ -194,55 +162,16 @@ export function MergePdfView() {
       )}
 
       {files.length > 0 && (
-        <div className="flex flex-col">
-          <div className="flex items-center justify-between mb-3 px-1">
-            <span className="text-sm font-bold text-neutral-900">
-              {files.length} {files.length === 1 ? "file" : "files"}
-            </span>
-            <button
-              type="button"
-              onClick={handleClearAll}
-              className="text-xs font-semibold text-[#800020] hover:text-[#66001a] flex items-center gap-1.5 transition-colors cursor-pointer"
-            >
-              <TrashIcon className="w-4 h-4" />
-              <span>Clear all</span>
-            </button>
-          </div>
-
-          <DragDropProvider
-            onDragEnd={(event) => {
-              const { source, target } = event.operation;
-              if (source && target && source.id !== target.id) {
-                const fromIndex = files.findIndex((f) => f.id === source.id);
-                const toIndex = files.findIndex((f) => f.id === target.id);
-                if (fromIndex !== -1 && toIndex !== -1) {
-                  setFiles((prev) => arrayMove(prev, fromIndex, toIndex));
-                }
-              }
-            }}
-          >
-            <div className="flex flex-col">
-              {files.map((file, index) => (
-                <SortableFileItem
-                  key={file.id}
-                  file={file}
-                  index={index}
-                  isFirst={index === 0}
-                  isLast={index === files.length - 1}
-                  onMoveUp={() => handleMoveUp(index)}
-                  onMoveDown={() => handleMoveDown(index)}
-                  onDelete={() => handleDelete(file.id)}
-                />
-              ))}
-            </div>
-          </DragDropProvider>
-
-          <MergeActionBar
-            fileCount={files.length}
-            onMerge={handleMerge}
-            isMerging={isMerging}
-          />
-        </div>
+        <MergeFileList
+          files={files}
+          setFiles={setFiles}
+          onClearAll={handleClearAll}
+          onMoveUp={handleMoveUp}
+          onMoveDown={handleMoveDown}
+          onDelete={handleDelete}
+          onMerge={handleMerge}
+          isMerging={isMerging}
+        />
       )}
     </main>
   );

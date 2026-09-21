@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AppLayout } from "@/components/layout";
-import { WatermarkPdfView } from "@/components/features";
+import { WatermarkPdfView } from "@/components/features/pdf/WatermarkPdfView";
 import { JsonLd } from "@/components/seo";
 
 export const metadata: Metadata = {

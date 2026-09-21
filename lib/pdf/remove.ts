@@ -1,4 +1,4 @@
-import { PDFDocument } from "pdf-lib";
+import { loadPdfLib } from "./loader";
 import { downloadPdf } from "./download";
 import { sanitizeFilename, validatePdfBuffer } from "./validation";
 
@@ -38,6 +38,7 @@ export async function removePdfPages(input: RemovePagesInput): Promise<RemovePag
     throw new Error(`Invalid PDF document "${name}": ${validation.error}`);
   }
 
+  const { PDFDocument } = await loadPdfLib();
   const srcDoc = await PDFDocument.load(data, { ignoreEncryption: true });
   const totalPages = srcDoc.getPageCount();
 

@@ -12,7 +12,6 @@ import {
   HiArrowDown,
   HiArrowRight,
   HiInformationCircle,
-  HiSparkles,
   HiHashtag,
   HiArrowDownTray,
   HiShieldCheck,
@@ -38,8 +37,6 @@ export const ScissorsIcon = FaScissors;
 export const TrashIcon = HiTrash;
 export const LayersIcon = HiSquares2X2;
 export const CompressIcon = HiArrowsPointingIn;
-export const ImageIcon = HiPhoto;
-export const VinciAiIcon = HiSparkles;
 export const SunIcon = HiSun;
 export const LockIcon = HiLockClosed;
 export const PlusIcon = HiPlus;

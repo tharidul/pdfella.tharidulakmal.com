@@ -38,10 +38,10 @@ export function DropZone({ onFilesSelected }: DropZoneProps) {
         <PlusIcon className="w-5 h-5" />
       </div>
 
-      <h3 className="text-base font-bold text-neutral-800 leading-tight">
+      <h2 className="text-base font-bold text-neutral-800 leading-tight">
         Drop PDF files here
-      </h3>
-      <span className="text-xs text-neutral-400 my-1 font-normal">or</span>
+      </h2>
+      <span className="text-xs text-neutral-600 my-1 font-normal">or</span>
 
       <button
         type="button"
@@ -54,7 +54,7 @@ export function DropZone({ onFilesSelected }: DropZoneProps) {
         Select Files
       </button>
 
-      <p className="text-xs text-neutral-400 mt-4 font-normal">
+      <p className="text-xs text-neutral-600 mt-4 font-normal">
         You can select multiple files at once. Only PDF files are supported.
       </p>
     </div>

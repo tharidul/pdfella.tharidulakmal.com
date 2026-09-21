@@ -25,7 +25,7 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-import { PDFDocument } from "pdf-lib";
+import { loadPdfLib } from "./loader";
 import { downloadPdf } from "./download";
 import {
   calculateSavings,
@@ -151,6 +151,7 @@ export async function compressPdf(
   const sourcePdf = await loadingTask.promise;
   const totalPages = sourcePdf.numPages;
 
+  const { PDFDocument } = await loadPdfLib();
   const outputPdfDoc = await PDFDocument.create();
 
   try {

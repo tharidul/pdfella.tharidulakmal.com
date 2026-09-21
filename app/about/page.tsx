@@ -51,26 +51,7 @@ const PRINCIPLES = [
   },
 ];
 
-const ECOSYSTEM = [
-  {
-    name: "IMG-X",
-    description:
-      "Private client-side image editing, compression, and conversion studio.",
-    url: "https://imgx.tharidulakmal.com",
-  },
-  {
-    name: "Vinci AI",
-    description:
-      "Creative AI tooling and canvas workflow for modern builders.",
-    url: "https://vinci.tharidulakmal.com",
-  },
-  {
-    name: "Tharidu Lakmal Portfolio",
-    description:
-      "Engineering portfolio, open-source projects, and technical writings.",
-    url: "https://tharidulakmal.com",
-  },
-];
+
 
 export default function AboutPage() {
   return (
@@ -172,38 +153,31 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Ecosystem */}
+          {/* Developer */}
           <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs">
             <h2 className="text-base font-bold text-neutral-900 mb-2">
-              Ecosystem
+              Developer
             </h2>
             <p className="text-xs sm:text-sm text-neutral-600 mb-4 leading-relaxed">
-              Other client-side applications created by Tharidu Lakmal:
+              PDF-X was designed and engineered by Tharidu Lakmal.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              {ECOSYSTEM.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 rounded-lg bg-neutral-50/60 border border-neutral-100 hover:border-[#800020]/40 transition-colors flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <h3 className="text-xs font-bold text-neutral-900 group-hover:text-[#800020] transition-colors">
-                        {item.name}
-                      </h3>
-                      <HiArrowTopRightOnSquare className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[#800020] transition-colors" />
-                    </div>
-                    <p className="text-[11px] text-neutral-600 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                </a>
-              ))}
-            </div>
+            <a
+              href="https://tharidulakmal.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-lg bg-neutral-50/60 border border-neutral-100 hover:border-[#800020]/40 transition-colors flex items-center justify-between group max-w-md"
+            >
+              <div>
+                <h3 className="text-xs font-bold text-neutral-900 group-hover:text-[#800020] transition-colors mb-1">
+                  Tharidu Lakmal Portfolio
+                </h3>
+                <p className="text-[11px] text-neutral-600 leading-relaxed">
+                  Engineering portfolio, open-source projects, and technical writings.
+                </p>
+              </div>
+              <HiArrowTopRightOnSquare className="w-4 h-4 text-neutral-400 group-hover:text-[#800020] transition-colors ml-4 shrink-0" />
+            </a>
           </section>
         </div>
       </main>

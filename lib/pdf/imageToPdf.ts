@@ -1,4 +1,4 @@
-import { PDFDocument } from "pdf-lib";
+import { loadPdfLib } from "./loader";
 import { downloadPdf } from "./download";
 
 export type ImagePageSize = "fit" | "a4" | "letter";
@@ -107,6 +107,7 @@ export async function convertImagesToPdf(
     throw new Error("Please select at least one image to convert.");
   }
 
+  const { PDFDocument } = await loadPdfLib();
   const pdfDoc = await PDFDocument.create();
   const margin = MARGIN_SIZES[options.margin];
 

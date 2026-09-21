@@ -107,32 +107,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Ecosystem */}
+          {/* Developer */}
           <div className="flex flex-col space-y-2.5">
             <span className="text-xs font-semibold text-neutral-900">
-              Ecosystem
+              Developer
             </span>
             <ul className="flex flex-col space-y-2 text-sm text-neutral-600">
-              <li>
-                <a
-                  href="https://imgx.tharidulakmal.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#800020] transition-colors"
-                >
-                  IMG-X
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://vinci.tharidulakmal.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#800020] transition-colors"
-                >
-                  Vinci AI
-                </a>
-              </li>
               <li>
                 <a
                   href="https://tharidulakmal.com"

@@ -9,14 +9,11 @@ import {
   HiArrowPath,
 } from "react-icons/hi2";
 import { DropZone } from "./DropZone";
-import {
-  validatePdfFile,
-  extractPdfMetadata,
-  renderPageThumbnail,
-  splitAndDownloadPdf,
-  formatPageRange,
-  safeParsePageRange,
-} from "@/lib/pdf";
+import { validatePdfFile } from "@/lib/pdf/validation";
+import { extractPdfMetadata } from "@/lib/pdf/metadata";
+import { renderPageThumbnail } from "@/lib/pdf/render";
+import { splitAndDownloadPdf } from "@/lib/pdf/split";
+import { formatPageRange, safeParsePageRange } from "@/lib/pdf/range";
 
 interface PageItem {
   number: number;

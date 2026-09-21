@@ -1,4 +1,4 @@
-import { PDFDocument, degrees } from "pdf-lib";
+import { loadPdfLib } from "./loader";
 import { downloadPdf } from "./download";
 import { sanitizeFilename, validatePdfBuffer } from "./validation";
 
@@ -48,6 +48,7 @@ export async function organizePdf(input: OrganizePdfInput): Promise<OrganizePdfR
     throw new Error(`Invalid PDF document "${name}": ${validation.error}`);
   }
 
+  const { PDFDocument, degrees } = await loadPdfLib();
   const srcDoc = await PDFDocument.load(data, { ignoreEncryption: true });
   const newDoc = await PDFDocument.create();
 

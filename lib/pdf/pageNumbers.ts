@@ -1,4 +1,5 @@
-import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+import type { Color } from "pdf-lib";
+import { loadPdfLib } from "./loader";
 import { downloadPdf } from "./download";
 
 export type PageNumberPosition =
@@ -25,12 +26,12 @@ export interface PageNumbersOptions {
   margin?: number;
 }
 
-function hexToRgb(hex: string) {
+function hexToRgb(hex: string, rgbFn: (r: number, g: number, b: number) => Color): Color {
   const cleanHex = hex.replace("#", "");
   const r = parseInt(cleanHex.substring(0, 2), 16) / 255 || 0;
   const g = parseInt(cleanHex.substring(2, 4), 16) / 255 || 0;
   const b = parseInt(cleanHex.substring(4, 6), 16) / 255 || 0;
-  return rgb(r, g, b);
+  return rgbFn(r, g, b);
 }
 
 function formatPageText(
@@ -58,6 +59,7 @@ export async function addPageNumbersToPdf(
   data: ArrayBuffer | Uint8Array,
   options: PageNumbersOptions
 ): Promise<Uint8Array> {
+  const { PDFDocument, StandardFonts, rgb } = await loadPdfLib();
   const pdfDoc = await PDFDocument.load(data);
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
   const pages = pdfDoc.getPages();
@@ -66,7 +68,7 @@ export async function addPageNumbersToPdf(
   const fontSize = options.fontSize ?? 11;
   const margin = options.margin ?? 30;
   const startNumber = options.startNumber ?? 1;
-  const color = options.colorHex ? hexToRgb(options.colorHex) : rgb(0.3, 0.3, 0.3);
+  const color = options.colorHex ? hexToRgb(options.colorHex, rgb) : rgb(0.3, 0.3, 0.3);
 
   let currentNumber = startNumber;
 

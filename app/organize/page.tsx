@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AppLayout } from "@/components/layout";
-import { OrganizePdfView } from "@/components/features";
+import { OrganizePdfView } from "@/components/features/pdf/OrganizePdfView";
 import { JsonLd } from "@/components/seo";
 
 export const metadata: Metadata = {

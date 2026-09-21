@@ -18,7 +18,7 @@ import {
   type ImagePageSize,
   type ImageOrientation,
   type ImageMargin,
-} from "@/lib/pdf";
+} from "@/lib/pdf/imageToPdf";
 
 export function ImageToPdfView() {
   const [images, setImages] = useState<ImageItem[]>([]);
@@ -182,10 +182,10 @@ export function ImageToPdfView() {
           <div className="w-14 h-14 rounded-2xl bg-[#800020] text-white flex items-center justify-center mb-4 shadow-sm">
             <HiPlus className="w-7 h-7" />
           </div>
-          <h3 className="text-lg font-bold text-neutral-900 leading-tight">
+          <h2 className="text-lg font-bold text-neutral-900 leading-tight">
             Select or drop images here
-          </h3>
-          <p className="text-xs text-neutral-400 mt-1 max-w-xs">
+          </h2>
+          <p className="text-xs text-neutral-600 mt-1 max-w-xs">
             Supports JPG, PNG, WebP, and BMP. You can select multiple files at once.
           </p>
           <button

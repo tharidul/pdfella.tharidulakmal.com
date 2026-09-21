@@ -1,4 +1,5 @@
-import { PDFDocument, StandardFonts, rgb, degrees } from "pdf-lib";
+import type { Color } from "pdf-lib";
+import { loadPdfLib } from "./loader";
 import { downloadPdf } from "./download";
 
 export type WatermarkType = "text" | "image";
@@ -25,12 +26,12 @@ export interface ImageWatermarkOptions {
 
 export type WatermarkOptions = TextWatermarkOptions | ImageWatermarkOptions;
 
-function hexToRgb(hex: string) {
+function hexToRgb(hex: string, rgbFn: (r: number, g: number, b: number) => Color): Color {
   const clean = hex.replace("#", "");
   const r = parseInt(clean.substring(0, 2), 16) / 255 || 0;
   const g = parseInt(clean.substring(2, 4), 16) / 255 || 0;
   const b = parseInt(clean.substring(4, 6), 16) / 255 || 0;
-  return rgb(r, g, b);
+  return rgbFn(r, g, b);
 }
 
 /**
@@ -40,6 +41,7 @@ export async function addWatermarkToPdf(
   data: ArrayBuffer | Uint8Array,
   options: WatermarkOptions
 ): Promise<Uint8Array> {
+  const { PDFDocument, StandardFonts, rgb, degrees } = await loadPdfLib();
   const pdfDoc = await PDFDocument.load(data);
   const pages = pdfDoc.getPages();
   const opacity = Math.max(0.05, Math.min(1.0, options.opacity ?? 0.25));
@@ -49,7 +51,7 @@ export async function addWatermarkToPdf(
     const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
     const fontSize = options.fontSize ?? 48;
     const text = options.text.trim() || "CONFIDENTIAL";
-    const color = options.colorHex ? hexToRgb(options.colorHex) : rgb(0.8, 0.1, 0.1);
+    const color = options.colorHex ? hexToRgb(options.colorHex, rgb) : rgb(0.8, 0.1, 0.1);
 
     const textWidth = font.widthOfTextAtSize(text, fontSize);
     const textHeight = font.heightAtSize(fontSize);

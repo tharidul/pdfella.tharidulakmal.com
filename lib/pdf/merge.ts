@@ -1,4 +1,4 @@
-import { PDFDocument } from "pdf-lib";
+import { loadPdfLib } from "./loader";
 import { downloadPdf } from "./download";
 import { validatePdfBuffer } from "./validation";
 
@@ -46,6 +46,7 @@ export async function mergePdfs(
     }
   }
 
+  const { PDFDocument } = await loadPdfLib();
   const mergedDoc = await PDFDocument.create();
   let totalMergedPages = 0;
 

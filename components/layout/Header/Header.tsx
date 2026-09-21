@@ -39,7 +39,7 @@ export function Header() {
 
       {/* Right side navigation */}
       <div className="flex items-center gap-4 sm:gap-6">
-        <nav className="hidden md:flex items-center gap-5 lg:gap-6">
+        <nav aria-label="Header Navigation" className="hidden md:flex items-center gap-5 lg:gap-6">
           <Link
             href="/how-to-use"
             className="text-sm font-medium text-neutral-700 hover:text-[#800020] transition-colors"
@@ -58,15 +58,6 @@ export function Header() {
           >
             About
           </Link>
-          <div className="w-px h-4 bg-neutral-200" />
-          <a
-            href="https://imgx.tharidulakmal.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium text-neutral-500 hover:text-[#800020] transition-colors"
-          >
-            IMG-X
-          </a>
         </nav>
 
         <button
