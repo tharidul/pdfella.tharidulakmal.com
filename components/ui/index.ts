@@ -10,3 +10,5 @@ export * from "./Image";
 export * from "./Divider";
 export * from "./Link";
 export * from "./Select";
+export * from "./sonner";
+

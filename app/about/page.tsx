@@ -100,7 +100,7 @@ export default function AboutPage() {
                     className="p-4 rounded-lg bg-neutral-50/60 border border-neutral-100 flex flex-col justify-between"
                   >
                     <div>
-                      <div className="w-8 h-8 rounded-lg bg-[#fdf2f4] text-[#800020] flex items-center justify-center mb-2.5">
+                      <div className="w-8 h-8 rounded-lg bg-brand-subtle text-brand-primary flex items-center justify-center mb-2.5">
                         <IconComponent className="w-4 h-4" />
                       </div>
                       <h3 className="text-sm font-semibold text-neutral-900 mb-1">
@@ -166,17 +166,17 @@ export default function AboutPage() {
               href="https://tharidulakmal.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 rounded-lg bg-neutral-50/60 border border-neutral-100 hover:border-[#800020]/40 transition-colors flex items-center justify-between group max-w-md"
+              className="p-4 rounded-lg bg-neutral-50/60 border border-neutral-100 hover:border-brand-primary/40 transition-colors flex items-center justify-between group max-w-md cursor-pointer"
             >
               <div>
-                <h3 className="text-xs font-bold text-neutral-900 group-hover:text-[#800020] transition-colors mb-1">
+                <h3 className="text-xs font-bold text-neutral-900 group-hover:text-brand-primary transition-colors mb-1">
                   Tharidu Lakmal Portfolio
                 </h3>
                 <p className="text-[11px] text-neutral-600 leading-relaxed">
                   Engineering portfolio, open-source projects, and technical writings.
                 </p>
               </div>
-              <HiArrowTopRightOnSquare className="w-4 h-4 text-neutral-400 group-hover:text-[#800020] transition-colors ml-4 shrink-0" />
+              <HiArrowTopRightOnSquare className="w-4 h-4 text-neutral-400 group-hover:text-brand-primary transition-colors ml-4 shrink-0" />
             </a>
           </section>
         </div>

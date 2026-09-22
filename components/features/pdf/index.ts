@@ -10,3 +10,4 @@ export * from "./ImageToPdfView";
 export * from "./PdfToImageView";
 export * from "./PageNumbersView";
 export * from "./WatermarkPdfView";
+export * from "./SignPdfView";

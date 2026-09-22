@@ -197,9 +197,9 @@ export function Select({
           "flex w-full items-center justify-between rounded-xl border bg-white px-4 py-3 text-left text-sm transition-colors duration-150 outline-hidden cursor-pointer select-none",
           "dark:bg-neutral-800",
           error
-            ? "border-rich-mahogany ring-2 ring-rich-mahogany/20"
+            ? "border-brand-primary ring-1 ring-brand-primary/20"
             : isOpen
-            ? "border-ebony ring-2 ring-ebony/20 dark:border-soft-fawn dark:ring-soft-fawn/20"
+            ? "border-brand-primary ring-1 ring-brand-primary/20"
             : "border-neutral-200 hover:border-neutral-300 dark:border-neutral-800 dark:hover:border-neutral-700",
           disabled && "cursor-not-allowed opacity-50 bg-neutral-100 dark:bg-neutral-900",
           triggerClassName
@@ -218,7 +218,7 @@ export function Select({
         <LuChevronDown
           className={cn(
             "h-4 w-4 shrink-0 text-neutral-400 transition-transform duration-200 dark:text-neutral-500 ml-2",
-            isOpen && "rotate-180 text-ebony dark:text-soft-fawn"
+            isOpen && "rotate-180 text-brand-primary"
           )}
         />
       </button>
@@ -229,7 +229,7 @@ export function Select({
           role="listbox"
           tabIndex={-1}
           className={cn(
-            "absolute left-0 right-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border border-neutral-200 bg-white p-1.5 shadow-md dark:border-neutral-700 dark:bg-neutral-800",
+            "absolute left-0 right-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border border-neutral-200/90 bg-white p-1.5 shadow-lg dark:border-neutral-700 dark:bg-neutral-800 animate-in fade-in-0 zoom-in-95 duration-100",
             dropdownClassName
           )}
         >
@@ -252,24 +252,31 @@ export function Select({
                     onClick={() => handleSelect(opt.value)}
                     onMouseEnter={() => setHighlightedIndex(idx)}
                     className={cn(
-                      "flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm transition-colors cursor-pointer select-none",
+                      "flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-xs transition-colors cursor-pointer select-none",
                       isSelected
-                        ? "bg-neutral-100 font-semibold text-neutral-900 dark:bg-neutral-700/90 dark:text-white"
+                        ? "bg-brand-subtle font-bold text-brand-primary"
                         : isHighlighted
-                        ? "bg-neutral-100/70 text-neutral-900 dark:bg-neutral-700/50 dark:text-neutral-100"
+                        ? "bg-neutral-100/80 text-neutral-900 dark:bg-neutral-700/50 dark:text-neutral-100"
                         : "text-neutral-700 hover:bg-neutral-50 dark:text-neutral-300 dark:hover:bg-neutral-700/40"
                     )}
                   >
                     <div className="min-w-0 pr-2">
                       <div className="truncate">{opt.label}</div>
                       {opt.description && (
-                        <div className="text-[11px] font-normal text-neutral-400 dark:text-neutral-400 truncate mt-0.5">
+                        <div
+                          className={cn(
+                            "text-[11px] font-normal truncate mt-0.5",
+                            isSelected
+                              ? "text-brand-primary/70"
+                              : "text-neutral-400 dark:text-neutral-400"
+                          )}
+                        >
                           {opt.description}
                         </div>
                       )}
                     </div>
                     {isSelected && (
-                      <LuCheck className="h-4 w-4 shrink-0 text-ebony dark:text-soft-fawn" />
+                      <LuCheck className="h-3.5 w-3.5 shrink-0 text-brand-primary" />
                     )}
                   </button>
                 );

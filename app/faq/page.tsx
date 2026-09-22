@@ -54,7 +54,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Is there a limit on file size or the number of documents I can process?",
         answer:
-          "PDF-X enforces a generous client-side file size cap of 100MB per file to prevent browser memory exhaustion. There are no daily quotas, paywalls, or limits on how many times you can use the utilities.",
+          "PDF-X enforces a generous client-side file size cap of 200MB per file to prevent browser memory exhaustion. There are no daily quotas, paywalls, or limits on how many times you can use the utilities.",
       },
       {
         question: "Can I use PDF-X completely offline?",
@@ -143,15 +143,15 @@ export default function FaqPage() {
                 {category.items.map((item, idx) => (
                   <details
                     key={idx}
-                    className="group border border-neutral-200 rounded-xl bg-white p-4 sm:p-5 transition-colors duration-150 open:border-[#f8cfd5] open:bg-[#fdf2f4]/30"
+                    className="group border border-neutral-200 rounded-xl bg-white p-4 sm:p-5 transition-colors duration-150 open:border-brand-border open:bg-brand-subtle/30"
                   >
                     <summary className="flex items-center justify-between font-semibold text-sm sm:text-base text-neutral-900 cursor-pointer select-none">
                       <span className="pr-3">{item.question}</span>
-                      <span className="text-neutral-400 group-open:rotate-180 group-open:text-[#800020] transition-transform duration-200 shrink-0">
+                      <span className="text-neutral-400 group-open:rotate-180 group-open:text-brand-primary transition-transform duration-200 shrink-0">
                         ▾
                       </span>
                     </summary>
-                    <p className="mt-3 text-xs sm:text-sm text-neutral-600 leading-relaxed pr-2 sm:pr-6 pt-2 border-t border-neutral-100 group-open:border-[#f8cfd5]/50">
+                    <p className="mt-3 text-xs sm:text-sm text-neutral-600 leading-relaxed pr-2 sm:pr-6 pt-2 border-t border-neutral-100 group-open:border-brand-border/50">
                       {item.answer}
                     </p>
                   </details>

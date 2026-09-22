@@ -48,7 +48,7 @@ export function FileItem({
           <GripDotsIcon className="w-4 h-4" />
         </button>
 
-        <div className="w-11 h-13 sm:w-13 sm:h-15 rounded-md border border-neutral-200 bg-[#fbfbfb] p-1 flex flex-col justify-between shrink-0 shadow-2xs select-none overflow-hidden relative">
+        <div className="w-11 h-13 sm:w-13 sm:h-15 rounded-md border border-neutral-200 bg-neutral-50/60 p-1 flex flex-col justify-between shrink-0 shadow-2xs select-none overflow-hidden relative">
           {file.thumbnailUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -113,7 +113,7 @@ export function FileItem({
           type="button"
           aria-label="Remove file"
           onClick={onDelete}
-          className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center bg-red-50 hover:bg-red-100 text-[#800020] border border-red-100/60 cursor-pointer transition-colors"
+          className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center bg-white hover:bg-neutral-50 text-neutral-400 hover:text-brand-primary border border-neutral-200 cursor-pointer transition-colors"
         >
           <TrashIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </button>

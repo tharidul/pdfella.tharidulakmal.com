@@ -15,6 +15,7 @@ import {
   PdfToImageIcon,
   PageNumbersIcon,
   WatermarkIcon,
+  SignPdfIcon,
 } from "@/components/common/icons";
 import { useMobileNav } from "../MobileNavContext";
 
@@ -90,6 +91,13 @@ const PRIMARY_TOOLS: NavItem[] = [
     icon: WatermarkIcon,
     href: "/watermark",
   },
+  {
+    id: "sign",
+    name: "Sign PDF",
+    description: "Add e-signatures & stamps",
+    icon: SignPdfIcon,
+    href: "/sign",
+  },
 ];
 
 function PanelLeftCloseIcon({ className = "w-5 h-5" }: { className?: string }) {
@@ -140,7 +148,7 @@ export function Sidebar() {
       {/* 1. MOBILE DRAWER OVERLAY & SLIDE-OUT PANEL (< md)             */}
       {/* ============================================================ */}
       <div
-        className={`fixed inset-0 bg-black/40 backdrop-blur-xs z-40 transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 bg-black/40 backdrop-blur-xs z-40 transition-opacity duration-300 md:hidden cursor-pointer ${
           isMobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={closeMobile}
@@ -156,7 +164,7 @@ export function Sidebar() {
         <div className="flex flex-col">
           {/* Mobile Drawer Header */}
           <div className="flex items-center justify-between pb-6 mb-4 border-b border-neutral-100">
-            <Link href="/" onClick={closeMobile} className="flex items-center gap-2">
+            <Link href="/" onClick={closeMobile} className="flex items-center gap-2 cursor-pointer">
               <Image
                 src="/logo-2.webp"
                 alt="PDF-X"
@@ -194,13 +202,13 @@ export function Sidebar() {
                   href={item.href}
                   prefetch={false}
                   onClick={closeMobile}
-                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-colors ${
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-colors cursor-pointer ${
                     isActive
-                      ? "bg-[#fdf2f4] text-[#800020] font-semibold"
+                      ? "bg-brand-subtle text-brand-primary font-semibold"
                       : "text-neutral-800 hover:bg-neutral-50 font-medium"
                   }`}
                 >
-                  <IconComponent className="w-5 h-5 text-[#800020] shrink-0" />
+                  <IconComponent className="w-5 h-5 text-brand-primary shrink-0" />
                   <div className="flex flex-col min-w-0">
                     <span className="text-sm leading-snug">{item.name}</span>
                     <span className="text-xs text-neutral-600 leading-none mt-0.5">
@@ -222,28 +230,28 @@ export function Sidebar() {
             <Link
               href="/how-to-use"
               onClick={closeMobile}
-              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-[#800020] transition-colors"
+              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-brand-primary transition-colors cursor-pointer"
             >
               How to Use
             </Link>
             <Link
               href="/faq"
               onClick={closeMobile}
-              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-[#800020] transition-colors"
+              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-brand-primary transition-colors cursor-pointer"
             >
               Frequently Asked Questions (FAQ)
             </Link>
             <Link
               href="/about"
               onClick={closeMobile}
-              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-[#800020] transition-colors"
+              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-brand-primary transition-colors cursor-pointer"
             >
               About PDF-X
             </Link>
             <Link
               href="/privacy"
               onClick={closeMobile}
-              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-[#800020] transition-colors"
+              className="flex items-center px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-700 hover:bg-neutral-50 hover:text-brand-primary transition-colors cursor-pointer"
             >
               Privacy Policy & Security
             </Link>
@@ -256,7 +264,7 @@ export function Sidebar() {
               href="https://tharidulakmal.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#800020] transition-colors"
+              className="hover:text-brand-primary transition-colors cursor-pointer"
             >
               By Tharidu Lakmal
             </a>
@@ -311,7 +319,7 @@ export function Sidebar() {
               >
                 <Link
                   href="/"
-                  className="flex items-center min-w-0"
+                  className="flex items-center min-w-0 cursor-pointer"
                   title="PDF-X Home"
                 >
                   <Image
@@ -349,11 +357,11 @@ export function Sidebar() {
                   <div
                     key={item.id}
                     title={item.name}
-                    className="relative flex items-center px-5 py-3 bg-[#fdf2f4] rounded-r-xl transition-colors duration-200 cursor-pointer"
+                    className="relative flex items-center px-5 py-3 bg-brand-subtle rounded-r-xl transition-colors duration-200 cursor-pointer"
                   >
-                    <div className="absolute left-0 top-1 bottom-1 w-1 bg-[#800020] rounded-r" />
+                    <div className="absolute left-0 top-1 bottom-1 w-1 bg-brand-primary rounded-r" />
                     <div className="w-10 h-6 flex items-center justify-center shrink-0">
-                      <IconComponent className="w-5 h-5 text-[#800020]" />
+                      <IconComponent className="w-5 h-5 text-brand-primary" />
                     </div>
                     <div
                       className={`flex flex-col overflow-hidden whitespace-nowrap transition-[max-width,opacity] duration-300 ease-[cubic-bezier(0.2,0,0,1)] ${
@@ -362,7 +370,7 @@ export function Sidebar() {
                           : "max-w-[170px] opacity-100 ml-2"
                       }`}
                     >
-                      <span className="text-sm font-semibold text-[#800020] leading-snug">
+                      <span className="text-sm font-semibold text-brand-primary leading-snug">
                         {item.name}
                       </span>
                       <span className="text-xs text-neutral-600 leading-none mt-0.5">
@@ -379,10 +387,10 @@ export function Sidebar() {
                   href={item.href}
                   prefetch={false}
                   title={item.name}
-                  className="relative flex items-center px-5 py-3 text-neutral-800 hover:bg-neutral-50 rounded-r-xl transition-colors duration-200"
+                  className="relative flex items-center px-5 py-3 text-neutral-800 hover:bg-neutral-50 rounded-r-xl transition-colors duration-200 cursor-pointer"
                 >
                   <div className="w-10 h-6 flex items-center justify-center shrink-0">
-                    <IconComponent className="w-5 h-5 text-[#800020]" />
+                    <IconComponent className="w-5 h-5 text-brand-primary" />
                   </div>
                   <div
                     className={`flex flex-col overflow-hidden whitespace-nowrap transition-[max-width,opacity] duration-300 ease-[cubic-bezier(0.2,0,0,1)] ${
@@ -415,25 +423,25 @@ export function Sidebar() {
           >
             <Link
               href="/how-to-use"
-              className="hover:text-[#800020] transition-colors duration-150"
+              className="hover:text-brand-primary transition-colors duration-150 cursor-pointer"
             >
               How to Use
             </Link>
             <Link
               href="/faq"
-              className="hover:text-[#800020] transition-colors duration-150"
+              className="hover:text-brand-primary transition-colors duration-150 cursor-pointer"
             >
               FAQ
             </Link>
             <Link
               href="/about"
-              className="hover:text-[#800020] transition-colors duration-150"
+              className="hover:text-brand-primary transition-colors duration-150 cursor-pointer"
             >
               About
             </Link>
             <Link
               href="/privacy"
-              className="hover:text-[#800020] transition-colors duration-150"
+              className="hover:text-brand-primary transition-colors duration-150 cursor-pointer"
             >
               Privacy
             </Link>

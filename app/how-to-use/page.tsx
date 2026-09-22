@@ -12,8 +12,32 @@ import {
   PdfToImageIcon,
   PageNumbersIcon,
   WatermarkIcon,
+  SignPdfIcon,
 } from "@/components/common/icons";
-import { HiArrowRight } from "react-icons/hi2";
+import { HiArrowRight, HiLockClosed, HiSparkles } from "react-icons/hi2";
+import { FaSignature } from "react-icons/fa6";
+
+interface ToolStep {
+  number: string;
+  title: string;
+  detail: string;
+}
+
+interface ToolHighlight {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  detail: string;
+}
+
+interface ToolGuideItem {
+  id: string;
+  name: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  href: string;
+  steps: ToolStep[];
+  highlights?: ToolHighlight[];
+}
 
 export const metadata: Metadata = {
   title: "How to Use PDF-X",
@@ -30,7 +54,7 @@ export const metadata: Metadata = {
   },
 };
 
-const TOOLS_GUIDE = [
+const TOOLS_GUIDE: ToolGuideItem[] = [
   {
     id: "merge",
     name: "Merge Multiple PDFs",
@@ -247,6 +271,47 @@ const TOOLS_GUIDE = [
       },
     ],
   },
+  {
+    id: "sign",
+    name: "Sign PDF Documents",
+    description: "Draw, type, or upload custom e-signatures and place them on any page.",
+    icon: SignPdfIcon,
+    href: "/sign",
+    steps: [
+      {
+        number: "1",
+        title: "Load Document",
+        detail: "Select or drop your PDF document to render high-resolution page previews.",
+      },
+      {
+        number: "2",
+        title: "Create Signature",
+        detail: "Draw smoothly with pen width/color, type in elegant script fonts, or upload a scan.",
+      },
+      {
+        number: "3",
+        title: "Place, Resize & Sign",
+        detail: "Drag signature onto any page, resize with handles, and download your signed PDF.",
+      },
+    ],
+    highlights: [
+      {
+        icon: HiLockClosed,
+        title: "Zero Server Uploads",
+        detail: "Your contracts stay strictly on your computer. 100% private and confidential.",
+      },
+      {
+        icon: FaSignature,
+        title: "Draw, Type, or Upload",
+        detail: "Handwrite with touch or mouse, choose cursive handwriting, or upload signature images.",
+      },
+      {
+        icon: HiSparkles,
+        title: "Precision Placement",
+        detail: "Drag, scale, and snap onto any line across any page with live zoom controls.",
+      },
+    ],
+  },
 ];
 
 export default function HowToUsePage() {
@@ -276,7 +341,7 @@ export default function HowToUsePage() {
                 {/* Tool header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-neutral-100 mb-5">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-[#fdf2f4] text-[#800020] flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-lg bg-brand-subtle text-brand-primary flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
@@ -291,7 +356,7 @@ export default function HowToUsePage() {
 
                   <Link
                     href={tool.href}
-                    className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#800020] hover:bg-[#66001a] text-white text-xs font-semibold transition-colors shrink-0 shadow-2xs"
+                    className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-semibold transition-colors shrink-0 shadow-2xs cursor-pointer"
                   >
                     <span>Open Tool</span>
                     <HiArrowRight className="w-3.5 h-3.5" />
@@ -306,7 +371,7 @@ export default function HowToUsePage() {
                       className="p-3.5 rounded-lg bg-neutral-50/70 border border-neutral-100 flex flex-col justify-between"
                     >
                       <div>
-                        <span className="text-xs font-bold text-[#800020] mb-1 block">
+                        <span className="text-xs font-bold text-brand-primary mb-1 block">
                           Step {step.number}
                         </span>
                         <h3 className="text-sm font-semibold text-neutral-900 mb-1">
@@ -319,6 +384,31 @@ export default function HowToUsePage() {
                     </div>
                   ))}
                 </div>
+
+                {/* Feature Highlights */}
+                {tool.highlights && tool.highlights.length > 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-4 pt-4 border-t border-neutral-100">
+                    {tool.highlights.map((highlight) => {
+                      const HighlightIcon = highlight.icon;
+                      return (
+                        <div
+                          key={highlight.title}
+                          className="p-3.5 rounded-xl border border-neutral-200/80 bg-neutral-50/50 shadow-2xs flex flex-col"
+                        >
+                          <div className="w-8 h-8 rounded-lg bg-brand-subtle text-brand-primary flex items-center justify-center mb-2.5">
+                            <HighlightIcon className="w-4 h-4" />
+                          </div>
+                          <h4 className="text-xs font-bold text-neutral-800">
+                            {highlight.title}
+                          </h4>
+                          <p className="text-[11px] text-neutral-500 mt-1 leading-relaxed">
+                            {highlight.detail}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </section>
             );
           })}

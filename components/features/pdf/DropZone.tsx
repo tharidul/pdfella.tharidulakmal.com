@@ -1,14 +1,44 @@
 "use client";
 
-import { useRef, type ChangeEvent } from "react";
-import { PlusIcon } from "@/components/common/icons";
+import { useRef, useState, useEffect, type ChangeEvent, type DragEvent } from "react";
+import { HiArrowUpTray, HiPlus } from "react-icons/hi2";
 
-interface DropZoneProps {
+export interface DropZoneProps {
   onFilesSelected?: (files: FileList) => void;
+  accept?: string;
+  multiple?: boolean;
+  title?: string;
+  subtitle?: string;
 }
 
-export function DropZone({ onFilesSelected }: DropZoneProps) {
+export function DropZone({
+  onFilesSelected,
+  accept = ".pdf,application/pdf",
+  multiple = true,
+  title = "Drop PDF files here",
+  subtitle = "You can select multiple files at once. PDF files up to 200 MB are supported.",
+}: DropZoneProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragCounterRef = useRef(0);
+
+  // Prevent browser from navigating to dropped file if dropped anywhere on the window
+  useEffect(() => {
+    const handleWindowDragOver = (e: globalThis.DragEvent) => {
+      e.preventDefault();
+    };
+    const handleWindowDrop = (e: globalThis.DragEvent) => {
+      e.preventDefault();
+    };
+
+    window.addEventListener("dragover", handleWindowDragOver);
+    window.addEventListener("drop", handleWindowDrop);
+
+    return () => {
+      window.removeEventListener("dragover", handleWindowDragOver);
+      window.removeEventListener("drop", handleWindowDrop);
+    };
+  }, []);
 
   const handleButtonClick = () => {
     fileInputRef.current?.click();
@@ -18,30 +48,94 @@ export function DropZone({ onFilesSelected }: DropZoneProps) {
     if (event.target.files && event.target.files.length > 0) {
       onFilesSelected?.(event.target.files);
     }
+    // Clear input value so selecting the same file again triggers change event
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
+  const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragCounterRef.current++;
+    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
+      setIsDragging(true);
+    }
+  };
+
+  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      e.dataTransfer.dropEffect = "copy";
+    } catch {
+      // Ignore in unsupported browsers
+    }
+    if (!isDragging) {
+      setIsDragging(true);
+    }
+  };
+
+  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragCounterRef.current--;
+    if (dragCounterRef.current <= 0) {
+      dragCounterRef.current = 0;
+      setIsDragging(false);
+    }
+  };
+
+  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragCounterRef.current = 0;
+    setIsDragging(false);
+
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      onFilesSelected?.(e.dataTransfer.files);
+    }
   };
 
   return (
     <div
       onClick={handleButtonClick}
-      className="w-full border-2 border-dashed border-[#f48a97] rounded-2xl py-10 px-6 bg-white hover:bg-[#fffbfc] transition-colors flex flex-col items-center justify-center text-center cursor-pointer mb-6"
+      onDragEnter={handleDragEnter}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+      className={`group w-full rounded-2xl py-10 px-6 sm:py-12 sm:px-8 text-center cursor-pointer mb-6 transition-all duration-150 flex flex-col items-center justify-center select-none ${
+        isDragging
+          ? "border-2 border-solid border-brand-primary bg-brand-subtle ring-4 ring-brand-border shadow-sm"
+          : "border border-neutral-200/90 bg-neutral-50/40 hover:bg-neutral-50/90 hover:border-neutral-300 shadow-2xs hover:shadow-xs"
+      }`}
     >
       <input
         ref={fileInputRef}
         type="file"
-        multiple
-        accept=".pdf,application/pdf"
+        multiple={multiple}
+        accept={accept}
         className="hidden"
         onChange={handleInputChange}
       />
 
-      <div className="w-10 h-10 rounded-full bg-[#800020] text-white flex items-center justify-center mb-3 shadow-2xs">
-        <PlusIcon className="w-5 h-5" />
+      <div
+        className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3.5 transition-all duration-150 ${
+          isDragging
+            ? "bg-brand-primary text-white ring-4 ring-brand-border"
+            : "bg-white text-brand-primary border border-neutral-200/80 shadow-2xs group-hover:border-brand-border"
+        }`}
+      >
+        <HiArrowUpTray className="w-5 h-5" />
       </div>
 
-      <h2 className="text-base font-bold text-neutral-800 leading-tight">
-        Drop PDF files here
+      <h2 className="text-base font-bold text-neutral-900 leading-snug">
+        {isDragging ? "Release to drop files here" : title}
       </h2>
-      <span className="text-xs text-neutral-600 my-1 font-normal">or</span>
+
+      <p className="text-xs text-neutral-500 mt-1 max-w-md leading-relaxed">
+        {subtitle}
+      </p>
 
       <button
         type="button"
@@ -49,14 +143,11 @@ export function DropZone({ onFilesSelected }: DropZoneProps) {
           e.stopPropagation();
           handleButtonClick();
         }}
-        className="mt-1 px-6 py-1.5 rounded-lg border border-[#800020] text-[#800020] bg-white hover:bg-[#800020]/5 text-xs font-bold transition-colors shadow-2xs cursor-pointer"
+        className="mt-4 px-4 py-2 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-semibold transition-colors shadow-2xs hover:shadow-xs cursor-pointer inline-flex items-center gap-1.5"
       >
-        Select Files
+        <HiPlus className="w-3.5 h-3.5" />
+        <span>Select Files</span>
       </button>
-
-      <p className="text-xs text-neutral-600 mt-4 font-normal">
-        You can select multiple files at once. Only PDF files are supported.
-      </p>
     </div>
   );
 }

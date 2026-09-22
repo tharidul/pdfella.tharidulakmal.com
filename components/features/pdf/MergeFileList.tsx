@@ -5,7 +5,6 @@ import { useSortable } from "@dnd-kit/react/sortable";
 import { arrayMove } from "@dnd-kit/helpers";
 import { TrashIcon } from "@/components/common/icons";
 import { FileItem, type PdfFileItemData } from "./FileItem";
-import { MergeActionBar } from "./MergeActionBar";
 
 interface SortableFileItemProps {
   file: PdfFileItemData;
@@ -59,8 +58,8 @@ export interface MergeFileListProps {
   onMoveUp: (index: number) => void;
   onMoveDown: (index: number) => void;
   onDelete: (id: string) => void;
-  onMerge: () => void;
-  isMerging: boolean;
+  onMerge?: () => void;
+  isMerging?: boolean;
 }
 
 export function MergeFileList({
@@ -70,8 +69,6 @@ export function MergeFileList({
   onMoveUp,
   onMoveDown,
   onDelete,
-  onMerge,
-  isMerging,
 }: MergeFileListProps) {
   return (
     <div className="flex flex-col">
@@ -82,7 +79,7 @@ export function MergeFileList({
         <button
           type="button"
           onClick={onClearAll}
-          className="text-xs font-semibold text-[#800020] hover:text-[#66001a] flex items-center gap-1.5 transition-colors cursor-pointer"
+          className="text-xs font-semibold text-brand-primary hover:text-brand-primary-hover flex items-center gap-1.5 transition-colors cursor-pointer"
         >
           <TrashIcon className="w-4 h-4" />
           <span>Clear all</span>
@@ -116,12 +113,6 @@ export function MergeFileList({
           ))}
         </div>
       </DragDropProvider>
-
-      <MergeActionBar
-        fileCount={files.length}
-        onMerge={onMerge}
-        isMerging={isMerging}
-      />
     </div>
   );
 }

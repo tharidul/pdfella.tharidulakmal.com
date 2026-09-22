@@ -1,7 +1,7 @@
 import type { ValidationResult } from "./types";
 
-/** Maximum allowed PDF file size: 100 MB in bytes */
-export const MAX_PDF_FILE_SIZE_BYTES = 100 * 1024 * 1024;
+/** Maximum allowed PDF file size: 200 MB in bytes */
+export const MAX_PDF_FILE_SIZE_BYTES = 200 * 1024 * 1024;
 
 /** Common dangerous/executable file extensions to reject immediately */
 const DANGEROUS_EXTENSIONS = new Set([
@@ -186,7 +186,7 @@ export function validatePdfBuffer(
   if (byteLength > MAX_PDF_FILE_SIZE_BYTES) {
     return {
       isValid: false,
-      error: `File size (${formatFileSize(byteLength)}) exceeds the maximum allowed limit of 100 MB.`,
+      error: `File size (${formatFileSize(byteLength)}) exceeds the maximum allowed limit of 200 MB.`,
     };
   }
 
@@ -236,7 +236,7 @@ export async function validatePdfFile(file: File): Promise<ValidationResult> {
   if (file.size > MAX_PDF_FILE_SIZE_BYTES) {
     return {
       isValid: false,
-      error: `File "${file.name}" (${formatFileSize(file.size)}) exceeds the maximum allowed limit of 100 MB.`,
+      error: `File "${file.name}" (${formatFileSize(file.size)}) exceeds the maximum allowed limit of 200 MB.`,
     };
   }
 

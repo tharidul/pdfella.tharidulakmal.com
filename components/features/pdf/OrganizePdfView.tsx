@@ -5,14 +5,14 @@ import dynamic from "next/dynamic";
 import {
   HiDocumentText,
   HiArrowRight,
-  HiInformationCircle,
   HiArrowPath,
 } from "react-icons/hi2";
+import { toast } from "@/components/ui/sonner";
 import { LuRotateCw, LuRotateCcw } from "react-icons/lu";
 import { DropZone } from "./DropZone";
 import { validatePdfFile } from "@/lib/pdf/validation";
 import { extractPdfMetadata } from "@/lib/pdf/metadata";
-import { renderPageThumbnail } from "@/lib/pdf/render";
+import { renderDocumentThumbnailsBatch, releasePdfDocument } from "@/lib/pdf/render";
 import { organizeAndDownloadPdf } from "@/lib/pdf/organize";
 import type { OrganizeCardItem } from "./OrganizePageGrid";
 
@@ -34,7 +34,6 @@ export function OrganizePdfView() {
   const [fileSize, setFileSize] = useState("");
   const [fileBuffer, setFileBuffer] = useState<ArrayBuffer | null>(null);
   const [pages, setPages] = useState<OrganizeCardItem[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isOrganizing, setIsOrganizing] = useState(false);
 
   const rotatePage = useCallback((id: string, delta: number) => {
@@ -82,10 +81,9 @@ export function OrganizePdfView() {
     const file = files[0];
     if (!file) return;
 
-    setErrorMessage(null);
     const validation = await validatePdfFile(file);
     if (!validation.isValid) {
-      setErrorMessage(validation.error);
+      toast.error(validation.error);
       return;
     }
 
@@ -108,23 +106,26 @@ export function OrganizePdfView() {
       setPages(initialPages);
       setHasFile(true);
 
-      // Render thumbnails for each page
-      for (let p = 1; p <= metadata.pageCount; p++) {
-        renderPageThumbnail(buffer, p, { width: 140, height: 180 })
-          .then((thumbnailUrl) => {
-            setPages((currentPages) =>
-              currentPages.map((item) =>
-                item.originalNumber === p ? { ...item, thumbnailUrl } : item
-              )
-            );
-          })
-          .catch(() => {
-            // Keep fallback
-          });
-      }
+      // Render thumbnails progressively in batches
+      const pageNumbers = Array.from({ length: metadata.pageCount }, (_, i) => i + 1);
+      void renderDocumentThumbnailsBatch(
+        buffer,
+        pageNumbers,
+        { width: 140, height: 180 },
+        (batch) => {
+          setPages((currentPages) =>
+            currentPages.map((item) =>
+              batch[item.originalNumber]
+                ? { ...item, thumbnailUrl: batch[item.originalNumber] }
+                : item
+            )
+          );
+        },
+        12
+      );
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to load PDF.";
-      setErrorMessage(msg);
+      toast.error(msg);
     }
   };
 
@@ -132,7 +133,6 @@ export function OrganizePdfView() {
     if (!fileBuffer || pages.length === 0 || isOrganizing) return;
 
     setIsOrganizing(true);
-    setErrorMessage(null);
 
     try {
       await organizeAndDownloadPdf({
@@ -140,16 +140,23 @@ export function OrganizePdfView() {
         name: fileName,
         pages,
       });
+      toast.success("PDF pages organized and saved successfully!");
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Organize operation failed.";
-      setErrorMessage(msg);
+      toast.error(msg);
     } finally {
       setIsOrganizing(false);
     }
   };
 
   return (
-    <main className="w-full max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-8 flex flex-col">
+    <main
+      className={
+        hasFile
+          ? "w-full max-w-6xl mx-auto px-4 py-6 flex flex-col"
+          : "w-full max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-8 flex flex-col"
+      }
+    >
       <div className="flex flex-col mb-6">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Reorder, rotate & manage PDF pages
@@ -160,34 +167,24 @@ export function OrganizePdfView() {
         </p>
       </div>
 
-      {errorMessage && (
-        <div className="mb-4 p-3.5 bg-red-50 border border-red-200 rounded-xl text-xs text-[#800020] flex items-center justify-between">
-          <span>{errorMessage}</span>
-          <button
-            type="button"
-            onClick={() => setErrorMessage(null)}
-            className="text-neutral-400 hover:text-neutral-700 font-bold ml-3 cursor-pointer"
-          >
-            ✕
-          </button>
-        </div>
-      )}
+
 
       {!hasFile ? (
         <DropZone onFilesSelected={handleFilesSelected} />
       ) : (
-        <div className="flex flex-col space-y-6">
-          <div className="border border-neutral-200 rounded-xl bg-white p-3.5 sm:p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
-            <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-10 h-10 rounded-lg bg-[#fdf2f4] text-[#800020] flex items-center justify-center shrink-0">
-                <HiDocumentText className="w-6 h-6" />
+        <div className="space-y-6">
+          {/* File Meta Header Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50/80 px-5 py-3.5 shadow-2xs">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-brand-subtle text-brand-primary flex items-center justify-center shrink-0">
+                <HiDocumentText className="w-5 h-5" />
               </div>
               <div className="flex flex-col min-w-0">
-                <span className="text-sm font-semibold text-neutral-900 truncate">
+                <span className="text-sm font-bold text-neutral-900 truncate max-w-xs sm:max-w-md">
                   {fileName}
                 </span>
                 <span className="text-xs text-neutral-400 mt-0.5">
-                  {fileSize}, {pages.length} pages
+                  {fileSize} • {pages.length} pages
                 </span>
               </div>
             </div>
@@ -195,88 +192,122 @@ export function OrganizePdfView() {
             <button
               type="button"
               onClick={() => {
+                if (fileBuffer) void releasePdfDocument(fileBuffer);
                 setHasFile(false);
                 setFileBuffer(null);
                 setPages([]);
-                setErrorMessage(null);
               }}
-              className="text-xs font-semibold text-[#800020] hover:text-[#66001a] flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-100 bg-red-50 hover:bg-red-100 transition-colors cursor-pointer shrink-0 self-end sm:self-auto"
+              className="text-xs font-semibold text-neutral-500 hover:text-neutral-800 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
             >
-              <HiArrowPath className="w-3.5 h-3.5" />
-              <span>Change file</span>
+              Choose different file
             </button>
           </div>
 
-          <div className="border border-neutral-200 rounded-2xl bg-white p-4 sm:p-6 shadow-2xs flex flex-col space-y-5">
-            <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
-              <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
-                Page Sequence & Orientation
-              </span>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => rotateAll(-90)}
-                  className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 flex items-center gap-1.5 transition-colors cursor-pointer"
-                >
-                  <LuRotateCcw className="w-3.5 h-3.5" />
-                  <span>Rotate All Left</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => rotateAll(90)}
-                  className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 flex items-center gap-1.5 transition-colors cursor-pointer"
-                >
-                  <LuRotateCw className="w-3.5 h-3.5" />
-                  <span>Rotate All Right</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={resetAll}
-                  className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 transition-colors cursor-pointer"
-                >
-                  Reset
-                </button>
+          {/* 2-Column Split: Left = Drag-Drop Page Grid, Right = Sticky Action Toolbar */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* Left Column: Reorderable Page Grid (8 Cols) */}
+            <div className="lg:col-span-8 border border-neutral-200 rounded-2xl bg-white p-4 sm:p-5 shadow-2xs">
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100">
+                <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
+                  Page Order & Rotations ({pages.length})
+                </span>
+                <span className="text-xs text-neutral-500">
+                  Drag & drop to reorder • Hover to rotate
+                </span>
+              </div>
+
+              <div className="max-h-[75vh] overflow-y-auto pr-1">
+                <OrganizePageGrid
+                  pages={pages}
+                  setPages={setPages}
+                  onMovePage={movePage}
+                  onRotatePage={rotatePage}
+                  onDeletePage={deletePage}
+                />
               </div>
             </div>
 
-            <OrganizePageGrid
-              pages={pages}
-              setPages={setPages}
-              onMovePage={movePage}
-              onRotatePage={rotatePage}
-              onDeletePage={deletePage}
-            />
-          </div>
+            {/* Right Column: Sticky Tool & Action Sidebar (4 Cols) */}
+            <div className="lg:col-span-4 lg:sticky lg:top-6 self-start">
+              <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-xs flex flex-col gap-5">
+                {/* 1. Bulk Page Operations */}
+                <div className="space-y-3">
+                  <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
+                    Bulk Actions
+                  </span>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => rotateAll(-90)}
+                      className="py-2.5 px-3 rounded-xl border border-neutral-200 bg-neutral-50/50 hover:bg-neutral-100 text-xs font-semibold text-neutral-800 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                    >
+                      <LuRotateCcw className="w-3.5 h-3.5" />
+                      <span>Rotate Left</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => rotateAll(90)}
+                      className="py-2.5 px-3 rounded-xl border border-neutral-200 bg-neutral-50/50 hover:bg-neutral-100 text-xs font-semibold text-neutral-800 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                    >
+                      <LuRotateCw className="w-3.5 h-3.5" />
+                      <span>Rotate Right</span>
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={resetAll}
+                    className="w-full py-2 px-3 rounded-xl border border-neutral-200 hover:bg-neutral-100 text-xs font-semibold text-neutral-600 transition-colors cursor-pointer text-center"
+                  >
+                    Reset Order & Rotations
+                  </button>
+                </div>
 
-          <div className="w-full rounded-2xl p-4 bg-[#fdf2f4] border border-[#f8cfd5] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 shadow-2xs">
-            <div className="flex items-center gap-3.5">
-              <div className="w-7 h-7 rounded-full bg-[#800020] text-white flex items-center justify-center shrink-0">
-                <HiInformationCircle className="w-4 h-4" />
-              </div>
-              <div className="flex flex-col text-left">
-                <span className="text-sm font-bold text-[#800020] leading-tight">
-                  {isOrganizing ? "Saving organized PDF..." : "Ready to organize"}
-                </span>
-                <span className="text-xs text-neutral-600 leading-tight mt-0.5">
-                  {pages.length} pages will be compiled in the chosen order and
-                  orientations.
-                </span>
+                <hr className="border-neutral-100" />
+
+                {/* 2. Document Summary */}
+                <div className="space-y-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
+                    Document Summary
+                  </span>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-neutral-500">Output pages:</span>
+                    <span className="font-bold text-brand-primary">{pages.length} {pages.length === 1 ? "page" : "pages"}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-neutral-500">Initial size:</span>
+                    <span className="font-semibold text-neutral-800">{fileSize}</span>
+                  </div>
+                </div>
+
+                <hr className="border-neutral-100" />
+
+                {/* 3. Primary Execute Button */}
+                <div className="space-y-2.5">
+                  <button
+                    type="button"
+                    disabled={pages.length === 0 || isOrganizing}
+                    onClick={handleSaveOrganized}
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer hover:shadow"
+                  >
+                    {isOrganizing ? (
+                      <>
+                        <HiArrowPath className="w-4 h-4 animate-spin" />
+                        <span>Saving PDF...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Save Organized PDF</span>
+                        <HiArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+
+                  <p className="text-[11px] text-neutral-400 text-center leading-relaxed">
+                    All organizing executes locally in your browser.
+                  </p>
+                </div>
               </div>
             </div>
-
-            <button
-              type="button"
-              disabled={pages.length === 0 || isOrganizing}
-              onClick={handleSaveOrganized}
-              className={`w-full sm:w-auto justify-center px-7 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 shadow-xs transition-colors duration-150 ${
-                pages.length > 0 && !isOrganizing
-                  ? "bg-[#800020] hover:bg-[#66001a] text-white cursor-pointer"
-                  : "bg-neutral-200 text-neutral-400 cursor-not-allowed"
-              }`}
-            >
-              <span>{isOrganizing ? "Saving..." : "Save Organized PDF"}</span>
-              <HiArrowRight className="w-4 h-4" />
-            </button>
           </div>
         </div>
       )}

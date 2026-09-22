@@ -21,18 +21,18 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-primary: var(--brand-primary);
-  --color-brand-primary: var(--brand-primary);
-  --color-brand-primary-hover: var(--brand-primary-hover);
-  --color-brand-surface: var(--brand-surface);
-  --color-brand-background: var(--brand-background);
-  --color-brand-accent: var(--brand-accent);
-  --color-brand-subtle: var(--brand-subtle);
-  --color-brand-border: var(--brand-border);
+  --color-primary: #800020;
+  --color-brand-primary: #800020;
+  --color-brand-primary-hover: #66001a;
+  --color-brand-surface: #f3e6d5;
+  --color-brand-background: #fff9f2;
+  --color-brand-accent: #d45060;
+  --color-brand-subtle: #fdf2f4;
+  --color-brand-border: #f8cfd5;
 
-  --color-border: var(--border);
-  --color-muted: var(--muted);
-  --color-muted-background: var(--muted-background);
+  --color-border: #e5e5e5;
+  --color-muted: #6b6b6b;
+  --color-muted-background: #f7f7f7;
 
   --font-sans:
     Inter,
@@ -60,4 +60,75 @@ body {
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
+}
+
+/* ==========================================================================
+   Sonner Toast Notification Theme
+   Enforces consistent brand theme without generic rainbow colors
+   ========================================================================== */
+[data-sonner-toaster] {
+  --normal-bg: var(--background);
+  --normal-border: var(--border);
+  --normal-text: var(--foreground);
+
+  --success-bg: var(--background);
+  --success-border: var(--brand-border);
+  --success-text: var(--foreground);
+
+  --error-bg: var(--brand-subtle);
+  --error-border: var(--brand-border);
+  --error-text: var(--foreground);
+
+  --warning-bg: var(--brand-subtle);
+  --warning-border: var(--brand-border);
+  --warning-text: var(--foreground);
+
+  --info-bg: var(--background);
+  --info-border: var(--border);
+  --info-text: var(--foreground);
+}
+
+[data-sonner-toaster] [data-sonner-toast] {
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+[data-sonner-toaster] [data-sonner-toast] [data-icon] {
+  color: var(--brand-primary);
+}
+
+[data-sonner-toaster] [data-sonner-toast][data-type='success'] {
+  border-color: var(--brand-border);
+  background: var(--background);
+}
+
+[data-sonner-toaster] [data-sonner-toast][data-type='error'] {
+  background-color: var(--brand-subtle);
+  border-color: var(--brand-border);
+}
+
+[data-sonner-toaster] [data-sonner-toast] [data-close-button]:hover {
+  color: var(--brand-primary);
+  border-color: var(--brand-border);
+  background-color: var(--brand-subtle);
+}
+
+[data-sonner-toaster] [data-sonner-toast] [data-button] {
+  background-color: var(--brand-primary);
+  color: #ffffff;
+  border-radius: 0.5rem;
+}
+
+[data-sonner-toaster] [data-sonner-toast] [data-button]:hover {
+  background-color: var(--brand-primary-hover);
+}
+
+[data-sonner-toaster] [data-sonner-toast] [data-cancel] {
+  background-color: var(--brand-subtle);
+  color: var(--brand-primary);
+  border-radius: 0.5rem;
+}
+
+[data-sonner-toaster] [data-sonner-toast] [data-cancel]:hover {
+  background-color: var(--brand-border);
 }

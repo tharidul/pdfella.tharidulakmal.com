@@ -2,6 +2,8 @@
 
 import { useState, useCallback } from "react";
 import dynamic from "next/dynamic";
+import { HiArrowRight, HiArrowPath } from "react-icons/hi2";
+import { toast } from "@/components/ui/sonner";
 import { DropZone } from "./DropZone";
 import type { PdfFileItemData } from "./FileItem";
 import { validatePdfFile } from "@/lib/pdf/validation";
@@ -23,7 +25,6 @@ const MergeFileList = dynamic(
 
 export function MergePdfView() {
   const [files, setFiles] = useState<PdfFileItemData[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isMerging, setIsMerging] = useState(false);
 
   const handleMoveUp = useCallback((index: number) => {
@@ -52,11 +53,9 @@ export function MergePdfView() {
 
   const handleClearAll = useCallback(() => {
     setFiles([]);
-    setErrorMessage(null);
   }, []);
 
   const handleFilesSelected = async (selectedFiles: FileList) => {
-    setErrorMessage(null);
     const fileArray = Array.from(selectedFiles);
 
     for (let i = 0; i < fileArray.length; i++) {
@@ -66,7 +65,7 @@ export function MergePdfView() {
       // 1. Validate file
       const validation = await validatePdfFile(file);
       if (!validation.isValid) {
-        setErrorMessage(validation.error);
+        toast.error(validation.error);
         continue;
       }
 
@@ -102,7 +101,7 @@ export function MergePdfView() {
           });
       } catch (err) {
         const msg = err instanceof Error ? err.message : "Failed to load PDF.";
-        setErrorMessage(`Could not load "${file.name}": ${msg}`);
+        toast.error(`Could not load "${file.name}": ${msg}`);
       }
     }
   };
@@ -111,7 +110,6 @@ export function MergePdfView() {
     if (files.length < 2 || isMerging) return;
 
     setIsMerging(true);
-    setErrorMessage(null);
 
     try {
       const mergeItems: MergeInputItem[] = files.map((f) => {
@@ -126,16 +124,26 @@ export function MergePdfView() {
       });
 
       await mergeAndDownloadPdfs(mergeItems);
+      toast.success("PDF documents merged and downloaded successfully!");
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Merge operation failed.";
-      setErrorMessage(msg);
+      toast.error(msg);
     } finally {
       setIsMerging(false);
     }
   };
 
+  const totalPages = files.reduce((sum, f) => sum + (f.pages || 0), 0);
+  const canMerge = files.length >= 2 && !isMerging;
+
   return (
-    <main className="w-full max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-8 flex flex-col">
+    <main
+      className={
+        files.length > 0
+          ? "w-full max-w-6xl mx-auto px-4 py-6 flex flex-col"
+          : "w-full max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-8 flex flex-col"
+      }
+    >
       <div className="flex flex-col mb-6">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Combine multiple PDFs into one
@@ -146,32 +154,109 @@ export function MergePdfView() {
         </p>
       </div>
 
-      <DropZone onFilesSelected={handleFilesSelected} />
+      {files.length === 0 ? (
+        <DropZone onFilesSelected={handleFilesSelected} />
+      ) : (
+        <div className="space-y-6">
+          {/* 2-Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* Left Column: Reorderable Document List + Add More (8 Cols) */}
+            <div className="lg:col-span-8 flex flex-col space-y-5">
+              <div className="border border-neutral-200 rounded-2xl bg-white p-4 sm:p-5 shadow-2xs">
+                <div className="flex items-center justify-between pb-3 mb-3 border-b border-neutral-100">
+                  <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
+                    Document Order ({files.length})
+                  </span>
+                  <span className="text-xs text-neutral-500">
+                    Drag handles or arrows to rearrange
+                  </span>
+                </div>
 
-      {errorMessage && (
-        <div className="mb-4 p-3.5 bg-red-50 border border-red-200 rounded-xl text-xs text-[#800020] flex items-center justify-between">
-          <span>{errorMessage}</span>
-          <button
-            type="button"
-            onClick={() => setErrorMessage(null)}
-            className="text-neutral-400 hover:text-neutral-700 font-bold ml-3 cursor-pointer"
-          >
-            ✕
-          </button>
+                <MergeFileList
+                  files={files}
+                  setFiles={setFiles}
+                  onClearAll={handleClearAll}
+                  onMoveUp={handleMoveUp}
+                  onMoveDown={handleMoveDown}
+                  onDelete={handleDelete}
+                  onMerge={handleMerge}
+                  isMerging={isMerging}
+                />
+              </div>
+
+              {/* Add More Files Dropzone */}
+              <div className="border border-neutral-200 rounded-2xl bg-white p-4 shadow-2xs">
+                <span className="text-xs font-bold text-neutral-700 block mb-2">
+                  Add more documents
+                </span>
+                <DropZone onFilesSelected={handleFilesSelected} />
+              </div>
+            </div>
+
+            {/* Right Column: Sticky Tool & Action Sidebar (4 Cols) */}
+            <div className="lg:col-span-4 lg:sticky lg:top-6 self-start">
+              <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-xs flex flex-col gap-5">
+                {/* 1. Document Summary */}
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                      Merge Summary
+                    </span>
+                    <button
+                      type="button"
+                      onClick={handleClearAll}
+                      className="text-xs font-semibold text-brand-primary hover:text-brand-primary-hover transition-colors cursor-pointer"
+                    >
+                      Clear all
+                    </button>
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-neutral-500">Documents:</span>
+                    <span className="font-bold text-brand-primary">{files.length}</span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-neutral-500">Total pages:</span>
+                    <span className="font-semibold text-neutral-800">
+                      {totalPages > 0 ? `${totalPages} pages` : "Calculating..."}
+                    </span>
+                  </div>
+                </div>
+
+                <hr className="border-neutral-100" />
+
+                {/* 2. Primary Execute Button */}
+                <div className="space-y-2.5">
+                  <button
+                    type="button"
+                    disabled={!canMerge}
+                    onClick={handleMerge}
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer hover:shadow"
+                  >
+                    {isMerging ? (
+                      <>
+                        <HiArrowPath className="w-4 h-4 animate-spin" />
+                        <span>Merging Documents...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Merge PDFs</span>
+                        <HiArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+
+                  <p className="text-[11px] text-neutral-400 text-center leading-relaxed">
+                    {files.length < 2
+                      ? "Add at least 2 PDF documents to merge."
+                      : "All merging executes locally in your browser."}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      )}
-
-      {files.length > 0 && (
-        <MergeFileList
-          files={files}
-          setFiles={setFiles}
-          onClearAll={handleClearAll}
-          onMoveUp={handleMoveUp}
-          onMoveDown={handleMoveDown}
-          onDelete={handleDelete}
-          onMerge={handleMerge}
-          isMerging={isMerging}
-        />
       )}
     </main>
   );

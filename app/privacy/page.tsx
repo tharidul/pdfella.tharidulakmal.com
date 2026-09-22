@@ -94,7 +94,7 @@ export default function PrivacyPage() {
                 href="https://tharidulakmal.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#800020] font-medium underline"
+                className="text-brand-primary font-medium underline cursor-pointer"
               >
                 Tharidu Lakmal
               </a>

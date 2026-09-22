@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -82,7 +83,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-white text-neutral-900">{children}</body>
+      <body className="min-h-full flex flex-col bg-white text-neutral-900">
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

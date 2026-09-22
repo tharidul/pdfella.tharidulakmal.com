@@ -55,14 +55,14 @@ function SortablePageCard({
           className={`p-1 transition-colors ${
             totalCount <= 1
               ? "text-neutral-200 cursor-not-allowed"
-              : "text-neutral-400 hover:text-red-600 cursor-pointer"
+              : "text-neutral-400 hover:text-brand-primary cursor-pointer"
           }`}
         >
           <HiTrash className="w-3.5 h-3.5" />
         </button>
       </div>
 
-      <div className="w-full h-36 bg-[#fbfbfb] border border-neutral-200/60 rounded-md p-2 flex flex-col justify-between overflow-hidden relative">
+      <div className="w-full h-36 bg-neutral-50/60 border border-neutral-200/60 rounded-md p-2 flex flex-col justify-between overflow-hidden relative">
         <div
           style={{ transform: `rotate(${page.rotation}deg)` }}
           className="w-full h-full flex flex-col justify-between transition-transform duration-200"

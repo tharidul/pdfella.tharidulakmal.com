@@ -16,7 +16,7 @@ import {
   HiArrowDownTray,
   HiShieldCheck,
 } from "react-icons/hi2";
-import { FaScissors } from "react-icons/fa6";
+import { FaScissors, FaSignature } from "react-icons/fa6";
 import { RxDragHandleDots2 } from "react-icons/rx";
 
 export function PdfLogoIcon(props: ComponentPropsWithoutRef<"svg">) {
@@ -49,3 +49,4 @@ export const ImagesToPdfIcon = HiPhoto;
 export const PdfToImageIcon = HiArrowDownTray;
 export const PageNumbersIcon = HiHashtag;
 export const WatermarkIcon = HiShieldCheck;
+export const SignPdfIcon = FaSignature;

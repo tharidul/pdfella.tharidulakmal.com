@@ -10,7 +10,7 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="flex flex-col space-y-3">
-            <Link href="/" className="inline-flex items-center gap-2">
+            <Link href="/" className="inline-flex items-center gap-2 cursor-pointer">
               <Image
                 src="/logo-2.webp"
                 alt="PDF-X"
@@ -31,48 +31,53 @@ export function Footer() {
             </span>
             <ul className="flex flex-col space-y-2 text-sm text-neutral-600">
               <li>
-                <Link href="/" className="hover:text-[#800020] transition-colors">
+                <Link href="/" className="hover:text-brand-primary transition-colors cursor-pointer">
                   Merge PDFs
                 </Link>
               </li>
               <li>
-                <Link href="/split" className="hover:text-[#800020] transition-colors">
+                <Link href="/split" className="hover:text-brand-primary transition-colors cursor-pointer">
                   Split PDF
                 </Link>
               </li>
               <li>
-                <Link href="/remove" className="hover:text-[#800020] transition-colors">
+                <Link href="/remove" className="hover:text-brand-primary transition-colors cursor-pointer">
                   Remove Pages
                 </Link>
               </li>
               <li>
-                <Link href="/organize" className="hover:text-[#800020] transition-colors">
+                <Link href="/organize" className="hover:text-brand-primary transition-colors cursor-pointer">
                   Organize & Rotate
                 </Link>
               </li>
               <li>
-                <Link href="/compress" className="hover:text-[#800020] transition-colors">
+                <Link href="/compress" className="hover:text-brand-primary transition-colors cursor-pointer">
                   Compress PDF
                 </Link>
               </li>
               <li>
-                <Link href="/image-to-pdf" className="hover:text-[#800020] transition-colors">
+                <Link href="/image-to-pdf" className="hover:text-brand-primary transition-colors cursor-pointer">
                   Images to PDF
                 </Link>
               </li>
               <li>
-                <Link href="/pdf-to-image" className="hover:text-[#800020] transition-colors">
+                <Link href="/pdf-to-image" className="hover:text-brand-primary transition-colors cursor-pointer">
                   PDF to Images
                 </Link>
               </li>
               <li>
-                <Link href="/page-numbers" className="hover:text-[#800020] transition-colors">
+                <Link href="/page-numbers" className="hover:text-brand-primary transition-colors cursor-pointer">
                   Page Numbers
                 </Link>
               </li>
               <li>
-                <Link href="/watermark" className="hover:text-[#800020] transition-colors">
+                <Link href="/watermark" className="hover:text-brand-primary transition-colors cursor-pointer">
                   Watermark PDF
+                </Link>
+              </li>
+              <li>
+                <Link href="/sign" className="hover:text-brand-primary transition-colors cursor-pointer">
+                  Sign PDF
                 </Link>
               </li>
             </ul>
@@ -85,22 +90,22 @@ export function Footer() {
             </span>
             <ul className="flex flex-col space-y-2 text-sm text-neutral-600">
               <li>
-                <Link href="/how-to-use" className="hover:text-[#800020] transition-colors">
+                <Link href="/how-to-use" className="hover:text-brand-primary transition-colors cursor-pointer">
                   How to Use
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-[#800020] transition-colors">
+                <Link href="/faq" className="hover:text-brand-primary transition-colors cursor-pointer">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-[#800020] transition-colors">
+                <Link href="/about" className="hover:text-brand-primary transition-colors cursor-pointer">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-[#800020] transition-colors">
+                <Link href="/privacy" className="hover:text-brand-primary transition-colors cursor-pointer">
                   Privacy Policy
                 </Link>
               </li>
@@ -118,7 +123,7 @@ export function Footer() {
                   href="https://tharidulakmal.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#800020] transition-colors"
+                  className="hover:text-brand-primary transition-colors cursor-pointer"
                 >
                   Tharidu Lakmal
                 </a>
@@ -135,7 +140,7 @@ export function Footer() {
               href="https://tharidulakmal.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-700 hover:text-[#800020] underline font-medium"
+              className="text-neutral-700 hover:text-brand-primary underline font-medium cursor-pointer"
             >
               Tharidu Lakmal
             </a>

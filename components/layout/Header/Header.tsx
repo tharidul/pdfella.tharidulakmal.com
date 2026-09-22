@@ -22,7 +22,7 @@ export function Header() {
           <HiBars3 className="w-6 h-6" />
         </button>
 
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 cursor-pointer">
           <Image
             src="/logo-2.webp"
             alt="PDF-X"
@@ -42,19 +42,19 @@ export function Header() {
         <nav aria-label="Header Navigation" className="hidden md:flex items-center gap-5 lg:gap-6">
           <Link
             href="/how-to-use"
-            className="text-sm font-medium text-neutral-700 hover:text-[#800020] transition-colors"
+            className="text-sm font-medium text-neutral-700 hover:text-brand-primary transition-colors cursor-pointer"
           >
             How to Use
           </Link>
           <Link
             href="/faq"
-            className="text-sm font-medium text-neutral-700 hover:text-[#800020] transition-colors"
+            className="text-sm font-medium text-neutral-700 hover:text-brand-primary transition-colors cursor-pointer"
           >
             FAQ
           </Link>
           <Link
             href="/about"
-            className="text-sm font-medium text-neutral-700 hover:text-[#800020] transition-colors"
+            className="text-sm font-medium text-neutral-700 hover:text-brand-primary transition-colors cursor-pointer"
           >
             About
           </Link>
