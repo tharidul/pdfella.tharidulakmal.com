@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppLayout, Footer } from "@/components/layout";
+import { AppLayout } from "@/components/layout";
 import { JsonLd } from "@/components/seo";
 import {
   HiShieldCheck,
@@ -51,13 +51,10 @@ const PRINCIPLES = [
   },
 ];
 
-
-
 export default function AboutPage() {
   return (
     <AppLayout>
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        {/* Header */}
         <div className="mb-10 text-left">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
             About PDF-X
@@ -68,7 +65,6 @@ export default function AboutPage() {
         </div>
 
         <div className="space-y-6">
-          {/* Why We Built PDF-X */}
           <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs space-y-3">
             <h2 className="text-base font-bold text-neutral-900">
               Why We Built PDF-X
@@ -86,7 +82,6 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Principles */}
           <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs">
             <h2 className="text-base font-bold text-neutral-900 mb-4">
               Core Principles
@@ -116,7 +111,6 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Technology Stack */}
           <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs">
             <h2 className="text-base font-bold text-neutral-900 mb-2">
               Technology
@@ -153,7 +147,6 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Developer */}
           <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs">
             <h2 className="text-base font-bold text-neutral-900 mb-2">
               Developer
@@ -181,7 +174,6 @@ export default function AboutPage() {
           </section>
         </div>
       </main>
-      <Footer />
       <JsonLd
         toolName="About PDF-X"
         toolDescription="About PDF-X - 100% private, client-side PDF utility suite created by Tharidu Lakmal."

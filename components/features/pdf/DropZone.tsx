@@ -22,7 +22,6 @@ export function DropZone({
   const [isDragging, setIsDragging] = useState(false);
   const dragCounterRef = useRef(0);
 
-  // Prevent browser from navigating to dropped file if dropped anywhere on the window
   useEffect(() => {
     const handleWindowDragOver = (e: globalThis.DragEvent) => {
       e.preventDefault();
@@ -48,7 +47,6 @@ export function DropZone({
     if (event.target.files && event.target.files.length > 0) {
       onFilesSelected?.(event.target.files);
     }
-    // Clear input value so selecting the same file again triggers change event
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -69,7 +67,6 @@ export function DropZone({
     try {
       e.dataTransfer.dropEffect = "copy";
     } catch {
-      // Ignore in unsupported browsers
     }
     if (!isDragging) {
       setIsDragging(true);

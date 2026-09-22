@@ -62,7 +62,6 @@ export function PdfToImageView() {
       setFileBuffer(buffer);
       setHasFile(true);
 
-      // Pre-populate page items
       const initialPages: PageCardItem[] = [];
       for (let i = 1; i <= metadata.pageCount; i++) {
         initialPages.push({
@@ -73,7 +72,6 @@ export function PdfToImageView() {
       }
       setPages(initialPages);
 
-      // Load thumbnails progressively
       loadThumbnails(buffer, metadata.pageCount);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to read PDF document.";
@@ -194,7 +192,6 @@ export function PdfToImageView() {
         <DropZone onFilesSelected={handleFilesSelected} />
       ) : (
         <div className="space-y-6">
-          {/* File Meta Header Bar */}
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50/80 px-5 py-3.5 shadow-2xs">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-brand-subtle text-brand-primary flex items-center justify-center shrink-0">
@@ -219,9 +216,7 @@ export function PdfToImageView() {
             </button>
           </div>
 
-          {/* 2-Column Split: Left = Page Grid, Right = Sticky Action Toolbar */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Left Column: Page Selection Grid (8 Cols) */}
             <div className="lg:col-span-8 border border-neutral-200 rounded-2xl bg-white p-4 sm:p-5 shadow-2xs">
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100">
                 <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
@@ -237,13 +232,12 @@ export function PdfToImageView() {
                   <div
                     key={p.pageNumber}
                     onClick={() => togglePageSelection(p.pageNumber)}
-                    className={`group relative rounded-xl border p-2 flex flex-col bg-white shadow-xs transition-all cursor-pointer select-none ${
+                    className={`group relative rounded-xl p-2 flex flex-col bg-white shadow-xs transition-all cursor-pointer select-none ${
                       p.selected
-                        ? "border-brand-primary ring-1 ring-brand-border"
-                        : "border-neutral-200 hover:border-neutral-300"
+                        ? "border-2 border-brand-primary"
+                        : "border border-neutral-200 hover:border-neutral-300"
                     }`}
                   >
-                    {/* Page Image */}
                     <div className="relative w-full aspect-3/4 bg-neutral-50 flex items-center justify-center overflow-hidden rounded-lg">
                       {p.thumbnailUrl ? (
                         <Image
@@ -261,7 +255,6 @@ export function PdfToImageView() {
                       )}
                     </div>
 
-                    {/* Checkbox indicator */}
                     <div
                       className={`absolute top-3.5 right-3.5 w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold transition-colors ${
                         p.selected
@@ -272,7 +265,6 @@ export function PdfToImageView() {
                       ✓
                     </div>
 
-                    {/* Footer / Download Single */}
                     <div className="pt-2 px-1 flex items-center justify-between">
                       <span className="text-xs font-semibold text-neutral-700">
                         Page {p.pageNumber}
@@ -299,10 +291,8 @@ export function PdfToImageView() {
               </div>
             </div>
 
-            {/* Right Column: Sticky Tool & Action Sidebar (4 Cols) */}
             <div className="lg:col-span-4 lg:sticky lg:top-6 self-start">
               <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-xs flex flex-col gap-5">
-                {/* 1. Format & Resolution Settings */}
                 <div className="space-y-4">
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
@@ -367,7 +357,6 @@ export function PdfToImageView() {
 
                 <hr className="border-neutral-100" />
 
-                {/* 2. Selection Summary */}
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
@@ -406,7 +395,6 @@ export function PdfToImageView() {
 
                 <hr className="border-neutral-100" />
 
-                {/* 3. Primary Execute Button */}
                 <div className="space-y-2.5">
                   <button
                     type="button"

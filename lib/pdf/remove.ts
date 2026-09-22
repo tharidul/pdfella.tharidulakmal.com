@@ -15,21 +15,12 @@ export interface RemovePagesResult {
   remainingCount: number;
 }
 
-/**
- * Generates output filename for page removal:
- * [OriginalFileName]_pages_removed.pdf
- */
 export function getRemovePagesFilename(originalName: string): string {
   const baseName = originalName.replace(/\.pdf$/i, "").replace(/[-_]/g, "_").trim();
   const rawFilename = `${baseName}_pages_removed.pdf`;
   return sanitizeFilename(rawFilename, "document_pages_removed.pdf");
 }
 
-/**
- * Removes specified pages from a PDF document, ensuring at least one page remains.
- *
- * @throws {Error} if all pages are marked for removal, or if PDF is invalid
- */
 export async function removePdfPages(input: RemovePagesInput): Promise<RemovePagesResult> {
   const { data, name, pagesToRemove } = input;
 
@@ -80,9 +71,6 @@ export async function removePdfPages(input: RemovePagesInput): Promise<RemovePag
   };
 }
 
-/**
- * Removes marked pages and triggers immediate browser download
- */
 export async function removeAndDownloadPdfPages(
   input: RemovePagesInput
 ): Promise<RemovePagesResult> {

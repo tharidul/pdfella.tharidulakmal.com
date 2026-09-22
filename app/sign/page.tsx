@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import { AppLayout } from "@/components/layout";
-import { SignPdfView } from "@/components/features/pdf";
+import { SignPdfView, SIGN_PDF_FAQS } from "@/components/features/pdf";
 import { JsonLd } from "@/components/seo";
 
 export const metadata: Metadata = {
-  title: "Sign PDF Online Free - Fill & e-Signature Tool",
+  title: "Sign PDF Online Free - Fill & eSign PDF Documents",
   description:
-    "Electronically sign PDF documents online for free. Draw, type, or upload your signature, add date stamps, and position them interactively. 100% private client-side processing with zero server uploads.",
+    "Sign PDF documents online for free. Draw, type, or upload electronic signatures, add date stamps, and create transparent PNGs. 100% private in your browser.",
   alternates: {
     canonical: "/sign",
   },
   openGraph: {
-    title: "Sign PDF Online Free - Fill & e-Signature Tool",
+    title: "Sign PDF Online Free - Fill & eSign PDF Documents",
     description:
-      "Electronically sign PDF documents online for free. Draw, type, or upload your signature, add date stamps, and position them interactively. 100% private client-side processing with zero server uploads.",
+      "Sign PDF documents online for free. Draw, type, or upload electronic signatures, add date stamps, and create transparent PNGs. 100% private in your browser.",
     url: "https://pdfx.tharidulakmal.com/sign",
   },
 };
@@ -30,6 +30,7 @@ export default function SignPage() {
           { name: "Home", item: "/" },
           { name: "Sign PDF", item: "/sign" },
         ]}
+        faqs={SIGN_PDF_FAQS}
       />
     </AppLayout>
   );

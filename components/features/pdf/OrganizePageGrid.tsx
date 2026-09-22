@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { Dispatch, SetStateAction } from "react";
 import { DragDropProvider } from "@dnd-kit/react";
 import { useSortable } from "@dnd-kit/react/sortable";
@@ -68,11 +69,12 @@ function SortablePageCard({
           className="w-full h-full flex flex-col justify-between transition-transform duration-200"
         >
           {page.thumbnailUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={page.thumbnailUrl}
               alt={`Page ${page.originalNumber}`}
-              className="w-full h-full object-contain"
+              fill
+              unoptimized
+              className="object-contain"
             />
           ) : (
             <>

@@ -195,13 +195,12 @@ export function Select({
         onKeyDown={handleKeyDown}
         className={cn(
           "flex w-full items-center justify-between rounded-xl border bg-white px-4 py-3 text-left text-sm transition-colors duration-150 outline-hidden cursor-pointer select-none",
-          "dark:bg-neutral-800",
           error
             ? "border-brand-primary ring-1 ring-brand-primary/20"
             : isOpen
             ? "border-brand-primary ring-1 ring-brand-primary/20"
-            : "border-neutral-200 hover:border-neutral-300 dark:border-neutral-800 dark:hover:border-neutral-700",
-          disabled && "cursor-not-allowed opacity-50 bg-neutral-100 dark:bg-neutral-900",
+            : "border-neutral-200 hover:border-neutral-300",
+          disabled && "cursor-not-allowed opacity-50 bg-neutral-100",
           triggerClassName
         )}
       >
@@ -209,15 +208,15 @@ export function Select({
           className={cn(
             "truncate block",
             selectedOption
-              ? "font-medium text-neutral-900 dark:text-neutral-100"
-              : "text-neutral-400 dark:text-neutral-500"
+              ? "font-medium text-neutral-900"
+              : "text-neutral-400"
           )}
         >
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         <LuChevronDown
           className={cn(
-            "h-4 w-4 shrink-0 text-neutral-400 transition-transform duration-200 dark:text-neutral-500 ml-2",
+            "h-4 w-4 shrink-0 text-neutral-400 transition-transform duration-200 ml-2",
             isOpen && "rotate-180 text-brand-primary"
           )}
         />
@@ -229,13 +228,13 @@ export function Select({
           role="listbox"
           tabIndex={-1}
           className={cn(
-            "absolute left-0 right-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border border-neutral-200/90 bg-white p-1.5 shadow-lg dark:border-neutral-700 dark:bg-neutral-800 animate-in fade-in-0 zoom-in-95 duration-100",
+            "absolute left-0 right-0 top-full z-50 mt-1.5 overflow-hidden rounded-xl border border-neutral-200/90 bg-white p-1.5 shadow-lg animate-in fade-in-0 zoom-in-95 duration-100",
             dropdownClassName
           )}
         >
           <div ref={listRef} className="max-h-60 overflow-y-auto space-y-0.5">
             {options.length === 0 ? (
-              <div className="py-6 text-center text-xs text-neutral-500 dark:text-neutral-400">
+              <div className="py-6 text-center text-xs text-neutral-500">
                 {emptyMessage}
               </div>
             ) : (
@@ -256,8 +255,8 @@ export function Select({
                       isSelected
                         ? "bg-brand-subtle font-bold text-brand-primary"
                         : isHighlighted
-                        ? "bg-neutral-100/80 text-neutral-900 dark:bg-neutral-700/50 dark:text-neutral-100"
-                        : "text-neutral-700 hover:bg-neutral-50 dark:text-neutral-300 dark:hover:bg-neutral-700/40"
+                        ? "bg-neutral-100/80 text-neutral-900"
+                        : "text-neutral-700 hover:bg-neutral-50"
                     )}
                   >
                     <div className="min-w-0 pr-2">
@@ -268,7 +267,7 @@ export function Select({
                             "text-[11px] font-normal truncate mt-0.5",
                             isSelected
                               ? "text-brand-primary/70"
-                              : "text-neutral-400 dark:text-neutral-400"
+                              : "text-neutral-400"
                           )}
                         >
                           {opt.description}
@@ -285,7 +284,7 @@ export function Select({
           </div>
 
           {footerAction && (
-            <div className="mt-1 border-t border-neutral-100 pt-1 dark:border-neutral-700/60">
+            <div className="mt-1 border-t border-neutral-100 pt-1">
               {footerAction}
             </div>
           )}
@@ -293,7 +292,7 @@ export function Select({
       )}
 
       {error && (
-        <p className="mt-1.5 text-xs text-rich-mahogany dark:text-soft-fawn font-medium">
+        <p className="mt-1.5 text-xs text-brand-primary font-medium">
           {error}
         </p>
       )}

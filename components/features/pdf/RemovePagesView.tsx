@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   HiDocumentText,
   HiTrash,
@@ -103,7 +104,6 @@ export function RemovePagesView() {
       setRangeInput("");
       setHasFile(true);
 
-      // Render thumbnails progressively in batches
       const pageNumbers = Array.from({ length: metadata.pageCount }, (_, i) => i + 1);
       void renderDocumentThumbnailsBatch(
         buffer,
@@ -180,13 +180,10 @@ export function RemovePagesView() {
         </p>
       </div>
 
-
-
       {!hasFile ? (
         <DropZone onFilesSelected={handleFilesSelected} />
       ) : (
         <div className="space-y-6">
-          {/* File Meta Header Bar */}
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50/80 px-5 py-3.5 shadow-2xs">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-brand-subtle text-brand-primary flex items-center justify-center shrink-0">
@@ -216,9 +213,7 @@ export function RemovePagesView() {
             </button>
           </div>
 
-          {/* 2-Column Split: Left = Page Grid, Right = Sticky Action Toolbar */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Left Column: Page Selection Grid (8 Cols) */}
             <div className="lg:col-span-8 border border-neutral-200 rounded-2xl bg-white p-4 sm:p-5 shadow-2xs">
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100">
                 <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
@@ -234,10 +229,10 @@ export function RemovePagesView() {
                   <div
                     key={page.number}
                     onClick={() => togglePage(page.number)}
-                    className={`relative border rounded-xl p-3 flex flex-col items-center justify-between h-40 cursor-pointer select-none transition-all ${
+                    className={`relative rounded-xl p-3 flex flex-col items-center justify-between h-40 cursor-pointer select-none transition-all bg-white ${
                       page.markedForRemoval
-                        ? "border-brand-primary bg-brand-subtle/50 shadow-xs ring-1 ring-brand-border"
-                        : "border-neutral-200 bg-white hover:border-neutral-300 hover:bg-neutral-50/50"
+                        ? "border-2 border-brand-primary shadow-xs"
+                        : "border border-neutral-200 hover:border-neutral-300"
                     }`}
                   >
                     <div className="w-full flex items-center justify-between mb-2">
@@ -259,19 +254,20 @@ export function RemovePagesView() {
 
                     <div className="w-full flex-1 bg-white border border-neutral-100 rounded p-1.5 flex flex-col justify-between relative overflow-hidden">
                       {page.markedForRemoval && (
-                        <div className="absolute inset-0 bg-neutral-900/15 flex items-center justify-center z-10 backdrop-blur-[0.5px]">
-                          <span className="text-[10px] font-bold text-brand-primary bg-white border border-brand-border px-2 py-0.5 rounded shadow-xs uppercase tracking-wider">
+                        <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                          <span className="text-[10px] font-bold text-brand-primary bg-white border border-brand-primary px-2 py-0.5 rounded shadow-xs uppercase tracking-wider">
                             Remove
                           </span>
                         </div>
                       )}
 
                       {page.thumbnailUrl ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
+                        <Image
                           src={page.thumbnailUrl}
                           alt={`Page ${page.number}`}
-                          className="w-full h-full object-contain"
+                          fill
+                          unoptimized
+                          className="object-contain"
                         />
                       ) : (
                         <>
@@ -291,10 +287,8 @@ export function RemovePagesView() {
               </div>
             </div>
 
-            {/* Right Column: Sticky Tool & Action Sidebar (4 Cols) */}
             <div className="lg:col-span-4 lg:sticky lg:top-6 self-start">
               <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-xs flex flex-col gap-5">
-                {/* 1. Remove Range Syntax */}
                 <div className="space-y-2">
                   <label
                     htmlFor="removeRange"
@@ -331,7 +325,6 @@ export function RemovePagesView() {
 
                 <hr className="border-neutral-100" />
 
-                {/* 2. Removal Summary */}
                 <div className="space-y-2">
                   <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
                     Removal Summary
@@ -350,7 +343,6 @@ export function RemovePagesView() {
 
                 <hr className="border-neutral-100" />
 
-                {/* 3. Primary Execute Button */}
                 <div className="space-y-2.5">
                   <button
                     type="button"

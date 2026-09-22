@@ -120,8 +120,6 @@ export function CompressPdfView() {
         </p>
       </div>
 
-
-
       {actualResult && (
         <div className="mb-4 p-3.5 bg-white border border-neutral-200 rounded-xl text-xs text-neutral-800 flex flex-col gap-1 shadow-2xs">
           <div className="flex items-center gap-2 font-bold text-neutral-900">
@@ -140,9 +138,7 @@ export function CompressPdfView() {
       {!hasFile ? (
         <DropZone onFilesSelected={handleFilesSelected} />
       ) : (
-        /* Single Unified Card */
         <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 sm:p-6 shadow-xs flex flex-col gap-6">
-          {/* 1. File Info Header */}
           <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-neutral-100">
             <div className="flex items-center gap-3.5 min-w-0">
               <div className="w-10 h-10 rounded-xl bg-brand-subtle text-brand-primary flex items-center justify-center shrink-0">
@@ -171,7 +167,6 @@ export function CompressPdfView() {
             </button>
           </div>
 
-          {/* 2. Compression Level Selection */}
           <div className="flex flex-col gap-3">
             <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
               Compression Level
@@ -186,10 +181,10 @@ export function CompressPdfView() {
                     key={option.id}
                     type="button"
                     onClick={() => setSelectedTier(option.id)}
-                    className={`text-left p-4 rounded-xl border transition-all cursor-pointer flex flex-col justify-between gap-2 ${
+                    className={`text-left p-4 rounded-xl transition-all cursor-pointer flex flex-col justify-between gap-2 bg-white ${
                       isSelected
-                        ? "border-brand-primary bg-brand-subtle shadow-2xs ring-1 ring-brand-border"
-                        : "border-neutral-200 bg-white hover:border-neutral-300 hover:bg-neutral-50/50"
+                        ? "border-2 border-brand-primary shadow-2xs"
+                        : "border border-neutral-200 hover:border-neutral-300"
                     }`}
                   >
                     <div>
@@ -219,7 +214,6 @@ export function CompressPdfView() {
             </div>
           </div>
 
-          {/* 3. Action Button & Client-side Assurance */}
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-neutral-100">
             <span className="text-xs text-neutral-400">
               All compression executes locally in your browser.

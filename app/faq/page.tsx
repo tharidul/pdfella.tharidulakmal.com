@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppLayout, Footer } from "@/components/layout";
+import { AppLayout } from "@/components/layout";
 import { JsonLd, type FaqItem } from "@/components/seo";
 
 export const metadata: Metadata = {
@@ -121,7 +121,6 @@ export default function FaqPage() {
   return (
     <AppLayout>
       <main className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex flex-col">
-        {/* Header */}
         <div className="mb-10 text-left">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
             Frequently Asked Questions
@@ -131,7 +130,6 @@ export default function FaqPage() {
           </p>
         </div>
 
-        {/* Categories */}
         <div className="flex flex-col space-y-10 sm:space-y-12">
           {FAQ_CATEGORIES.map((category) => (
             <div key={category.category} className="flex flex-col">
@@ -161,7 +159,6 @@ export default function FaqPage() {
           ))}
         </div>
       </main>
-      <Footer />
       <JsonLd
         toolName="PDF-X FAQs"
         toolDescription="Frequently Asked Questions about PDF-X: 100% browser-based security, document limits, offline capabilities, and features."

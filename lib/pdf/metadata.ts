@@ -2,10 +2,6 @@ import { loadPdfLib } from "./loader";
 import type { PdfDocumentMetadata } from "./types";
 import { formatFileSize, sanitizeFilename } from "./validation";
 
-/**
- * Extract document metadata (page count, title, author, size) from a PDF file or buffer.
- * Uses pdf-lib for fast, reliable client-side metadata extraction without requiring canvas or DOM.
- */
 export async function extractPdfMetadata(
   input: File | ArrayBuffer | Uint8Array,
   originalFilename?: string

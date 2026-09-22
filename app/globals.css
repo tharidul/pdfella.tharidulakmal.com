@@ -62,10 +62,6 @@ body {
     sans-serif;
 }
 
-/* ==========================================================================
-   Sonner Toast Notification Theme
-   Enforces consistent brand theme without generic rainbow colors
-   ========================================================================== */
 [data-sonner-toaster] {
   --normal-bg: var(--background);
   --normal-border: var(--border);

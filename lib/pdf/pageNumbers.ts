@@ -11,10 +11,10 @@ export type PageNumberPosition =
   | "top-left";
 
 export type PageNumberFormat =
-  | "page-n-of-total" // Page 1 of 10
-  | "n-slash-total"   // 1 / 10
-  | "n"               // 1
-  | "page-n";         // Page 1
+  | "page-n-of-total" 
+  | "n-slash-total"   
+  | "n"               
+  | "page-n";         
 
 export interface PageNumbersOptions {
   position: PageNumberPosition;
@@ -52,9 +52,6 @@ function formatPageText(
   }
 }
 
-/**
- * Adds customizable page numbers to all or selected pages of a PDF document
- */
 export async function addPageNumbersToPdf(
   data: ArrayBuffer | Uint8Array,
   options: PageNumbersOptions
@@ -128,9 +125,6 @@ export async function addPageNumbersToPdf(
   return pdfDoc.save();
 }
 
-/**
- * Adds page numbers and triggers browser download
- */
 export async function addPageNumbersAndDownload(
   data: ArrayBuffer | Uint8Array,
   baseFileName: string,

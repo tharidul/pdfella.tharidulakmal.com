@@ -1,7 +1,3 @@
-/**
- * PDF-X Core PDF Processing Types
- * All processing is strictly client-side.
- */
 
 export interface ValidationSuccess {
   isValid: true;

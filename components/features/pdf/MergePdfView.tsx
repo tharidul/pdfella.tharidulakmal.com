@@ -62,7 +62,6 @@ export function MergePdfView() {
       const file = fileArray[i];
       if (!file) continue;
 
-      // 1. Validate file
       const validation = await validatePdfFile(file);
       if (!validation.isValid) {
         toast.error(validation.error);
@@ -72,7 +71,6 @@ export function MergePdfView() {
       try {
         const buffer = await file.arrayBuffer();
 
-        // 2. Extract metadata
         const metadata = await extractPdfMetadata(buffer, file.name);
 
         const newItemId = `pdf-${Date.now()}-${i}-${Math.random().toString(36).slice(2, 7)}`;
@@ -87,7 +85,6 @@ export function MergePdfView() {
 
         setFiles((prev) => [...prev, newItem]);
 
-        // 3. Asynchronously generate thumbnail for first page
         renderPageThumbnail(buffer, 1, { width: 104, height: 120 })
           .then((thumbnailUrl) => {
             setFiles((prev) =>
@@ -97,7 +94,6 @@ export function MergePdfView() {
             );
           })
           .catch(() => {
-            // Fallback placeholder is displayed automatically
           });
       } catch (err) {
         const msg = err instanceof Error ? err.message : "Failed to load PDF.";
@@ -158,9 +154,7 @@ export function MergePdfView() {
         <DropZone onFilesSelected={handleFilesSelected} />
       ) : (
         <div className="space-y-6">
-          {/* 2-Column Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Left Column: Reorderable Document List + Add More (8 Cols) */}
             <div className="lg:col-span-8 flex flex-col space-y-5">
               <div className="border border-neutral-200 rounded-2xl bg-white p-4 sm:p-5 shadow-2xs">
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-neutral-100">
@@ -184,7 +178,6 @@ export function MergePdfView() {
                 />
               </div>
 
-              {/* Add More Files Dropzone */}
               <div className="border border-neutral-200 rounded-2xl bg-white p-4 shadow-2xs">
                 <span className="text-xs font-bold text-neutral-700 block mb-2">
                   Add more documents
@@ -193,10 +186,8 @@ export function MergePdfView() {
               </div>
             </div>
 
-            {/* Right Column: Sticky Tool & Action Sidebar (4 Cols) */}
             <div className="lg:col-span-4 lg:sticky lg:top-6 self-start">
               <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-xs flex flex-col gap-5">
-                {/* 1. Document Summary */}
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
@@ -226,7 +217,6 @@ export function MergePdfView() {
 
                 <hr className="border-neutral-100" />
 
-                {/* 2. Primary Execute Button */}
                 <div className="space-y-2.5">
                   <button
                     type="button"

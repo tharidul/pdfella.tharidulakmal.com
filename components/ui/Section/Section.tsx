@@ -21,9 +21,9 @@ const SECTION_SPACING_STYLES: Record<SectionSpacing, string> = {
 
 const SECTION_VARIANT_STYLES: Record<SectionVariant, string> = {
   default: "",
-  muted: "bg-neutral-50 dark:bg-neutral-900/50",
-  brand: "bg-rich-mahogany text-white dark:bg-soft-fawn dark:text-neutral-900",
-  inverted: "bg-neutral-950 text-white dark:bg-white dark:text-neutral-950",
+  muted: "bg-neutral-50",
+  brand: "bg-brand-primary text-white",
+  inverted: "bg-neutral-950 text-white",
 };
 
 export function Section({

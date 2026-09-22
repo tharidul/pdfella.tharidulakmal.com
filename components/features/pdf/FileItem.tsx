@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   GripDotsIcon,
   ArrowUpIcon,
@@ -50,11 +51,12 @@ export function FileItem({
 
         <div className="w-11 h-13 sm:w-13 sm:h-15 rounded-md border border-neutral-200 bg-neutral-50/60 p-1 flex flex-col justify-between shrink-0 shadow-2xs select-none overflow-hidden relative">
           {file.thumbnailUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={file.thumbnailUrl}
               alt={file.previewTitle}
-              className="w-full h-full object-contain rounded-xs"
+              fill
+              unoptimized
+              className="object-contain rounded-xs"
             />
           ) : (
             <>

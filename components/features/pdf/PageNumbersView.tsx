@@ -169,7 +169,6 @@ export function PageNumbersView() {
         <DropZone onFilesSelected={handleFilesSelected} />
       ) : (
         <div className="space-y-6">
-          {/* File Meta Header Bar */}
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50/80 px-5 py-3.5 shadow-2xs">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-brand-subtle text-brand-primary flex items-center justify-center shrink-0">
@@ -194,9 +193,7 @@ export function PageNumbersView() {
             </button>
           </div>
 
-          {/* 2-Column Split: Left = Document Preview, Right = Sticky Configuration & Action Toolbar */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            {/* Left Column: Real-Time Document Preview (7 Cols) */}
             <div className="md:col-span-7 flex flex-col bg-white rounded-2xl border border-neutral-200/80 p-5 sm:p-6 shadow-2xs items-center justify-between">
               <div className="w-full text-center pb-3 border-b border-neutral-100">
                 <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
@@ -207,7 +204,6 @@ export function PageNumbersView() {
                 </p>
               </div>
 
-              {/* Document Mockup with Badge Overlay */}
               <div className="relative my-6 w-64 sm:w-80 aspect-[1/1.414] bg-white border border-neutral-300 rounded-xl shadow-md overflow-hidden flex items-center justify-center select-none">
                 {previewThumb ? (
                   <Image
@@ -224,9 +220,8 @@ export function PageNumbersView() {
                   </div>
                 )}
 
-                {/* Simulated Number Badge */}
                 <div
-                  className={`absolute px-2.5 py-1 rounded-sm bg-white/95 border border-neutral-300 shadow-xs font-sans font-medium pointer-events-none transition-all duration-200 ${
+                  className={`absolute px-2 py-0.5 rounded-sm border border-dotted border-neutral-400/60 bg-white/40 font-sans font-medium pointer-events-none transition-all duration-200 ${
                     position.startsWith("top") ? "top-4" : "bottom-4"
                   } ${
                     position.endsWith("left")
@@ -245,7 +240,6 @@ export function PageNumbersView() {
               </div>
             </div>
 
-            {/* Right Column: Options Settings Panel & Action Toolbar (5 Cols, Sticky) */}
             <div className="md:col-span-5 md:sticky md:top-6 self-start">
               <div className="flex flex-col gap-5 bg-white rounded-2xl border border-neutral-200/90 p-5 shadow-xs">
                 <div>
@@ -253,7 +247,6 @@ export function PageNumbersView() {
                     Page Numbering Configuration
                   </span>
 
-                  {/* Position Selector */}
                   <div className="flex flex-col space-y-2">
                     <label className="text-xs font-bold text-neutral-700">
                       Placement on Page
@@ -280,7 +273,6 @@ export function PageNumbersView() {
                   </div>
                 </div>
 
-                {/* Number Format */}
                 <div className="flex flex-col space-y-1.5">
                   <label className="text-xs font-bold text-neutral-700">Text Format</label>
                   <Select
@@ -291,7 +283,6 @@ export function PageNumbersView() {
                   />
                 </div>
 
-                {/* Font Size & Color */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col space-y-2">
                     <label className="text-xs font-bold text-neutral-700">Font Size ({fontSize} pt)</label>
@@ -327,7 +318,6 @@ export function PageNumbersView() {
                   </div>
                 </div>
 
-                {/* Cover Page & Start Number */}
                 <div className="pt-3 border-t border-neutral-100 flex flex-col space-y-3">
                   <label className="flex items-center gap-2.5 cursor-pointer">
                     <input
@@ -357,7 +347,6 @@ export function PageNumbersView() {
 
                 <hr className="border-neutral-100" />
 
-                {/* Primary Execute Button */}
                 <div className="space-y-2.5">
                   <button
                     type="button"

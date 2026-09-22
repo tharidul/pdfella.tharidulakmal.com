@@ -1,8 +1,5 @@
 import { sanitizeFilename } from "./validation";
 
-/**
- * Client-side utility to trigger a browser file download of any binary data or Blob.
- */
 export function downloadFile(
   data: Uint8Array | ArrayBuffer | Blob,
   filename: string,
@@ -39,17 +36,12 @@ export function downloadFile(
     anchor.click();
   } finally {
     document.body.removeChild(anchor);
-    // Revoke the object URL after a short timeout so the browser has time to initiate the download stream
     setTimeout(() => {
       URL.revokeObjectURL(objectUrl);
     }, 1000);
   }
 }
 
-/**
- * Client-side utility to trigger a browser file download of generated PDF data.
- * Standard across Merge, Split, Remove, Organize, Compress, etc.
- */
 export function downloadPdf(
   data: Uint8Array | ArrayBuffer | Blob,
   filename: string,
@@ -58,5 +50,4 @@ export function downloadPdf(
   downloadFile(data, filename, "application/pdf", fallbackFilename);
 }
 
-// Alias for compatibility
 export const triggerDownload = downloadFile;

@@ -22,13 +22,10 @@ export interface RenderedPageImage {
 }
 
 const RESOLUTION_SCALES = {
-  standard: 1.5, // ~108-150 DPI
-  high: 2.5,     // ~200-300 DPI
+  standard: 1.5,
+  high: 2.5,
 };
 
-/**
- * Renders a single PDF page into an image Blob and DataURL
- */
 export async function renderPdfPageToImage(
   data: ArrayBuffer | Uint8Array,
   pageNumber: number,
@@ -99,9 +96,6 @@ export async function renderPdfPageToImage(
   }
 }
 
-/**
- * Batch renders multiple pages and exports them as a downloadable .zip archive
- */
 export async function convertPdfToImagesZip(
   data: ArrayBuffer | Uint8Array,
   baseFileName: string,
@@ -139,9 +133,6 @@ export async function convertPdfToImagesZip(
   triggerDownload(zipData, `${cleanBase}_images.zip`, "application/zip");
 }
 
-/**
- * Downloads a single rendered page image
- */
 export function downloadSinglePageImage(
   rendered: RenderedPageImage,
   baseFileName: string,

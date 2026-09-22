@@ -179,7 +179,6 @@ export function ImageToPdfView() {
         </p>
       </div>
 
-      {/* Hidden File Input */}
       <input
         ref={fileInputRef}
         type="file"
@@ -189,7 +188,6 @@ export function ImageToPdfView() {
         onChange={handleFilesAdded}
       />
 
-      {/* Dropzone & Upload State */}
       {images.length === 0 ? (
         <DropZone
           accept="image/jpeg,image/png,image/webp,image/bmp"
@@ -201,7 +199,6 @@ export function ImageToPdfView() {
         />
       ) : (
         <div className="space-y-6">
-          {/* File Meta Header Bar */}
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50/80 px-5 py-3.5 shadow-2xs">
             <div className="flex items-center gap-3">
               <button
@@ -227,9 +224,7 @@ export function ImageToPdfView() {
             </span>
           </div>
 
-          {/* 2-Column Split: Left = Image Grid, Right = Sticky Action Toolbar */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Left Column: Image List Grid (8 Cols) */}
             <div className="lg:col-span-8 border border-neutral-200 rounded-2xl bg-white p-4 sm:p-5 shadow-2xs">
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100">
                 <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
@@ -246,7 +241,6 @@ export function ImageToPdfView() {
                     key={item.id}
                     className="relative bg-white border border-neutral-200 rounded-xl overflow-hidden shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-between"
                   >
-                    {/* Image Preview Container */}
                     <div className="relative w-full aspect-4/3 bg-neutral-50 flex items-center justify-center overflow-hidden border-b border-neutral-100">
                       <Image
                         src={item.previewUrl}
@@ -260,7 +254,6 @@ export function ImageToPdfView() {
                       </span>
                     </div>
 
-                    {/* Meta & Item Controls */}
                     <div className="p-2.5 flex flex-col justify-between">
                       <div className="mb-2">
                         <p className="text-xs font-bold text-neutral-800 truncate" title={item.name}>
@@ -308,16 +301,13 @@ export function ImageToPdfView() {
               </div>
             </div>
 
-            {/* Right Column: Sticky Tool & Action Sidebar (4 Cols) */}
             <div className="lg:col-span-4 lg:sticky lg:top-6 self-start">
               <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-xs flex flex-col gap-5">
-                {/* 1. Page Layout Settings */}
                 <div className="space-y-4">
                   <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
                     Page Configuration
                   </span>
 
-                  {/* Page Size */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-neutral-700 block">Page Size</label>
                     <Select
@@ -328,7 +318,6 @@ export function ImageToPdfView() {
                     />
                   </div>
 
-                  {/* Orientation */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-neutral-700 block">Orientation</label>
                     <Select
@@ -340,7 +329,6 @@ export function ImageToPdfView() {
                     />
                   </div>
 
-                  {/* Margins */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-neutral-700 block">Page Margins</label>
                     <Select
@@ -354,7 +342,6 @@ export function ImageToPdfView() {
 
                 <hr className="border-neutral-100" />
 
-                {/* 2. Document Summary */}
                 <div className="space-y-2">
                   <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
                     Document Summary
@@ -369,7 +356,6 @@ export function ImageToPdfView() {
 
                 <hr className="border-neutral-100" />
 
-                {/* 3. Primary Execute Button */}
                 <div className="space-y-2.5">
                   <button
                     type="button"

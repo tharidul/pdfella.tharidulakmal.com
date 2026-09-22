@@ -5,14 +5,14 @@ import type { PDFImage } from "pdf-lib";
 
 export interface SignaturePlacement {
   id: string;
-  pageNumber: number; // 1-based page index
-  xPercent: number; // 0 to 100 percentage from left of page
-  yPercent: number; // 0 to 100 percentage from top of page
-  widthPercent: number; // percentage of page width
-  heightPercent: number; // percentage of page height
-  imageDataUrl: string; // Base64 transparent PNG
-  aspectRatio?: number; // Intrinsic width / height ratio
-  label?: string; // e.g. "Signature", "Date", "Initials"
+  pageNumber: number; 
+  xPercent: number; 
+  yPercent: number; 
+  widthPercent: number; 
+  heightPercent: number; 
+  imageDataUrl: string; 
+  aspectRatio?: number; 
+  label?: string; 
 }
 
 export interface SignPdfInput {
@@ -21,9 +21,6 @@ export interface SignPdfInput {
   placements: SignaturePlacement[];
 }
 
-/**
- * Converts a base64 Data URL to a Uint8Array
- */
 function dataUrlToBytes(dataUrl: string): Uint8Array {
   const parts = dataUrl.split(",");
   const base64 = parts[1] ?? "";
@@ -36,10 +33,6 @@ function dataUrlToBytes(dataUrl: string): Uint8Array {
   return bytes;
 }
 
-/**
- * Superimposes signature and stamp images onto specified pages of a PDF document
- * using proportionate relative percentage coordinates.
- */
 export async function signPdf(
   data: ArrayBuffer | Uint8Array,
   placements: SignaturePlacement[]
@@ -52,7 +45,6 @@ export async function signPdf(
   const pdfDoc = await PDFDocument.load(data);
   const pages = pdfDoc.getPages();
 
-  // Embed unique images to avoid duplicating identical stamps in memory
   const imageCache = new Map<string, PDFImage>();
 
   for (const placement of placements) {
@@ -66,18 +58,15 @@ export async function signPdf(
 
     const { width: pageWidth, height: pageHeight } = page.getSize();
 
-    // Calculate dimensions in PDF point space from relative percentage
     const drawWidth = Math.max(10, (placement.widthPercent / 100) * pageWidth);
     const drawHeight = Math.max(10, (placement.heightPercent / 100) * pageHeight);
     const drawX = Math.max(0, (placement.xPercent / 100) * pageWidth);
 
-    // PDF coordinate system origin is bottom-left; HTML canvas/screen origin is top-left
     const drawY = Math.max(
       0,
       pageHeight - (placement.yPercent / 100) * pageHeight - drawHeight
     );
 
-    // Get or embed the PNG image
     let embeddedImage = imageCache.get(placement.imageDataUrl);
     if (!embeddedImage) {
       const bytes = dataUrlToBytes(placement.imageDataUrl);
@@ -96,9 +85,6 @@ export async function signPdf(
   return pdfDoc.save();
 }
 
-/**
- * Signs the PDF and immediately triggers a client-side download
- */
 export async function signAndDownloadPdf(input: SignPdfInput): Promise<void> {
   const signedBytes = await signPdf(input.data, input.placements);
   const rawBase = input.name.replace(/\.pdf$/i, "");
@@ -108,10 +94,6 @@ export async function signAndDownloadPdf(input: SignPdfInput): Promise<void> {
   downloadPdf(signedBytes, outputFilename);
 }
 
-/**
- * Triggers a client-side browser download of a signature PNG,
- * either with a transparent background or with a solid white background.
- */
 export function downloadSignatureImage(
   dataUrl: string,
   background: "transparent" | "white",
@@ -132,7 +114,6 @@ export function downloadSignatureImage(
     return;
   }
 
-  // Render on offscreen canvas with solid white background
   const img = new window.Image();
   let executed = false;
 
@@ -149,11 +130,9 @@ export function downloadSignatureImage(
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
-      // Fill pure solid white
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, width, height);
 
-      // Superimpose the signature graphic
       ctx.drawImage(img, 0, 0, width, height);
 
       const whiteDataUrl = canvas.toDataURL("image/png");
@@ -164,7 +143,6 @@ export function downloadSignatureImage(
       anchor.click();
       document.body.removeChild(anchor);
     } catch {
-      // Fallback to dataUrl in case canvas context fails
       const fallbackAnchor = document.createElement("a");
       fallbackAnchor.href = dataUrl;
       fallbackAnchor.download = `${safeFilename}-white-bg.png`;

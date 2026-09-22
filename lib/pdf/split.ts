@@ -15,10 +15,6 @@ export interface SplitPdfResult {
   extractedPageCount: number;
 }
 
-/**
- * Generates the output filename for extracted pages:
- * [OriginalFileName]-pages-[SelectedRange].pdf
- */
 export function getSplitPdfFilename(originalName: string, selectedPages: number[]): string {
   const baseName = originalName.replace(/\.pdf$/i, "").replace(/[-_]/g, " ").trim();
   const rangeStr = formatPageRange(selectedPages).replace(/\s+/g, "").replace(/,/g, "_");
@@ -26,11 +22,6 @@ export function getSplitPdfFilename(originalName: string, selectedPages: number[
   return sanitizeFilename(rawFilename, "extracted-pages.pdf");
 }
 
-/**
- * Extracts specified pages from a PDF document into a new PDF file.
- *
- * @throws {Error} if no pages are selected or page numbers are out of bounds
- */
 export async function splitPdf(input: SplitPdfInput): Promise<SplitPdfResult> {
   const { data, name, selectedPages } = input;
 
@@ -47,7 +38,6 @@ export async function splitPdf(input: SplitPdfInput): Promise<SplitPdfResult> {
   const srcDoc = await PDFDocument.load(data, { ignoreEncryption: true });
   const totalPages = srcDoc.getPageCount();
 
-  // Deduplicate, sort, and validate bounds
   const uniquePages = Array.from(new Set(selectedPages))
     .filter((p) => p >= 1 && p <= totalPages)
     .sort((a, b) => a - b);
@@ -58,7 +48,6 @@ export async function splitPdf(input: SplitPdfInput): Promise<SplitPdfResult> {
 
   const newDoc = await PDFDocument.create();
 
-  // Convert 1-based page numbers to 0-based indices for pdf-lib
   const zeroBasedIndices = uniquePages.map((p) => p - 1);
   const copiedPages = await newDoc.copyPages(srcDoc, zeroBasedIndices);
 
@@ -76,9 +65,6 @@ export async function splitPdf(input: SplitPdfInput): Promise<SplitPdfResult> {
   };
 }
 
-/**
- * Extracts selected pages and triggers immediate browser download
- */
 export async function splitAndDownloadPdf(input: SplitPdfInput): Promise<SplitPdfResult> {
   const result = await splitPdf(input);
   downloadPdf(result.data, result.filename);

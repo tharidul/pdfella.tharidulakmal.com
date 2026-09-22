@@ -11,7 +11,6 @@ export function Header() {
 
   return (
     <header className="w-full h-14 sm:h-16 flex items-center justify-between px-4 sm:px-8 border-b border-neutral-100 bg-white sticky top-0 z-20">
-      {/* Mobile-only: Hamburger button & Brand Logo */}
       <div className="flex items-center gap-3 md:hidden">
         <button
           type="button"
@@ -34,10 +33,8 @@ export function Header() {
         </Link>
       </div>
 
-      {/* Desktop spacer when no mobile menu is shown */}
       <div className="hidden md:block" />
 
-      {/* Right side navigation */}
       <div className="flex items-center gap-4 sm:gap-6">
         <nav aria-label="Header Navigation" className="hidden md:flex items-center gap-5 lg:gap-6">
           <Link

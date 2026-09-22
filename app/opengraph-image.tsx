@@ -26,7 +26,6 @@ export default async function Image() {
           border: "12px solid #800020",
         }}
       >
-        {/* Header bar */}
         <div
           style={{
             display: "flex",
@@ -84,7 +83,6 @@ export default async function Image() {
           </div>
         </div>
 
-        {/* Hero Title & Subtitle */}
         <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "980px" }}>
           <h1
             style={{
@@ -110,7 +108,6 @@ export default async function Image() {
           </p>
         </div>
 
-        {/* Feature Pills */}
         <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", width: "100%" }}>
           {["Merge PDFs", "Split PDF", "Remove Pages", "Organize & Rotate", "Compress PDF"].map(
             (tool) => (
@@ -134,7 +131,6 @@ export default async function Image() {
           )}
         </div>
 
-        {/* Footer info */}
         <div
           style={{
             display: "flex",

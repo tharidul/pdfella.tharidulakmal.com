@@ -10,7 +10,7 @@ export interface TextWatermarkOptions {
   fontSize?: number;
   colorHex?: string;
   opacity?: number;
-  rotation?: number; // In degrees, e.g. -45, 0, 45
+  rotation?: number; 
   skipFirstPage?: boolean;
 }
 
@@ -34,9 +34,6 @@ function hexToRgb(hex: string, rgbFn: (r: number, g: number, b: number) => Color
   return rgbFn(r, g, b);
 }
 
-/**
- * Superimposes a text or image watermark onto pages of a PDF document
- */
 export async function addWatermarkToPdf(
   data: ArrayBuffer | Uint8Array,
   options: WatermarkOptions
@@ -65,7 +62,6 @@ export async function addWatermarkToPdf(
       const cx = width / 2;
       const cy = height / 2;
 
-      // Compute offset to position the center of the rotated text exactly at page center
       const dx = (textWidth / 2) * Math.cos(rad) - (textHeight / 2) * Math.sin(rad);
       const dy = (textWidth / 2) * Math.sin(rad) + (textHeight / 2) * Math.cos(rad);
 
@@ -96,7 +92,6 @@ export async function addWatermarkToPdf(
       const cx = width / 2;
       const cy = height / 2;
 
-      // Scale proportionally to page size rather than raw pixels
       const targetMaxWidth = width * baseScale;
       const targetMaxHeight = height * baseScale;
 
@@ -125,9 +120,6 @@ export async function addWatermarkToPdf(
   return pdfDoc.save();
 }
 
-/**
- * Adds watermark and triggers browser download
- */
 export async function addWatermarkAndDownload(
   data: ArrayBuffer | Uint8Array,
   baseFileName: string,

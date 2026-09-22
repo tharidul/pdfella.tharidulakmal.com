@@ -1,29 +1,3 @@
-/**
- * PDF-X Client-Side PDF Compression Engine
- *
- * ─────────────────────────────────────────────────────────────────────────────
- * LEGAL & LICENSE COMPATIBILITY DOCUMENTATION (Per Requirement 13)
- * ─────────────────────────────────────────────────────────────────────────────
- * Evaluated Engines:
- * 1. Ghostscript (WASM):
- *    - License: GNU AGPL v3 (Affero General Public License) / Commercial.
- *    - Verdict: INCOMPATIBLE. AGPL v3 is a viral copyleft license that imposes
- *      network-use obligations, restricting commercial distribution or integration
- *      with proprietary/MIT codebases.
- *
- * 2. MuPDF (WASM):
- *    - License: GNU AGPL v3 / Commercial (Artifex).
- *    - Verdict: INCOMPATIBLE. Same viral AGPL restrictions as Ghostscript.
- *
- * 3. Selected Engine: Hybrid PDF.js (Apache-2.0) + pdf-lib (MIT) Pipeline
- *    - PDF.js: Apache License 2.0 (Permissive, commercial-friendly).
- *    - pdf-lib: MIT License (Permissive, commercial-friendly).
- *    - Mechanism: Real raster and image stream downsampling at tiered resolutions
- *      (72 DPI - 180 DPI) and JPEG compression qualities (0.5 - 0.88), followed by
- *      deflate object stream compression (`useObjectStreams: true`).
- *    - Verdict: FULLY COMPATIBLE with standard commercial and open-source distribution.
- * ─────────────────────────────────────────────────────────────────────────────
- */
 
 import { loadPdfLib } from "./loader";
 import { downloadPdf } from "./download";
@@ -53,7 +27,7 @@ export const COMPRESSION_TIER_CONFIGS: Record<CompressionTier, CompressionTierCo
     title: "Extreme Compression",
     description: "Lower image quality, highest file reduction",
     estimatedPercentage: 75,
-    scale: 0.75, // ~72 DPI
+    scale: 0.75,
     quality: 0.5,
   },
   recommended: {
@@ -62,7 +36,7 @@ export const COMPRESSION_TIER_CONFIGS: Record<CompressionTier, CompressionTierCo
     badge: "Best Value",
     description: "Good quality, standard compression for everyday sharing",
     estimatedPercentage: 55,
-    scale: 1.0, // ~120-150 DPI
+    scale: 1.0,
     quality: 0.72,
   },
   less: {
@@ -70,7 +44,7 @@ export const COMPRESSION_TIER_CONFIGS: Record<CompressionTier, CompressionTierCo
     title: "Less Compression",
     description: "High image quality, mild compression",
     estimatedPercentage: 30,
-    scale: 1.35, // ~180-200 DPI
+    scale: 1.35,
     quality: 0.88,
   },
 };
@@ -89,9 +63,6 @@ export interface CompressPdfResult {
   savings: SavingsResult;
 }
 
-/**
- * Returns estimated compressed size and percentage based on original file size and tier
- */
 export function estimateCompressedSize(originalBytes: number, tier: CompressionTier) {
   const config = COMPRESSION_TIER_CONFIGS[tier];
   const estimatedSavingsBytes = Math.round(originalBytes * (config.estimatedPercentage / 100));
@@ -105,19 +76,12 @@ export function estimateCompressedSize(originalBytes: number, tier: CompressionT
   };
 }
 
-/**
- * Generates output filename for compressed PDF:
- * [OriginalFileName]_compressed.pdf
- */
 export function getCompressPdfFilename(originalName: string): string {
   const baseName = originalName.replace(/\.pdf$/i, "").replace(/[-_]/g, "_").trim();
   const rawFilename = `${baseName}_compressed.pdf`;
   return sanitizeFilename(rawFilename, "document_compressed.pdf");
 }
 
-/**
- * Compresses a PDF using permissive client-side raster and object stream optimization.
- */
 export async function compressPdf(
   input: CompressPdfInput,
   onProgress?: (processed: number, total: number) => void
@@ -132,7 +96,6 @@ export async function compressPdf(
   const originalSize = data.byteLength;
   const config = COMPRESSION_TIER_CONFIGS[tier];
 
-  // Client-side browser rendering check
   if (typeof window === "undefined") {
     throw new Error("PDF compression can only be executed in a browser environment.");
   }
@@ -179,7 +142,6 @@ export async function compressPdf(
         viewport,
       }).promise;
 
-      // Convert canvas to JPEG blob/buffer with tiered quality
       const jpegBlob = await new Promise<Blob | null>((resolve) => {
         canvas.toBlob((blob) => resolve(blob), "image/jpeg", config.quality);
       });
@@ -191,7 +153,6 @@ export async function compressPdf(
       const jpegBuffer = await jpegBlob.arrayBuffer();
       const embeddedImage = await outputPdfDoc.embedJpg(jpegBuffer);
 
-      // Preserve original page dimensions in PDF points
       const originalViewport = page.getViewport({ scale: 1.0 });
       const newPage = outputPdfDoc.addPage([
         originalViewport.width,
@@ -205,14 +166,12 @@ export async function compressPdf(
         height: originalViewport.height,
       });
 
-      // Cleanup canvas
       canvas.width = 0;
       canvas.height = 0;
     }
 
     onProgress?.(totalPages, totalPages);
 
-    // Save with object stream compression
     const compressedBytes = await outputPdfDoc.save({
       useObjectStreams: true,
     });
@@ -234,9 +193,6 @@ export async function compressPdf(
   }
 }
 
-/**
- * Compresses PDF and triggers browser download
- */
 export async function compressAndDownloadPdf(
   input: CompressPdfInput,
   onProgress?: (processed: number, total: number) => void

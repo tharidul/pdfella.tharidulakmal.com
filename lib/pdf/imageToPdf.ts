@@ -33,9 +33,6 @@ const MARGIN_SIZES = {
   large: 40,
 };
 
-/**
- * Loads an image file into an ImageBitmap or HTMLImageElement and normalizes it to clean JPEG bytes
- */
 async function processImageToBytes(
   file: File
 ): Promise<{ bytes: Uint8Array; width: number; height: number; isPng: boolean }> {
@@ -62,7 +59,6 @@ async function processImageToBytes(
         const isPng = file.type === "image/png";
 
         if (!isPng) {
-          // Fill white background for non-PNG or transparent images converted to JPEG
           ctx.fillStyle = "#ffffff";
           ctx.fillRect(0, 0, width, height);
         }
@@ -96,9 +92,6 @@ async function processImageToBytes(
   });
 }
 
-/**
- * Converts multiple images into a single unified PDF document
- */
 export async function convertImagesToPdf(
   images: File[],
   options: ImageToPdfOptions
@@ -176,9 +169,6 @@ export async function convertImagesToPdf(
   return pdfDoc.save();
 }
 
-/**
- * Converts images to PDF and triggers browser download
- */
 export async function convertImagesAndDownload(
   images: File[],
   options: ImageToPdfOptions,

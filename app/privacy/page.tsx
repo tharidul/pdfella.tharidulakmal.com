@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppLayout, Footer } from "@/components/layout";
+import { AppLayout } from "@/components/layout";
 import { JsonLd } from "@/components/seo";
 
 export const metadata: Metadata = {
@@ -103,7 +103,6 @@ export default function PrivacyPage() {
           </section>
         </div>
       </main>
-      <Footer />
       <JsonLd
         toolName="Privacy Policy"
         toolDescription="PDF-X client-side privacy policy. Zero server uploads, no cookies, zero data logging."

@@ -4,8 +4,8 @@ import { sanitizeFilename, validatePdfBuffer } from "./validation";
 
 export interface OrganizePageOrder {
   id: string;
-  originalNumber: number; // 1-based original page number
-  rotation: number; // relative rotation degrees (0, 90, 180, 270)
+  originalNumber: number; 
+  rotation: number; 
 }
 
 export interface OrganizePdfInput {
@@ -20,22 +20,12 @@ export interface OrganizePdfResult {
   pageCount: number;
 }
 
-/**
- * Generates output filename for organized PDF:
- * [OriginalFileName]_organized.pdf
- */
 export function getOrganizePdfFilename(originalName: string): string {
   const baseName = originalName.replace(/\.pdf$/i, "").replace(/[-_]/g, "_").trim();
   const rawFilename = `${baseName}_organized.pdf`;
   return sanitizeFilename(rawFilename, "document_organized.pdf");
 }
 
-/**
- * Reorders and rotates pages from a PDF document and creates a newly exported PDF.
- * Does not mutate the original data.
- *
- * @throws {Error} if no pages exist or if document cannot be loaded
- */
 export async function organizePdf(input: OrganizePdfInput): Promise<OrganizePdfResult> {
   const { data, name, pages } = input;
 
@@ -77,9 +67,6 @@ export async function organizePdf(input: OrganizePdfInput): Promise<OrganizePdfR
   };
 }
 
-/**
- * Reorders and rotates pages and triggers immediate browser download
- */
 export async function organizeAndDownloadPdf(
   input: OrganizePdfInput
 ): Promise<OrganizePdfResult> {

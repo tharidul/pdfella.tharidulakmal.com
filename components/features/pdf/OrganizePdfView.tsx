@@ -106,7 +106,6 @@ export function OrganizePdfView() {
       setPages(initialPages);
       setHasFile(true);
 
-      // Render thumbnails progressively in batches
       const pageNumbers = Array.from({ length: metadata.pageCount }, (_, i) => i + 1);
       void renderDocumentThumbnailsBatch(
         buffer,
@@ -167,13 +166,10 @@ export function OrganizePdfView() {
         </p>
       </div>
 
-
-
       {!hasFile ? (
         <DropZone onFilesSelected={handleFilesSelected} />
       ) : (
         <div className="space-y-6">
-          {/* File Meta Header Bar */}
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-neutral-50/80 px-5 py-3.5 shadow-2xs">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-brand-subtle text-brand-primary flex items-center justify-center shrink-0">
@@ -203,9 +199,7 @@ export function OrganizePdfView() {
             </button>
           </div>
 
-          {/* 2-Column Split: Left = Drag-Drop Page Grid, Right = Sticky Action Toolbar */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Left Column: Reorderable Page Grid (8 Cols) */}
             <div className="lg:col-span-8 border border-neutral-200 rounded-2xl bg-white p-4 sm:p-5 shadow-2xs">
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100">
                 <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
@@ -227,10 +221,8 @@ export function OrganizePdfView() {
               </div>
             </div>
 
-            {/* Right Column: Sticky Tool & Action Sidebar (4 Cols) */}
             <div className="lg:col-span-4 lg:sticky lg:top-6 self-start">
               <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-xs flex flex-col gap-5">
-                {/* 1. Bulk Page Operations */}
                 <div className="space-y-3">
                   <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
                     Bulk Actions
@@ -264,7 +256,6 @@ export function OrganizePdfView() {
 
                 <hr className="border-neutral-100" />
 
-                {/* 2. Document Summary */}
                 <div className="space-y-2">
                   <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
                     Document Summary
@@ -281,7 +272,6 @@ export function OrganizePdfView() {
 
                 <hr className="border-neutral-100" />
 
-                {/* 3. Primary Execute Button */}
                 <div className="space-y-2.5">
                   <button
                     type="button"

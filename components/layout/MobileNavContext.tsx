@@ -24,7 +24,6 @@ export function MobileNavProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [prevPathname, setPrevPathname] = useState(pathname);
 
-  // Automatically reset mobile menu when route changes during render
   if (prevPathname !== pathname) {
     setPrevPathname(pathname);
     setIsOpen(false);
@@ -34,7 +33,6 @@ export function MobileNavProvider({ children }: { children: ReactNode }) {
   const close = useCallback(() => setIsOpen(false), []);
   const toggle = useCallback(() => setIsOpen((prev) => !prev), []);
 
-  // Handle ESC key to close drawer and lock body scroll when open
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {

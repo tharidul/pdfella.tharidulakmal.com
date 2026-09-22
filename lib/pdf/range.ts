@@ -1,26 +1,5 @@
 import type { PageRangeParseResult } from "./types";
 
-/**
- * Validates and parses a page range string into a sorted, deduplicated array of 1-based page numbers.
- *
- * Supported syntax:
- * - Single page: "1"
- * - Comma-separated: "1, 3, 5"
- * - Ranges: "1-5"
- * - Mixed: "1-3, 5, 8-12"
- *
- * Requirements:
- * - Whitespace tolerant (" 1 - 3 , 5 ")
- * - Deduplicate pages ("1, 1, 2" -> [1, 2])
- * - Sort numerically ("5, 2, 1" -> [1, 2, 5])
- * - Reject page 0
- * - Reject negative pages
- * - Reject pages greater than totalPages
- * - Reject malformed syntax ("abc", "1--3", "1-", "-5")
- * - Reject empty input / empty selections
- *
- * @throws {Error} with a descriptive message if the input is malformed, out of bounds, or empty.
- */
 export function parsePageRange(input: string, totalPages: number): number[] {
   if (totalPages <= 0 || !Number.isInteger(totalPages)) {
     throw new Error(`Invalid total page count: ${totalPages}. Must be a positive integer.`);
@@ -35,7 +14,6 @@ export function parsePageRange(input: string, totalPages: number): number[] {
     throw new Error("Page range cannot be empty.");
   }
 
-  // Split by comma
   const tokens = trimmed.split(",");
   const pageSet = new Set<number>();
 
@@ -50,7 +28,6 @@ export function parsePageRange(input: string, totalPages: number): number[] {
     }
 
     if (token.includes("-")) {
-      // Range segment: e.g. "1-5" or "1 - 5"
       const dashParts = token.split("-");
       if (dashParts.length !== 2) {
         throw new Error(`Malformed page range syntax: "${token}". Only single dashes (e.g. "1-5") are supported.`);
@@ -90,7 +67,6 @@ export function parsePageRange(input: string, totalPages: number): number[] {
         pageSet.add(p);
       }
     } else {
-      // Single page segment: e.g. "5"
       if (!/^\d+$/.test(token)) {
         throw new Error(`Invalid page number or token: "${token}". Expected a positive number.`);
       }
@@ -116,9 +92,6 @@ export function parsePageRange(input: string, totalPages: number): number[] {
   return Array.from(pageSet).sort((a, b) => a - b);
 }
 
-/**
- * Safe version of parsePageRange that does not throw, returning a result object.
- */
 export function safeParsePageRange(input: string, totalPages: number): PageRangeParseResult {
   try {
     const pages = parsePageRange(input, totalPages);
@@ -135,16 +108,11 @@ export function safeParsePageRange(input: string, totalPages: number): PageRange
   }
 }
 
-/**
- * Formats an array of page numbers into a clean, canonical range string.
- * Example: [1, 2, 3, 5, 8, 9, 10] -> "1-3, 5, 8-10"
- */
 export function formatPageRange(pages: number[]): string {
   if (!pages || pages.length === 0) {
     return "";
   }
 
-  // Deduplicate and sort
   const sorted = Array.from(new Set(pages))
     .filter((p) => p > 0 && Number.isInteger(p))
     .sort((a, b) => a - b);

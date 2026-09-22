@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AppLayout, Footer } from "@/components/layout";
+import { AppLayout } from "@/components/layout";
 import { JsonLd } from "@/components/seo";
 import {
   MergePdfIcon,
@@ -318,7 +318,6 @@ export default function HowToUsePage() {
   return (
     <AppLayout>
       <main className="w-full max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12 flex flex-col">
-        {/* Header */}
         <div className="flex flex-col mb-10 text-left">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
             How to Use PDF-X
@@ -328,7 +327,6 @@ export default function HowToUsePage() {
           </p>
         </div>
 
-        {/* Guides List */}
         <div className="flex flex-col space-y-6 sm:space-y-8">
           {TOOLS_GUIDE.map((tool) => {
             const Icon = tool.icon;
@@ -338,7 +336,6 @@ export default function HowToUsePage() {
                 id={tool.id}
                 className="scroll-mt-24 p-6 sm:p-7 rounded-xl border border-neutral-200/80 bg-white shadow-2xs flex flex-col"
               >
-                {/* Tool header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-neutral-100 mb-5">
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-lg bg-brand-subtle text-brand-primary flex items-center justify-center shrink-0">
@@ -363,7 +360,6 @@ export default function HowToUsePage() {
                   </Link>
                 </div>
 
-                {/* 3 Step Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
                   {tool.steps.map((step) => (
                     <div
@@ -385,7 +381,6 @@ export default function HowToUsePage() {
                   ))}
                 </div>
 
-                {/* Feature Highlights */}
                 {tool.highlights && tool.highlights.length > 0 && (
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-4 pt-4 border-t border-neutral-100">
                     {tool.highlights.map((highlight) => {
@@ -414,7 +409,6 @@ export default function HowToUsePage() {
           })}
         </div>
       </main>
-      <Footer />
       <JsonLd
         toolName="How to Use PDF-X"
         toolDescription="Complete guide to using PDF-X client-side utilities securely in your browser."
