@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description:
       "Everything you need to know about PDFella: 100% browser-based security, document limits, offline capabilities, and features.",
     url: "https://pdfella.tharidulakmal.com/faq",
+    images: ["/og-image.jpg"],
   },
 };
 

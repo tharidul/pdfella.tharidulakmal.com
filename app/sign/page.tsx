@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Sign PDF documents online for free. Draw, type, or upload electronic signatures, add date stamps, and create transparent PNGs. 100% private in your browser.",
     url: "https://pdfella.tharidulakmal.com/sign",
+    images: ["/og-image.jpg"],
   },
 };
 

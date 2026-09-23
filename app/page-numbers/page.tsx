@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Insert customizable page numbers into your PDF documents. Choose alignment, formats (Page X of Y, X/Y), fonts, and cover page exclusions without uploading files.",
     url: "https://pdfella.tharidulakmal.com/page-numbers",
+    images: ["/og-image.jpg"],
   },
 };
 

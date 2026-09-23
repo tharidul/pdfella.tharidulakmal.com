@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Extract individual pages or custom page ranges from your PDF instantly. Free, client-side, and completely private with visual page selection.",
     url: "https://pdfella.tharidulakmal.com/split",
+    images: ["/og-image.jpg"],
   },
 };
 

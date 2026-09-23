@@ -37,6 +37,7 @@ export const JsonLd: FC<JsonLdProps> = ({
       applicationCategory: "UtilitiesApplication",
       operatingSystem: "All (Web Browser)",
       browserRequirements: "Requires JavaScript. Requires HTML5.",
+      image: "https://pdfella.tharidulakmal.com/og-image.jpg",
       offers: {
         "@type": "Offer",
         price: "0",

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Reorder, rotate, and manage PDF pages in your browser. Drag-and-drop page organizer with 100% client-side security and zero server storage.",
     url: "https://pdfella.tharidulakmal.com/organize",
+    images: ["/og-image.jpg"],
   },
 };
 

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Convert PDF pages into high-resolution PNG or JPG images. Download pages individually or package them all in a single ZIP file. 100% private and client-side.",
     url: "https://pdfella.tharidulakmal.com/pdf-to-image",
+    images: ["/og-image.jpg"],
   },
 };
 

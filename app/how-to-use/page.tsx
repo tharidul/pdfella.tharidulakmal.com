@@ -51,6 +51,7 @@ export const metadata: Metadata = {
     description:
       "Step-by-step guides on how to combine, extract, prune, rotate, and compress PDF files in your browser with zero server uploads.",
     url: "https://pdfella.tharidulakmal.com/how-to-use",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -60,7 +61,7 @@ const TOOLS_GUIDE: ToolGuideItem[] = [
     name: "Merge Multiple PDFs",
     description: "Combine two or more separate PDF documents into a single organized file.",
     icon: MergePdfIcon,
-    href: "/",
+    href: "/merge",
     steps: [
       {
         number: "1",

@@ -4,17 +4,18 @@ import { MergePdfView } from "@/components/features/pdf/MergePdfView";
 import { JsonLd } from "@/components/seo";
 
 export const metadata: Metadata = {
-  title: "Merge PDF - Combine Multiple PDF Files Online Free",
+  title: "PDFella — Free, Fast & 100% Private PDF Utilities",
   description:
-    "Merge multiple PDF files into one document directly in your browser. Fast, 100% private client-side processing with custom document reordering.",
+    "All-in-one free and 100% private client-side PDF utility suite. Merge, split, compress, convert, organize, watermark, and sign PDF documents directly in your browser with zero server uploads.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Merge PDF - Combine Multiple PDF Files Online Free",
+    title: "PDFella — Free PDF Tools. Private & Client-Side",
     description:
-      "Merge multiple PDF files into a single document directly in your browser. 100% private client-side processing with zero server uploads.",
+      "All-in-one free, 100% private client-side PDF utility suite. Merge, split, compress, convert, organize, watermark, and sign PDF documents directly in your browser with zero server uploads.",
     url: "https://pdfella.tharidulakmal.com/",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -23,8 +24,8 @@ export default function Home() {
     <AppLayout>
       <MergePdfView />
       <JsonLd
-        toolName="Merge PDF"
-        toolDescription="Combine multiple PDF documents into a single unified file securely in your browser."
+        toolName="PDF Utilities Suite"
+        toolDescription="Free, fast, and 100% private client-side PDF utility suite. All PDF processing happens strictly inside your browser with zero server uploads."
         url="https://pdfella.tharidulakmal.com/"
       />
     </AppLayout>

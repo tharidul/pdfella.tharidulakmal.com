@@ -25,7 +25,7 @@ export const PRIMARY_TOOLS: NavItem[] = [
     name: "Merge PDFs",
     description: "Combine multiple PDFs",
     icon: MergePdfIcon,
-    href: "/",
+    href: "/merge",
   },
   {
     id: "split",

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description:
       "Understand how PDFella protects your sensitive documents: 100% browser-based processing, zero server storage, and no tracking cookies.",
     url: "https://pdfella.tharidulakmal.com/privacy",
+    images: ["/og-image.jpg"],
   },
 };
 

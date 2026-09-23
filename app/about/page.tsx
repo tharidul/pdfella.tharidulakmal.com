@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     description:
       "Why we built PDFella: a zero-server, privacy-first PDF utility suite that keeps your files 100% safe in your local browser memory.",
     url: "https://pdfella.tharidulakmal.com/about",
+    images: ["/og-image.jpg"],
   },
 };
 

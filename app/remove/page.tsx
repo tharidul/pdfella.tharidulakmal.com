@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Quickly delete unwanted or sensitive pages from any PDF document. 100% browser-based with zero file uploads and instant download.",
     url: "https://pdfella.tharidulakmal.com/remove",
+    images: ["/og-image.jpg"],
   },
 };
 

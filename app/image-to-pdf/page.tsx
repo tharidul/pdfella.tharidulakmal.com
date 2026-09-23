@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Convert JPG, PNG, and WebP images to a standardized PDF document. Free, client-side, zero-server uploads, with custom page sizes, orientations, and margins.",
     url: "https://pdfella.tharidulakmal.com/image-to-pdf",
+    images: ["/og-image.jpg"],
   },
 };
 

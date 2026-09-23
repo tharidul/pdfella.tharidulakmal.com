@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Shrink PDF file sizes while preserving visual clarity. Free, 100% private client-side compression without uploading documents to external servers.",
     url: "https://pdfella.tharidulakmal.com/compress",
+    images: ["/og-image.jpg"],
   },
 };
 

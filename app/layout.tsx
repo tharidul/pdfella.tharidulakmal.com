@@ -62,6 +62,14 @@ export const metadata: Metadata = {
     title: "PDFella — Free, Fast & 100% Private PDF Utilities",
     description:
       "Merge, split, remove pages, organize, and compress PDF documents 100% locally in your browser. Zero server uploads, complete privacy, and no artificial file limits.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1734,
+        height: 907,
+        alt: "PDFella — Free, Fast & 100% Private PDF Utilities",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -69,6 +77,14 @@ export const metadata: Metadata = {
     description:
       "Merge, split, remove pages, organize, and compress PDF documents 100% locally in your browser. Zero server uploads, complete privacy.",
     creator: "@tharidulakmal",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1734,
+        height: 907,
+        alt: "PDFella — Free, Fast & 100% Private PDF Utilities",
+      },
+    ],
   },
   robots: {
     index: true,

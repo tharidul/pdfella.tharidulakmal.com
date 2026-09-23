@@ -25,8 +25,8 @@ export function SidebarNavList({
         {PRIMARY_TOOLS.map((item: NavItem) => {
           const IconComponent = item.icon;
           const isActive =
-            item.href === "/"
-              ? pathname === "/"
+            item.href === "/merge" || item.href === "/"
+              ? pathname === "/" || pathname === "/merge"
               : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
           return (
@@ -60,8 +60,8 @@ export function SidebarNavList({
       {PRIMARY_TOOLS.map((item: NavItem) => {
         const IconComponent = item.icon;
         const isActive =
-          item.href === "/"
-            ? pathname === "/"
+          item.href === "/merge" || item.href === "/"
+            ? pathname === "/" || pathname === "/merge"
             : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
         if (isActive) {

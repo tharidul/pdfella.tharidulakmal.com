@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description:
       "Add customizable text watermarks or logo stamps to your PDF documents. Set rotation, opacity, font size, and color with real-time preview. 100% private and client-side.",
     url: "https://pdfella.tharidulakmal.com/watermark",
+    images: ["/og-image.jpg"],
   },
 };
 
