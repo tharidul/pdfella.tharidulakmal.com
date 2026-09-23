@@ -324,7 +324,7 @@ export default function HowToUsePage() {
             How to Use PDFella
           </h1>
           <p className="text-sm sm:text-base text-neutral-600 mt-2 max-w-2xl leading-relaxed">
-            Step-by-step instructions for all client-side PDF utilities. Everything runs locally in your browser memory with zero server uploads.
+            Step-by-step instructions for all PDF utilities. Everything runs locally on your device with zero server uploads.
           </p>
         </div>
 
@@ -412,7 +412,7 @@ export default function HowToUsePage() {
       </main>
       <JsonLd
         toolName="How to Use PDFella"
-        toolDescription="Complete guide to using PDFella client-side utilities securely in your browser."
+        toolDescription="Complete guide to using PDFella utilities securely on your device."
         url="https://pdfella.tharidulakmal.com/how-to-use"
         breadcrumbs={[
           { name: "Home", item: "/" },

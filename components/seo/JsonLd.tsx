@@ -33,7 +33,7 @@ export const JsonLd: FC<JsonLdProps> = ({
       url,
       description:
         toolDescription ||
-        "Free, fast, and 100% private client-side PDF utility suite. All PDF processing happens strictly inside your browser with zero server uploads.",
+        "Free, fast, and 100% private PDF utility suite. Your files never leave your device with zero server uploads.",
       applicationCategory: "UtilitiesApplication",
       operatingSystem: "All (Web Browser)",
       browserRequirements: "Requires JavaScript. Requires HTML5.",
@@ -54,7 +54,7 @@ export const JsonLd: FC<JsonLdProps> = ({
         url: "https://tharidulakmal.com",
       },
       featureList: [
-        "100% Client-Side Processing",
+        "Files Never Leave Your Device",
         "Zero Server Uploads",
         "Merge Multiple PDFs",
         "Split PDF & Extract Pages",

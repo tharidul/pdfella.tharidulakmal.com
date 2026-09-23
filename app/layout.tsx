@@ -12,11 +12,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://pdfella.tharidulakmal.com"),
   title: {
-    default: "PDFella — Free, Fast & 100% Private PDF Utilities",
+    default: "PDFella — Free, Fast & 100% Private PDF Tools",
     template: "%s | PDFella",
   },
   description:
-    "Merge, split, remove pages, organize, and compress PDF documents 100% locally in your browser. Zero server uploads, completely private, and unlimited free access.",
+    "Your files never leave your device. Merge, split, remove pages, organize, and compress PDF documents with zero server uploads, complete privacy, and unlimited free access.",
   applicationName: "PDFella",
   authors: [{ name: "Tharidu Lakmal", url: "https://tharidulakmal.com" }],
   creator: "Tharidu Lakmal",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     "watermark pdf",
     "add page numbers to pdf",
     "private pdf editor",
-    "client-side pdf tools",
+    "no upload pdf tools",
     "no upload pdf merger",
   ],
   formatDetection: {
@@ -59,30 +59,30 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://pdfella.tharidulakmal.com",
     siteName: "PDFella",
-    title: "PDFella — Free, Fast & 100% Private PDF Utilities",
+    title: "PDFella — Free & 100% Private PDF Tools",
     description:
-      "Merge, split, remove pages, organize, and compress PDF documents 100% locally in your browser. Zero server uploads, complete privacy, and no artificial file limits.",
+      "Your files never leave your device. Merge, split, remove pages, organize, and compress PDF documents with zero server uploads, complete privacy, and no file limits.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1734,
         height: 907,
-        alt: "PDFella — Free, Fast & 100% Private PDF Utilities",
+        alt: "PDFella — Free, Fast & 100% Private PDF Tools (No File Uploads)",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PDFella — Free, Fast & 100% Private PDF Utilities",
+    title: "PDFella — Free & 100% Private PDF Tools",
     description:
-      "Merge, split, remove pages, organize, and compress PDF documents 100% locally in your browser. Zero server uploads, complete privacy.",
+      "Your files never leave your device. Merge, split, remove pages, organize, and compress PDF documents with zero server uploads.",
     creator: "@tharidulakmal",
     images: [
       {
         url: "/og-image.jpg",
         width: 1734,
         height: 907,
-        alt: "PDFella — Free, Fast & 100% Private PDF Utilities",
+        alt: "PDFella — Free, Fast & 100% Private PDF Tools (No File Uploads)",
       },
     ],
   },

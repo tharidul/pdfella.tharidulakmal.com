@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Technical privacy disclosure detailing how PDFella processes documents strictly client-side with zero server uploads, no cookies, and zero logging.",
+    "Technical privacy disclosure detailing how PDFella processes documents directly on your device with zero server uploads, no cookies, and zero logging.",
   alternates: {
     canonical: "/privacy",
   },
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="text-sm sm:text-base text-neutral-600 mt-2 leading-relaxed">
-            PDFella is designed with a strict client-side architecture. Documents are processed locally in your browser and are never uploaded to any remote server.
+            PDFella is designed with a strict privacy-first architecture. Documents are processed locally on your device and are never uploaded to any remote server.
           </p>
         </div>
 
@@ -106,7 +106,7 @@ export default function PrivacyPage() {
       </main>
       <JsonLd
         toolName="Privacy Policy"
-        toolDescription="PDFella client-side privacy policy. Zero server uploads, no cookies, zero data logging."
+        toolDescription="PDFella privacy policy. Zero server uploads, no cookies, zero data logging."
         url="https://pdfella.tharidulakmal.com/privacy"
         breadcrumbs={[
           { name: "Home", item: "/" },

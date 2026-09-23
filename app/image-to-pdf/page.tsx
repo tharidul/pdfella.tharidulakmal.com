@@ -6,14 +6,14 @@ import { JsonLd } from "@/components/seo";
 export const metadata: Metadata = {
   title: "Images to PDF - Convert JPG, PNG & WebP to PDF Online",
   description:
-    "Convert JPG, PNG, and WebP images to a standardized PDF document. Free, client-side, zero-server uploads, with custom page sizes, orientations, and margins.",
+    "Convert JPG, PNG, and WebP images to a standardized PDF document. Free, 100% private, zero-server uploads, with custom page sizes, orientations, and margins.",
   alternates: {
     canonical: "/image-to-pdf",
   },
   openGraph: {
     title: "Images to PDF - Convert JPG, PNG & WebP to PDF Online",
     description:
-      "Convert JPG, PNG, and WebP images to a standardized PDF document. Free, client-side, zero-server uploads, with custom page sizes, orientations, and margins.",
+      "Convert JPG, PNG, and WebP images to a standardized PDF document. Free, 100% private, zero-server uploads, with custom page sizes, orientations, and margins.",
     url: "https://pdfella.tharidulakmal.com/image-to-pdf",
     images: ["/og-image.jpg"],
   },

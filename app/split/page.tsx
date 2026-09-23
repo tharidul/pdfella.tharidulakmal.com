@@ -6,14 +6,14 @@ import { JsonLd } from "@/components/seo";
 export const metadata: Metadata = {
   title: "Split PDF - Extract Pages & Custom Ranges Online",
   description:
-    "Extract individual pages or custom page ranges from your PDF instantly. Free, client-side, and completely private with visual page selection.",
+    "Extract individual pages or custom page ranges from your PDF instantly. Free, 100% private with zero file uploads and visual page selection.",
   alternates: {
     canonical: "/split",
   },
   openGraph: {
     title: "Split PDF - Extract Pages & Custom Ranges Online",
     description:
-      "Extract individual pages or custom page ranges from your PDF instantly. Free, client-side, and completely private with visual page selection.",
+      "Extract individual pages or custom page ranges from your PDF instantly. Free, 100% private with zero file uploads and visual page selection.",
     url: "https://pdfella.tharidulakmal.com/split",
     images: ["/og-image.jpg"],
   },

@@ -6,14 +6,14 @@ import { JsonLd } from "@/components/seo";
 export const metadata: Metadata = {
   title: "Merge PDF - Combine Multiple PDF Files Online Free",
   description:
-    "Merge multiple PDF files into one document directly in your browser. Fast, 100% private client-side processing with custom document reordering.",
+    "Merge multiple PDF files into one document directly in your browser. Fast, 100% private, with zero file uploads and custom document reordering.",
   alternates: {
     canonical: "/merge",
   },
   openGraph: {
     title: "Merge PDF - Combine Multiple PDF Files Online Free",
     description:
-      "Merge multiple PDF files into a single document directly in your browser. 100% private client-side processing with zero server uploads.",
+      "Merge multiple PDF files into a single document directly in your browser. 100% private with zero server uploads.",
     url: "https://pdfella.tharidulakmal.com/merge",
     images: ["/og-image.jpg"],
   },

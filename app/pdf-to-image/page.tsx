@@ -6,14 +6,14 @@ import { JsonLd } from "@/components/seo";
 export const metadata: Metadata = {
   title: "PDF to Images - Extract High-Resolution JPG & PNG Online",
   description:
-    "Convert PDF pages into high-resolution PNG or JPG images. Download pages individually or package them all in a single ZIP file. 100% private and client-side.",
+    "Convert PDF pages into high-resolution PNG or JPG images. Download pages individually or package them all in a single ZIP file. 100% private with zero file uploads.",
   alternates: {
     canonical: "/pdf-to-image",
   },
   openGraph: {
     title: "PDF to Images - Extract High-Resolution JPG & PNG Online",
     description:
-      "Convert PDF pages into high-resolution PNG or JPG images. Download pages individually or package them all in a single ZIP file. 100% private and client-side.",
+      "Convert PDF pages into high-resolution PNG or JPG images. Download pages individually or package them all in a single ZIP file. 100% private with zero file uploads.",
     url: "https://pdfella.tharidulakmal.com/pdf-to-image",
     images: ["/og-image.jpg"],
   },

@@ -178,7 +178,7 @@ export function SignPdfSeoSection({ onOpenSignatureModal }: SignPdfSeoSectionPro
               <HiLockClosed className="w-5 h-5" />
             </div>
             <h3 className="text-sm font-bold text-neutral-900">
-              100% Private Client-Side Signing
+              100% Private (No Cloud Uploads)
             </h3>
             <p className="text-xs text-neutral-600 leading-relaxed">
               Zero cloud uploads. All rendering, signature placing, and PDF flattening occur strictly within your browser. Safe for NDAs, medical records, and confidential contracts.
@@ -249,7 +249,7 @@ export function SignPdfSeoSection({ onOpenSignatureModal }: SignPdfSeoSectionPro
             Explore More Free PDF Tools
           </h2>
           <p className="text-xs sm:text-sm text-neutral-500">
-            Complete your document management workflow with our suite of private, client-side tools.
+            Complete your document management workflow with our suite of private, browser-based tools.
           </p>
         </div>
 

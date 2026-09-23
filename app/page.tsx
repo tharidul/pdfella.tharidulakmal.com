@@ -4,16 +4,16 @@ import { MergePdfView } from "@/components/features/pdf/MergePdfView";
 import { JsonLd } from "@/components/seo";
 
 export const metadata: Metadata = {
-  title: "PDFella — Free, Fast & 100% Private PDF Utilities",
+  title: "PDFella — Free, Fast & 100% Private PDF Tools",
   description:
-    "All-in-one free and 100% private client-side PDF utility suite. Merge, split, compress, convert, organize, watermark, and sign PDF documents directly in your browser with zero server uploads.",
+    "Your files never leave your device. Free, 100% private PDF tools to merge, split, compress, convert, organize, watermark, and sign documents directly in your browser with zero server uploads.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "PDFella — Free PDF Tools. Private & Client-Side",
+    title: "PDFella — Free & 100% Private PDF Tools",
     description:
-      "All-in-one free, 100% private client-side PDF utility suite. Merge, split, compress, convert, organize, watermark, and sign PDF documents directly in your browser with zero server uploads.",
+      "Your files never leave your device. Free, 100% private PDF tools to merge, split, compress, convert, organize, and sign documents with zero server uploads.",
     url: "https://pdfella.tharidulakmal.com/",
     images: ["/og-image.jpg"],
   },
@@ -25,7 +25,7 @@ export default function Home() {
       <MergePdfView />
       <JsonLd
         toolName="PDF Utilities Suite"
-        toolDescription="Free, fast, and 100% private client-side PDF utility suite. All PDF processing happens strictly inside your browser with zero server uploads."
+        toolDescription="Free, fast, and 100% private PDF tools. All processing happens directly on your device with zero server uploads."
         url="https://pdfella.tharidulakmal.com/"
       />
     </AppLayout>

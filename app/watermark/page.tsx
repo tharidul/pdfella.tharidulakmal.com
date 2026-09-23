@@ -6,14 +6,14 @@ import { JsonLd } from "@/components/seo";
 export const metadata: Metadata = {
   title: "Watermark PDF - Add Confidential Stamps & Image Logos Online",
   description:
-    "Add customizable text watermarks or logo stamps to your PDF documents. Set rotation, opacity, font size, and color with real-time preview. 100% private and client-side.",
+    "Add customizable text watermarks or logo stamps to your PDF documents. Set rotation, opacity, font size, and color with real-time preview. 100% private with zero server uploads.",
   alternates: {
     canonical: "/watermark",
   },
   openGraph: {
     title: "Watermark PDF - Add Confidential Stamps & Image Logos Online",
     description:
-      "Add customizable text watermarks or logo stamps to your PDF documents. Set rotation, opacity, font size, and color with real-time preview. 100% private and client-side.",
+      "Add customizable text watermarks or logo stamps to your PDF documents. Set rotation, opacity, font size, and color with real-time preview. 100% private with zero server uploads.",
     url: "https://pdfella.tharidulakmal.com/watermark",
     images: ["/og-image.jpg"],
   },

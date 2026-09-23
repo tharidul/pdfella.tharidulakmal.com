@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 const PRINCIPLES = [
   {
     icon: HiShieldCheck,
-    title: "Client-Side Processing",
+    title: "100% Private (No Uploads)",
     description:
       "PDFella never uploads your documents to remote servers. All computation runs exclusively inside your browser memory.",
   },
@@ -117,7 +117,7 @@ export default function AboutPage() {
               Technology
             </h2>
             <p className="text-xs sm:text-sm text-neutral-600 mb-4 leading-relaxed">
-              PDFella is built using open-source client-side libraries:
+              PDFella is built using modern open-source web libraries:
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -177,7 +177,7 @@ export default function AboutPage() {
       </main>
       <JsonLd
         toolName="About PDFella"
-        toolDescription="About PDFella - 100% private, client-side PDF utility suite created by Tharidu Lakmal."
+        toolDescription="About PDFella - 100% private PDF utility suite created by Tharidu Lakmal. Your files never leave your device."
         url="https://pdfella.tharidulakmal.com/about"
         breadcrumbs={[
           { name: "Home", item: "/" },

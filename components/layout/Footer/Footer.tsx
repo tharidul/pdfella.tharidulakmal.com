@@ -14,10 +14,10 @@ export function Footer() {
               <Logo size="sm" />
             </Link>
             <p className="text-[11px] text-neutral-500 leading-relaxed max-w-xs">
-              Fast, free, and 100% private client-side PDF utilities. All files are processed strictly inside your browser.
+              Fast, free, and 100% private PDF utilities. Your files stay on your device and are never uploaded to any server.
             </p>
             <div className="pt-1 text-[11px] text-neutral-400">
-              &copy; {currentYear} PDFella &bull; 100% Private &amp; Client-Side
+              &copy; {currentYear} PDFella &bull; 100% Private &bull; Zero Server Uploads
             </div>
           </div>
 

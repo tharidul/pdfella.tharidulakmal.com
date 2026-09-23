@@ -55,7 +55,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Is there a limit on file size or the number of documents I can process?",
         answer:
-          "PDFella enforces a generous client-side file size cap of 200MB per file to prevent browser memory exhaustion. There are no daily quotas, paywalls, or limits on how many times you can use the utilities.",
+          "PDFella enforces a generous 200MB file limit to ensure smooth processing directly inside your browser. There are no daily quotas, paywalls, or limits on how many times you can use the utilities.",
       },
       {
         question: "Can I use PDFella completely offline?",
@@ -88,7 +88,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
           "Yes. In the Organize PDF utility, each page card has its own independent 90-degree rotation buttons, allowing you to fix upside-down or sideways pages individually.",
       },
       {
-        question: "How does client-side PDF compression work?",
+        question: "How does private PDF compression work?",
         answer:
           "PDFella inspects the PDF document stream, removes redundant metadata, deduplicates font dictionaries, and resamples embedded raster graphics based on your chosen preset (Extreme, Recommended, or Light).",
       },
@@ -127,7 +127,7 @@ export default function FaqPage() {
             Frequently Asked Questions
           </h1>
           <p className="text-sm sm:text-base text-neutral-600 mt-2 leading-relaxed">
-            Common questions regarding client-side security, file limits, and document processing.
+            Common questions regarding privacy, security, file limits, and document processing.
           </p>
         </div>
 

@@ -6,14 +6,14 @@ import { JsonLd } from "@/components/seo";
 export const metadata: Metadata = {
   title: "Compress PDF - Reduce PDF File Size Online Free",
   description:
-    "Shrink PDF file sizes while preserving visual clarity. Free, 100% private client-side compression without uploading documents to external servers.",
+    "Shrink PDF file sizes while preserving visual clarity. Free, 100% private compression without uploading documents to any server.",
   alternates: {
     canonical: "/compress",
   },
   openGraph: {
     title: "Compress PDF - Reduce PDF File Size Online Free",
     description:
-      "Shrink PDF file sizes while preserving visual clarity. Free, 100% private client-side compression without uploading documents to external servers.",
+      "Shrink PDF file sizes while preserving visual clarity. Free, 100% private compression without uploading documents to any server.",
     url: "https://pdfella.tharidulakmal.com/compress",
     images: ["/og-image.jpg"],
   },
