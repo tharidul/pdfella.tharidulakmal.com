@@ -5,15 +5,15 @@ import { JsonLd, type FaqItem } from "@/components/seo";
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
-    "Find answers to common questions about PDF-X privacy, zero server uploads, document limits, offline mode, and PDF tools.",
+    "Find answers to common questions about PDFella privacy, zero server uploads, document limits, offline mode, and PDF tools.",
   alternates: {
     canonical: "/faq",
   },
   openGraph: {
     title: "Frequently Asked Questions",
     description:
-      "Everything you need to know about PDF-X: 100% browser-based security, document limits, offline capabilities, and features.",
-    url: "https://pdfx.tharidulakmal.com/faq",
+      "Everything you need to know about PDFella: 100% browser-based security, document limits, offline capabilities, and features.",
+    url: "https://pdfella.tharidulakmal.com/faq",
   },
 };
 
@@ -29,12 +29,12 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Are my PDF documents uploaded to any remote server or cloud?",
         answer:
-          "Never. PDF-X operates 100% inside your browser. All file reading, page extraction, image rendering, merging, and compression execute locally in your computer or smartphone's memory. No file data is ever transmitted across the internet.",
+          "Never. PDFella operates 100% inside your browser. All file reading, page extraction, image rendering, merging, and compression execute locally in your computer or smartphone's memory. No file data is ever transmitted across the internet.",
       },
       {
-        question: "Is PDF-X safe for sensitive legal, financial, or medical documents?",
+        question: "Is PDFella safe for sensitive legal, financial, or medical documents?",
         answer:
-          "Yes. Because zero data leaves your local machine, PDF-X is inherently compatible with strict non-disclosure agreements (NDAs), GDPR privacy obligations, and HIPAA considerations that prohibit uploading confidential files to third-party cloud converters.",
+          "Yes. Because zero data leaves your local machine, PDFella is inherently compatible with strict non-disclosure agreements (NDAs), GDPR privacy obligations, and HIPAA considerations that prohibit uploading confidential files to third-party cloud converters.",
       },
       {
         question: "Do you store file metadata, filenames, or analytical logs?",
@@ -42,7 +42,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
           "No. We do not store, inspect, or log your file names, page contents, or metadata. Once you close or reload the browser tab, your document is wiped from browser memory.",
       },
       {
-        question: "Does PDF-X use cookies or third-party tracking pixels?",
+        question: "Does PDFella use cookies or third-party tracking pixels?",
         answer:
           "No. We do not use tracking cookies, invasive analytics, or third-party marketing pixels.",
       },
@@ -54,22 +54,22 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Is there a limit on file size or the number of documents I can process?",
         answer:
-          "PDF-X enforces a generous client-side file size cap of 200MB per file to prevent browser memory exhaustion. There are no daily quotas, paywalls, or limits on how many times you can use the utilities.",
+          "PDFella enforces a generous client-side file size cap of 200MB per file to prevent browser memory exhaustion. There are no daily quotas, paywalls, or limits on how many times you can use the utilities.",
       },
       {
-        question: "Can I use PDF-X completely offline?",
+        question: "Can I use PDFella completely offline?",
         answer:
           "Yes. Once the web application has finished loading in your browser, you can disconnect from Wi-Fi or cellular networks and continue merging, splitting, and organizing PDFs seamlessly.",
       },
       {
         question: "Are there any watermarks added to the downloaded documents?",
         answer:
-          "No. PDF-X produces clean, watermark-free documents suitable for professional and personal distribution.",
+          "No. PDFella produces clean, watermark-free documents suitable for professional and personal distribution.",
       },
       {
         question: "Can I edit password-protected or encrypted PDF files?",
         answer:
-          "Documents that are restricted by owner or user passwords must be unlocked before processing. PDF-X respects document cryptographic permissions.",
+          "Documents that are restricted by owner or user passwords must be unlocked before processing. PDFella respects document cryptographic permissions.",
       },
     ],
   },
@@ -89,7 +89,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "How does client-side PDF compression work?",
         answer:
-          "PDF-X inspects the PDF document stream, removes redundant metadata, deduplicates font dictionaries, and resamples embedded raster graphics based on your chosen preset (Extreme, Recommended, or Light).",
+          "PDFella inspects the PDF document stream, removes redundant metadata, deduplicates font dictionaries, and resamples embedded raster graphics based on your chosen preset (Extreme, Recommended, or Light).",
       },
       {
         question: "Will compression degrade vector text or digital signatures?",
@@ -104,12 +104,12 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "What should I do if my browser shows a memory pressure warning?",
         answer:
-          "If you are processing very large documents (hundreds of pages), PDF-X monitors browser memory and may recommend closing inactive tabs to free up RAM. Switching between Fast thumbnail mode and Visual mode also helps.",
+          "If you are processing very large documents (hundreds of pages), PDFella monitors browser memory and may recommend closing inactive tabs to free up RAM. Switching between Fast thumbnail mode and Visual mode also helps.",
       },
       {
         question: "Which browsers are officially supported?",
         answer:
-          "PDF-X supports all modern evergreen browsers with HTML5 and WebAssembly capabilities, including Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge, and mobile browsers on iOS and Android.",
+          "PDFella supports all modern evergreen browsers with HTML5 and WebAssembly capabilities, including Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge, and mobile browsers on iOS and Android.",
       },
     ],
   },
@@ -160,9 +160,9 @@ export default function FaqPage() {
         </div>
       </main>
       <JsonLd
-        toolName="PDF-X FAQs"
-        toolDescription="Frequently Asked Questions about PDF-X: 100% browser-based security, document limits, offline capabilities, and features."
-        url="https://pdfx.tharidulakmal.com/faq"
+        toolName="PDFella FAQs"
+        toolDescription="Frequently Asked Questions about PDFella: 100% browser-based security, document limits, offline capabilities, and features."
+        url="https://pdfella.tharidulakmal.com/faq"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "FAQ", item: "/faq" },

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiXMark } from "react-icons/hi2";
-import Image from "next/image";
+import { Logo } from "@/components/common";
 import { useMobileNav } from "../MobileNavContext";
 import { SidebarNavList } from "./SidebarNavList";
 
@@ -68,15 +68,8 @@ export function Sidebar() {
       >
         <div className="flex flex-col">
           <div className="flex items-center justify-between pb-6 mb-4 border-b border-neutral-100">
-            <Link href="/" onClick={closeMobile} className="flex items-center gap-2 cursor-pointer">
-              <Image
-                src="/logo-2.webp"
-                alt="PDF-X"
-                width={120}
-                height={36}
-                priority
-                className="h-9 w-auto object-contain"
-              />
+            <Link href="/" onClick={closeMobile} className="flex items-center gap-2 cursor-pointer" aria-label="PDFella Home">
+              <Logo size="md" />
             </Link>
             <button
               type="button"
@@ -105,42 +98,26 @@ export function Sidebar() {
         <div className="flex flex-col">
           <div className="pb-6 mb-2 border-b border-neutral-100">
             {isCollapsed ? (
-              <div className="flex flex-col items-center gap-3">
-                <Link
-                  href="/"
-                  title="PDF-X Home"
-                  className="flex items-center justify-center p-1 rounded-lg hover:bg-neutral-50 transition-colors cursor-pointer"
-                >
-                  <Image
-                    src="/apple-icon.png"
-                    alt="PDF-X"
-                    width={32}
-                    height={32}
-                    priority
-                    className="w-8 h-8 rounded-lg object-contain shadow-2xs"
-                  />
-                </Link>
+              <div className="flex items-center justify-center">
                 <button
                   type="button"
                   onClick={() => setIsCollapsed(false)}
                   aria-label="Expand sidebar"
                   title="Expand sidebar"
-                  className="w-9 h-9 rounded-lg flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-colors duration-150 cursor-pointer"
+                  className="relative group w-10 h-10 rounded-xl flex items-center justify-center border border-transparent hover:border-neutral-200 hover:bg-neutral-100 hover:shadow-xs transition-all duration-200 cursor-pointer"
                 >
-                  <PanelLeftOpenIcon className="w-5 h-5" />
+                  <div className="transition-all duration-200 group-hover:opacity-0 group-hover:scale-75 flex items-center justify-center">
+                    <Logo isCollapsed size="md" />
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center text-neutral-600 group-hover:text-brand-primary opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200">
+                    <PanelLeftOpenIcon className="w-5 h-5" />
+                  </div>
                 </button>
               </div>
             ) : (
               <div className="flex items-center justify-between pl-3 pr-1">
-                <Link href="/" className="flex items-center gap-2 cursor-pointer">
-                  <Image
-                    src="/logo-2.webp"
-                    alt="PDF-X"
-                    width={120}
-                    height={36}
-                    priority
-                    className="h-9 w-auto object-contain"
-                  />
+                <Link href="/" className="flex items-center gap-2 cursor-pointer" aria-label="PDFella Home">
+                  <Logo size="md" />
                 </Link>
 
                 <button

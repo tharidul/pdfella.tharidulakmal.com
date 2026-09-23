@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Images to PDF - Convert JPG, PNG & WebP to PDF Online",
     description:
       "Convert JPG, PNG, and WebP images to a standardized PDF document. Free, client-side, zero-server uploads, with custom page sizes, orientations, and margins.",
-    url: "https://pdfx.tharidulakmal.com/image-to-pdf",
+    url: "https://pdfella.tharidulakmal.com/image-to-pdf",
   },
 };
 
@@ -25,7 +25,7 @@ export default function ImageToPdfPage() {
       <JsonLd
         toolName="Images to PDF"
         toolDescription="Convert multiple images (JPG, PNG, WebP) into a single organized PDF document securely in your browser."
-        url="https://pdfx.tharidulakmal.com/image-to-pdf"
+        url="https://pdfella.tharidulakmal.com/image-to-pdf"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Images to PDF", item: "/image-to-pdf" },

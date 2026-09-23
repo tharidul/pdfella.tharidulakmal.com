@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { Logo } from "@/components/common";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,20 +10,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
           {/* Brand Column */}
           <div className="md:col-span-4 flex flex-col space-y-2">
-            <Link href="/" className="inline-flex items-center gap-2 cursor-pointer">
-              <Image
-                src="/logo-2.webp"
-                alt="PDF-X"
-                width={105}
-                height={30}
-                className="h-7 w-auto object-contain"
-              />
+            <Link href="/" className="inline-flex items-center gap-2 cursor-pointer" aria-label="PDFella Home">
+              <Logo size="sm" />
             </Link>
             <p className="text-[11px] text-neutral-500 leading-relaxed max-w-xs">
               Fast, free, and 100% private client-side PDF utilities. All files are processed strictly inside your browser.
             </p>
             <div className="pt-1 text-[11px] text-neutral-400">
-              &copy; {currentYear} PDF-X &bull; 100% Private &amp; Client-Side
+              &copy; {currentYear} PDFella &bull; 100% Private &amp; Client-Side
             </div>
           </div>
 
@@ -84,7 +78,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/about" className="hover:text-brand-primary transition-colors py-0.5 inline-block">
-                  About PDF-X
+                  About PDFella
                 </Link>
               </li>
               <li>

@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://pdfx.tharidulakmal.com/sitemap.xml",
-    host: "https://pdfx.tharidulakmal.com",
+    sitemap: "https://pdfella.tharidulakmal.com/sitemap.xml",
+    host: "https://pdfella.tharidulakmal.com",
   };
 }

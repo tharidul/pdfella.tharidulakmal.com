@@ -40,17 +40,17 @@ interface ToolGuideItem {
 }
 
 export const metadata: Metadata = {
-  title: "How to Use PDF-X",
+  title: "How to Use PDFella",
   description:
-    "Learn how to merge, split, remove pages, organize, compress, convert, and watermark PDF documents with PDF-X.",
+    "Learn how to merge, split, remove pages, organize, compress, convert, and watermark PDF documents with PDFella.",
   alternates: {
     canonical: "/how-to-use",
   },
   openGraph: {
-    title: "How to Use PDF-X",
+    title: "How to Use PDFella",
     description:
       "Step-by-step guides on how to combine, extract, prune, rotate, and compress PDF files in your browser with zero server uploads.",
-    url: "https://pdfx.tharidulakmal.com/how-to-use",
+    url: "https://pdfella.tharidulakmal.com/how-to-use",
   },
 };
 
@@ -320,7 +320,7 @@ export default function HowToUsePage() {
       <main className="w-full max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12 flex flex-col">
         <div className="flex flex-col mb-10 text-left">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-            How to Use PDF-X
+            How to Use PDFella
           </h1>
           <p className="text-sm sm:text-base text-neutral-600 mt-2 max-w-2xl leading-relaxed">
             Step-by-step instructions for all client-side PDF utilities. Everything runs locally in your browser memory with zero server uploads.
@@ -410,9 +410,9 @@ export default function HowToUsePage() {
         </div>
       </main>
       <JsonLd
-        toolName="How to Use PDF-X"
-        toolDescription="Complete guide to using PDF-X client-side utilities securely in your browser."
-        url="https://pdfx.tharidulakmal.com/how-to-use"
+        toolName="How to Use PDFella"
+        toolDescription="Complete guide to using PDFella client-side utilities securely in your browser."
+        url="https://pdfella.tharidulakmal.com/how-to-use"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "How to Use", item: "/how-to-use" },

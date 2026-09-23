@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { HiBars3 } from "react-icons/hi2";
-import { SunIcon } from "@/components/common/icons";
+import { SunIcon, Logo } from "@/components/common";
 import { useMobileNav } from "../MobileNavContext";
 
 export function Header() {
@@ -21,15 +20,8 @@ export function Header() {
           <HiBars3 className="w-6 h-6" />
         </button>
 
-        <Link href="/" className="flex items-center gap-2 cursor-pointer">
-          <Image
-            src="/logo-2.webp"
-            alt="PDF-X"
-            width={100}
-            height={30}
-            priority
-            className="h-8 w-auto object-contain"
-          />
+        <Link href="/" className="flex items-center gap-2 cursor-pointer" aria-label="PDFella Home">
+          <Logo size="sm" />
         </Link>
       </div>
 

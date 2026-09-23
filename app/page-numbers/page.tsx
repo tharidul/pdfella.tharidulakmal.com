@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Add Page Numbers to PDF - Bates & Header/Footer Numbering",
     description:
       "Insert customizable page numbers into your PDF documents. Choose alignment, formats (Page X of Y, X/Y), fonts, and cover page exclusions without uploading files.",
-    url: "https://pdfx.tharidulakmal.com/page-numbers",
+    url: "https://pdfella.tharidulakmal.com/page-numbers",
   },
 };
 
@@ -25,7 +25,7 @@ export default function PageNumbersPage() {
       <JsonLd
         toolName="Add Page Numbers"
         toolDescription="Insert customized page numbers, Bates numbering, and headers/footers into your PDF securely in your browser."
-        url="https://pdfx.tharidulakmal.com/page-numbers"
+        url="https://pdfella.tharidulakmal.com/page-numbers"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Add Page Numbers", item: "/page-numbers" },

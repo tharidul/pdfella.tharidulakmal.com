@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Remove PDF Pages - Delete Unwanted Pages Online Free",
     description:
       "Quickly delete unwanted or sensitive pages from any PDF document. 100% browser-based with zero file uploads and instant download.",
-    url: "https://pdfx.tharidulakmal.com/remove",
+    url: "https://pdfella.tharidulakmal.com/remove",
   },
 };
 
@@ -25,7 +25,7 @@ export default function RemovePage() {
       <JsonLd
         toolName="Remove PDF Pages"
         toolDescription="Delete unwanted or sensitive pages from your PDF file securely in your browser."
-        url="https://pdfx.tharidulakmal.com/remove"
+        url="https://pdfella.tharidulakmal.com/remove"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Remove Pages", item: "/remove" },

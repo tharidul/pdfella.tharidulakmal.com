@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Merge PDF - Combine Multiple PDF Files Online Free",
     description:
       "Merge multiple PDF files into a single document directly in your browser. 100% private client-side processing with zero server uploads.",
-    url: "https://pdfx.tharidulakmal.com/",
+    url: "https://pdfella.tharidulakmal.com/",
   },
 };
 
@@ -25,7 +25,7 @@ export default function Home() {
       <JsonLd
         toolName="Merge PDF"
         toolDescription="Combine multiple PDF documents into a single unified file securely in your browser."
-        url="https://pdfx.tharidulakmal.com/"
+        url="https://pdfella.tharidulakmal.com/"
       />
     </AppLayout>
   );

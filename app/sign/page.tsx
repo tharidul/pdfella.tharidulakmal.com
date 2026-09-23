@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Sign PDF Online Free - Fill & eSign PDF Documents",
     description:
       "Sign PDF documents online for free. Draw, type, or upload electronic signatures, add date stamps, and create transparent PNGs. 100% private in your browser.",
-    url: "https://pdfx.tharidulakmal.com/sign",
+    url: "https://pdfella.tharidulakmal.com/sign",
   },
 };
 
@@ -25,7 +25,7 @@ export default function SignPage() {
       <JsonLd
         toolName="Sign PDF"
         toolDescription="Draw, type, or upload electronic signatures and stamp them onto PDF contracts and forms securely in your browser."
-        url="https://pdfx.tharidulakmal.com/sign"
+        url="https://pdfella.tharidulakmal.com/sign"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Sign PDF", item: "/sign" },

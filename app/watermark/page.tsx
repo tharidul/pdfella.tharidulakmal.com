@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Watermark PDF - Add Confidential Stamps & Image Logos Online",
     description:
       "Add customizable text watermarks or logo stamps to your PDF documents. Set rotation, opacity, font size, and color with real-time preview. 100% private and client-side.",
-    url: "https://pdfx.tharidulakmal.com/watermark",
+    url: "https://pdfella.tharidulakmal.com/watermark",
   },
 };
 
@@ -25,7 +25,7 @@ export default function WatermarkPage() {
       <JsonLd
         toolName="Watermark PDF"
         toolDescription="Add text stamps or image logo watermarks to PDF pages with rotation and opacity control entirely in your browser."
-        url="https://pdfx.tharidulakmal.com/watermark"
+        url="https://pdfella.tharidulakmal.com/watermark"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Watermark PDF", item: "/watermark" },

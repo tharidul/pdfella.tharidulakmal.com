@@ -14,32 +14,32 @@ export const SIGN_PDF_FAQS: FaqItem[] = [
   {
     question: "How do I sign a PDF online for free?",
     answer:
-      "Select or drop your PDF document into the PDF-X upload area. Next, choose whether to draw your signature using a mouse, trackpad, or finger, type your name using elegant cursive fonts, or upload an image of your signature. Drag and position the signature onto the document, adjust its size, add an optional date stamp, and click 'Download Signed PDF'. The entire process is 100% free and requires no account or credit card.",
+      "Select or drop your PDF document into the PDFella upload area. Next, choose whether to draw your signature using a mouse, trackpad, or finger, type your name using elegant cursive fonts, or upload an image of your signature. Drag and position the signature onto the document, adjust its size, add an optional date stamp, and click 'Download Signed PDF'. The entire process is 100% free and requires no account or credit card.",
   },
   {
     question: "Can I create and download a signature image with a transparent background?",
     answer:
-      "Yes! PDF-X includes a standalone signature generator. Click 'Create & Download Signature PNG' on this page, choose between Draw, Type, or Upload, select 'Transparent Background', and download your high-resolution PNG. You can insert your transparent signature directly into Google Docs, Microsoft Word, email signatures, or scanned forms.",
+      "Yes! PDFella includes a standalone signature generator. Click 'Create & Download Signature PNG' on this page, choose between Draw, Type, or Upload, select 'Transparent Background', and download your high-resolution PNG. You can insert your transparent signature directly into Google Docs, Microsoft Word, email signatures, or scanned forms.",
   },
   {
     question: "Are electronic signatures legally binding?",
     answer:
-      "Yes. Electronic signatures (e-signatures) created with PDF-X are recognized as legally valid under the United States Electronic Signatures in Global and National Commerce Act (ESIGN Act), the Uniform Electronic Transactions Act (UETA), and European eIDAS regulations for standard electronic agreements, employment contracts, NDAs, and vendor proposals.",
+      "Yes. Electronic signatures (e-signatures) created with PDFella are recognized as legally valid under the United States Electronic Signatures in Global and National Commerce Act (ESIGN Act), the Uniform Electronic Transactions Act (UETA), and European eIDAS regulations for standard electronic agreements, employment contracts, NDAs, and vendor proposals.",
   },
   {
     question: "Are my confidential documents uploaded to any remote servers?",
     answer:
-      "No, never. Unlike conventional cloud PDF converters, PDF-X processes everything 100% locally inside your web browser using HTML5 Canvas and WebAssembly. Your files, signatures, and private data never traverse the internet or touch any external server, satisfying strict NDA, HIPAA, and GDPR data sovereignty standards.",
+      "No, never. Unlike conventional cloud PDF converters, PDFella processes everything 100% locally inside your web browser using HTML5 Canvas and WebAssembly. Your files, signatures, and private data never traverse the internet or touch any external server, satisfying strict NDA, HIPAA, and GDPR data sovereignty standards.",
   },
   {
     question: "Can I add a date stamp alongside my signature?",
     answer:
-      "Yes. With a single click on 'Add Date Stamp', PDF-X places an auto-formatted date box onto your document. You can drag the date stamp to sit beside or underneath your signature and adjust its position precisely.",
+      "Yes. With a single click on 'Add Date Stamp', PDFella places an auto-formatted date box onto your document. You can drag the date stamp to sit beside or underneath your signature and adjust its position precisely.",
   },
   {
     question: "Can I sign a PDF on my phone or tablet?",
     answer:
-      "Yes. PDF-X is fully mobile-optimized for iPhone, iPad, Android smartphones, and tablets. You can use your touchscreen or Apple Pencil/stylus to draw a smooth, natural handwritten signature directly in your mobile browser without installing third-party apps.",
+      "Yes. PDFella is fully mobile-optimized for iPhone, iPad, Android smartphones, and tablets. You can use your touchscreen or Apple Pencil/stylus to draw a smooth, natural handwritten signature directly in your mobile browser without installing third-party apps.",
   },
 ];
 

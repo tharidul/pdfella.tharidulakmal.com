@@ -23,13 +23,13 @@ export const JsonLd: FC<JsonLdProps> = ({
   faqs,
   toolName,
   toolDescription,
-  url = "https://pdfx.tharidulakmal.com",
+  url = "https://pdfella.tharidulakmal.com",
 }) => {
   const schemas: Record<string, unknown>[] = [
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      name: toolName ? `${toolName} — PDF-X` : "PDF-X",
+      name: toolName ? `${toolName} — PDFella` : "PDFella",
       url,
       description:
         toolDescription ||
@@ -75,7 +75,7 @@ export const JsonLd: FC<JsonLdProps> = ({
         name: b.name,
         item: b.item.startsWith("http")
           ? b.item
-          : `https://pdfx.tharidulakmal.com${b.item}`,
+          : `https://pdfella.tharidulakmal.com${b.item}`,
       })),
     });
   }

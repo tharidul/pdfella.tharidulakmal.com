@@ -95,5 +95,5 @@ export const PRIMARY_TOOLS: NavItem[] = [
 export const RESOURCE_LINKS = [
   { href: "/how-to-use", label: "How to Use" },
   { href: "/faq", label: "Frequently Asked Questions (FAQ)" },
-  { href: "/about", label: "About PDF-X" },
+  { href: "/about", label: "About PDFella" },
 ];

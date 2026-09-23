@@ -10,17 +10,17 @@ import {
 } from "react-icons/hi2";
 
 export const metadata: Metadata = {
-  title: "About PDF-X",
+  title: "About PDFella",
   description:
-    "Learn about PDF-X's mission, technology architecture, and commitment to total document privacy with zero server uploads.",
+    "Learn about PDFella's mission, technology architecture, and commitment to total document privacy with zero server uploads.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About PDF-X",
+    title: "About PDFella",
     description:
-      "Why we built PDF-X: a zero-server, privacy-first PDF utility suite that keeps your files 100% safe in your local browser memory.",
-    url: "https://pdfx.tharidulakmal.com/about",
+      "Why we built PDFella: a zero-server, privacy-first PDF utility suite that keeps your files 100% safe in your local browser memory.",
+    url: "https://pdfella.tharidulakmal.com/about",
   },
 };
 
@@ -29,7 +29,7 @@ const PRINCIPLES = [
     icon: HiShieldCheck,
     title: "Client-Side Processing",
     description:
-      "PDF-X never uploads your documents to remote servers. All computation runs exclusively inside your browser memory.",
+      "PDFella never uploads your documents to remote servers. All computation runs exclusively inside your browser memory.",
   },
   {
     icon: HiBolt,
@@ -41,13 +41,13 @@ const PRINCIPLES = [
     icon: HiLockClosed,
     title: "Confidentiality & Compliance",
     description:
-      "Because confidential data never leaves your device, PDF-X is inherently compatible with NDAs and privacy standards.",
+      "Because confidential data never leaves your device, PDFella is inherently compatible with NDAs and privacy standards.",
   },
   {
     icon: HiGlobeAlt,
     title: "Offline Capable",
     description:
-      "Once loaded in your browser, PDF-X continues to work without an active internet connection.",
+      "Once loaded in your browser, PDFella continues to work without an active internet connection.",
   },
 ];
 
@@ -57,7 +57,7 @@ export default function AboutPage() {
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="mb-10 text-left">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
-            About PDF-X
+            About PDFella
           </h1>
           <p className="text-sm sm:text-base text-neutral-600 mt-2 leading-relaxed">
             A fast, private PDF utility suite that executes all operations locally in browser memory with zero server uploads.
@@ -67,14 +67,14 @@ export default function AboutPage() {
         <div className="space-y-6">
           <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs space-y-3">
             <h2 className="text-base font-bold text-neutral-900">
-              Why We Built PDF-X
+              Why We Built PDFella
             </h2>
             <div className="space-y-3 text-xs sm:text-sm text-neutral-600 leading-relaxed">
               <p>
                 Most online PDF converters require uploading confidential files to remote servers where documents are processed and temporarily stored on third-party cloud infrastructure.
               </p>
               <p>
-                Modern browsers are powerful execution environments with access to WebAssembly and native memory. PDF-X runs the entire PDF engine directly on your device rather than transmitting your files over the network.
+                Modern browsers are powerful execution environments with access to WebAssembly and native memory. PDFella runs the entire PDF engine directly on your device rather than transmitting your files over the network.
               </p>
               <p className="text-neutral-800 font-medium">
                 Your files never leave your computer, and when you close or reload the browser tab, all data is immediately erased from memory.
@@ -116,7 +116,7 @@ export default function AboutPage() {
               Technology
             </h2>
             <p className="text-xs sm:text-sm text-neutral-600 mb-4 leading-relaxed">
-              PDF-X is built using open-source client-side libraries:
+              PDFella is built using open-source client-side libraries:
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -152,7 +152,7 @@ export default function AboutPage() {
               Developer
             </h2>
             <p className="text-xs sm:text-sm text-neutral-600 mb-4 leading-relaxed">
-              PDF-X was designed and engineered by Tharidu Lakmal.
+              PDFella was designed and engineered by Tharidu Lakmal.
             </p>
 
             <a
@@ -175,9 +175,9 @@ export default function AboutPage() {
         </div>
       </main>
       <JsonLd
-        toolName="About PDF-X"
-        toolDescription="About PDF-X - 100% private, client-side PDF utility suite created by Tharidu Lakmal."
-        url="https://pdfx.tharidulakmal.com/about"
+        toolName="About PDFella"
+        toolDescription="About PDFella - 100% private, client-side PDF utility suite created by Tharidu Lakmal."
+        url="https://pdfella.tharidulakmal.com/about"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "About", item: "/about" },

@@ -1,6 +1,6 @@
-# PDF-X — Complete Project Features & Functional Specification
+# PDFella — Complete Project Features & Functional Specification
 
-> **Overview:** PDF-X is a free, fast, and 100% private client-side PDF utility suite. All PDF processing happens entirely inside the user's browser—no files are ever uploaded to any server.
+> **Overview:** PDFella is a free, fast, and 100% private client-side PDF utility suite. All PDF processing happens entirely inside the user's browser—no files are ever uploaded to any server.
 
 ---
 

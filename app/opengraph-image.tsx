@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "PDF-X — Free, Fast & 100% Private Client-Side PDF Utilities";
+export const alt = "PDFella — Free, Fast & 100% Private Client-Side PDF Utilities";
 export const size = {
   width: 1200,
   height: 630,
@@ -59,7 +59,7 @@ export default async function Image() {
                 letterSpacing: "-0.03em",
               }}
             >
-              PDF<span style={{ color: "#800020" }}>-X</span>
+              PDF<span style={{ color: "#800020" }}>ella</span>
             </span>
           </div>
 
@@ -148,7 +148,7 @@ export default async function Image() {
             <span>No registration needed</span>
             <span>Works offline</span>
           </div>
-          <span style={{ fontWeight: 700, color: "#800020" }}>pdfx.tharidulakmal.com</span>
+          <span style={{ fontWeight: 700, color: "#800020" }}>pdfella.tharidulakmal.com</span>
         </div>
       </div>
     ),

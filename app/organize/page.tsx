@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Organize PDF - Reorder & Rotate PDF Pages Online",
     description:
       "Reorder, rotate, and manage PDF pages in your browser. Drag-and-drop page organizer with 100% client-side security and zero server storage.",
-    url: "https://pdfx.tharidulakmal.com/organize",
+    url: "https://pdfella.tharidulakmal.com/organize",
   },
 };
 
@@ -25,7 +25,7 @@ export default function OrganizePage() {
       <JsonLd
         toolName="Organize PDF"
         toolDescription="Reorder pages, rotate orientations, and manage PDF pages securely in your browser."
-        url="https://pdfx.tharidulakmal.com/organize"
+        url="https://pdfella.tharidulakmal.com/organize"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Organize PDF", item: "/organize" },

@@ -5,15 +5,15 @@ import { JsonLd } from "@/components/seo";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Technical privacy disclosure detailing how PDF-X processes documents strictly client-side with zero server uploads, no cookies, and zero logging.",
+    "Technical privacy disclosure detailing how PDFella processes documents strictly client-side with zero server uploads, no cookies, and zero logging.",
   alternates: {
     canonical: "/privacy",
   },
   openGraph: {
     title: "Privacy Policy",
     description:
-      "Understand how PDF-X protects your sensitive documents: 100% browser-based processing, zero server storage, and no tracking cookies.",
-    url: "https://pdfx.tharidulakmal.com/privacy",
+      "Understand how PDFella protects your sensitive documents: 100% browser-based processing, zero server storage, and no tracking cookies.",
+    url: "https://pdfella.tharidulakmal.com/privacy",
   },
 };
 
@@ -36,7 +36,7 @@ const POLICIES = [
   {
     title: "No Tracking Cookies",
     description:
-      "PDF-X does not use advertising cookies, keystroke recorders, or cross-site tracking scripts. Your work remains completely private.",
+      "PDFella does not use advertising cookies, keystroke recorders, or cross-site tracking scripts. Your work remains completely private.",
   },
 ];
 
@@ -49,7 +49,7 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="text-sm sm:text-base text-neutral-600 mt-2 leading-relaxed">
-            PDF-X is designed with a strict client-side architecture. Documents are processed locally in your browser and are never uploaded to any remote server.
+            PDFella is designed with a strict client-side architecture. Documents are processed locally in your browser and are never uploaded to any remote server.
           </p>
         </div>
 
@@ -80,7 +80,7 @@ export default function PrivacyPage() {
               Confidentiality & Compliance
             </h2>
             <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-              Because files are processed exclusively on your device, using PDF-X is functionally equivalent to using offline desktop software. It does not transmit document contents over the network, making it safe for files subject to NDAs, privacy regulations, or confidential workflows.
+              Because files are processed exclusively on your device, using PDFella is functionally equivalent to using offline desktop software. It does not transmit document contents over the network, making it safe for files subject to NDAs, privacy regulations, or confidential workflows.
             </p>
           </section>
 
@@ -105,8 +105,8 @@ export default function PrivacyPage() {
       </main>
       <JsonLd
         toolName="Privacy Policy"
-        toolDescription="PDF-X client-side privacy policy. Zero server uploads, no cookies, zero data logging."
-        url="https://pdfx.tharidulakmal.com/privacy"
+        toolDescription="PDFella client-side privacy policy. Zero server uploads, no cookies, zero data logging."
+        url="https://pdfella.tharidulakmal.com/privacy"
         breadcrumbs={[
           { name: "Home", item: "/" },
           { name: "Privacy Policy", item: "/privacy" },

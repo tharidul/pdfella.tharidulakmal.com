@@ -10,14 +10,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pdfx.tharidulakmal.com"),
+  metadataBase: new URL("https://pdfella.tharidulakmal.com"),
   title: {
-    default: "PDF-X — Free, Fast & 100% Private PDF Utilities",
-    template: "%s | PDF-X",
+    default: "PDFella — Free, Fast & 100% Private PDF Utilities",
+    template: "%s | PDFella",
   },
   description:
     "Merge, split, remove pages, organize, and compress PDF documents 100% locally in your browser. Zero server uploads, completely private, and unlimited free access.",
-  applicationName: "PDF-X",
+  applicationName: "PDFella",
   authors: [{ name: "Tharidu Lakmal", url: "https://tharidulakmal.com" }],
   creator: "Tharidu Lakmal",
   publisher: "Tharidu Lakmal",
@@ -57,15 +57,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://pdfx.tharidulakmal.com",
-    siteName: "PDF-X",
-    title: "PDF-X — Free, Fast & 100% Private PDF Utilities",
+    url: "https://pdfella.tharidulakmal.com",
+    siteName: "PDFella",
+    title: "PDFella — Free, Fast & 100% Private PDF Utilities",
     description:
       "Merge, split, remove pages, organize, and compress PDF documents 100% locally in your browser. Zero server uploads, complete privacy, and no artificial file limits.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PDF-X — Free, Fast & 100% Private PDF Utilities",
+    title: "PDFella — Free, Fast & 100% Private PDF Utilities",
     description:
       "Merge, split, remove pages, organize, and compress PDF documents 100% locally in your browser. Zero server uploads, complete privacy.",
     creator: "@tharidulakmal",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
       { url: "/logo.webp", type: "image/webp" },
       { url: "/favicon.ico", sizes: "any" },
     ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/logo.webp", sizes: "180x180", type: "image/webp" }],
   },
 };
 
