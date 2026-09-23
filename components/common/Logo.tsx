@@ -49,6 +49,7 @@ export function Logo({
           width={fullDimensions.width}
           height={fullDimensions.height}
           priority
+          style={{ width: "auto" }}
           className={`${fullDimensions.class} object-contain drop-shadow-2xs shrink-0`}
         />
       )}
