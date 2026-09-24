@@ -164,10 +164,10 @@ export default function AboutPage() {
             >
               <div>
                 <h3 className="text-xs font-bold text-neutral-900 group-hover:text-brand-primary transition-colors mb-1">
-                  Tharidu Lakmal Portfolio
+                  tharidulakmal.com
                 </h3>
                 <p className="text-[11px] text-neutral-600 leading-relaxed">
-                  Engineering portfolio, open-source projects, and technical writings.
+                  Personal website, open-source projects, and technical writings.
                 </p>
               </div>
               <HiArrowTopRightOnSquare className="w-4 h-4 text-neutral-400 group-hover:text-brand-primary transition-colors ml-4 shrink-0" />

@@ -10,7 +10,6 @@ import {
   HiTrash,
   HiArrowDownTray,
   HiCheck,
-  HiInformationCircle,
 } from "react-icons/hi2";
 import { toast } from "@/components/ui/sonner";
 import { Combobox } from "@/components/ui/Combobox";

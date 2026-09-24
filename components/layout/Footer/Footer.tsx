@@ -98,7 +98,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-neutral-700 hover:text-brand-primary underline font-medium cursor-pointer"
               >
-                Tharidu Lakmal
+                LKML
               </a>
             </div>
           </div>

@@ -203,6 +203,6 @@ The Watermark PDF tool stamps customized text or logo watermarks onto PDF pages 
 
 ## 6. Ecosystem & Navigation
 
-- **Navigation & Links:** Direct links to documentation, privacy policy, and author portfolio:
-  - **Portfolio:** `https://tharidulakmal.com`
-- **Footer:** Direct links to portfolio, privacy policy, and copyright attribution.
+- **Navigation & Links:** Direct links to documentation, privacy policy, and author website:
+  - **Website:** `https://tharidulakmal.com`
+- **Footer:** Direct links to author website, privacy policy, and copyright attribution.
