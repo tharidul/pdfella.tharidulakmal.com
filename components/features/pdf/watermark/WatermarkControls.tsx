@@ -67,7 +67,7 @@ export function WatermarkControls({
           <button
             type="button"
             onClick={() => setWatermarkType("text")}
-            className={`py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+            className={`py-2 text-xs font-bold rounded-lg transition-colors duration-150 cursor-pointer ${
               watermarkType === "text"
                 ? "bg-white text-neutral-900 shadow-xs"
                 : "text-neutral-600 hover:text-neutral-900"
@@ -78,7 +78,7 @@ export function WatermarkControls({
           <button
             type="button"
             onClick={() => setWatermarkType("image")}
-            className={`py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+            className={`py-2 text-xs font-bold rounded-lg transition-colors duration-150 cursor-pointer ${
               watermarkType === "image"
                 ? "bg-white text-neutral-900 shadow-xs"
                 : "text-neutral-600 hover:text-neutral-900"
@@ -138,10 +138,10 @@ export function WatermarkControls({
                       type="button"
                       onClick={() => setColorHex(c.value)}
                       title={c.label}
-                      className={`w-7 h-7 rounded-full border-2 transition-transform cursor-pointer ${
+                      className={`w-7 h-7 rounded-full border-2 transition-colors duration-150 cursor-pointer ${
                         colorHex === c.value
-                          ? "border-brand-primary scale-110 shadow-xs"
-                          : "border-transparent hover:scale-105"
+                          ? "border-brand-primary ring-2 ring-brand-primary/30"
+                          : "border-neutral-200 hover:border-neutral-400"
                       }`}
                       style={{ backgroundColor: c.value }}
                     />
@@ -275,7 +275,7 @@ export function WatermarkControls({
             type="button"
             onClick={onProcess}
             disabled={isProcessing}
-            className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer hover:shadow"
+            className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
           >
             {isProcessing ? (
               <>

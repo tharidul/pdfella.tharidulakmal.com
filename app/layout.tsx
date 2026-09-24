@@ -12,7 +12,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://pdfella.tharidulakmal.com"),
   title: {
-    default: "PDFella — Free, Fast & 100% Private PDF Tools",
+    default: "PDFella: Free, Fast & 100% Private PDF Tools",
     template: "%s | PDFella",
   },
   description:
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://pdfella.tharidulakmal.com",
     siteName: "PDFella",
-    title: "PDFella — Free & 100% Private PDF Tools",
+    title: "PDFella: Free & 100% Private PDF Tools",
     description:
       "Your files never leave your device. Merge, split, remove pages, organize, and compress PDF documents with zero server uploads, complete privacy, and no file limits.",
     images: [
@@ -67,13 +67,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1734,
         height: 907,
-        alt: "PDFella — Free, Fast & 100% Private PDF Tools (No File Uploads)",
+        alt: "PDFella: Free, Fast & 100% Private PDF Tools (No File Uploads)",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PDFella — Free & 100% Private PDF Tools",
+    title: "PDFella: Free & 100% Private PDF Tools",
     description:
       "Your files never leave your device. Merge, split, remove pages, organize, and compress PDF documents with zero server uploads.",
     creator: "@tharidulakmal",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1734,
         height: 907,
-        alt: "PDFella — Free, Fast & 100% Private PDF Tools (No File Uploads)",
+        alt: "PDFella: Free, Fast & 100% Private PDF Tools (No File Uploads)",
       },
     ],
   },

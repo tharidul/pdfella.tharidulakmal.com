@@ -158,8 +158,8 @@ export function MergePdfView() {
             <div className="lg:col-span-8 flex flex-col space-y-5">
               <div className="border border-neutral-200 rounded-2xl bg-white p-4 sm:p-5 shadow-2xs">
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-neutral-100">
-                  <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
-                    Document Order ({files.length})
+                  <span className="text-xs font-semibold text-neutral-800">
+                    Document order ({files.length})
                   </span>
                   <span className="text-xs text-neutral-500">
                     Drag handles or arrows to rearrange
@@ -190,8 +190,8 @@ export function MergePdfView() {
               <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-xs flex flex-col gap-5">
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                      Merge Summary
+                    <span className="text-xs font-semibold text-neutral-700">
+                      Merge summary
                     </span>
                     <button
                       type="button"
@@ -222,7 +222,7 @@ export function MergePdfView() {
                     type="button"
                     disabled={!canMerge}
                     onClick={handleMerge}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer hover:shadow"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
                   >
                     {isMerging ? (
                       <>

@@ -23,7 +23,7 @@ export function Footer() {
 
           {/* PDF Utilities (2 compact columns) */}
           <div className="md:col-span-5 flex flex-col space-y-2">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-800">
+            <span className="text-xs font-semibold text-neutral-900">
               PDF Utilities
             </span>
             <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-neutral-600">
@@ -62,7 +62,7 @@ export function Footer() {
 
           {/* Resources & Developer */}
           <div className="md:col-span-3 flex flex-col space-y-2">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-800">
+            <span className="text-xs font-semibold text-neutral-900">
               Resources
             </span>
             <ul className="flex flex-col space-y-1 text-xs text-neutral-600">

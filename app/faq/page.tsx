@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Frequently Asked Questions",
     description:
-      "Everything you need to know about PDFella: 100% browser-based security, document limits, offline capabilities, and features.",
+      "Frequently asked questions about PDFella: browser-based security, document limits, offline capabilities, and features.",
     url: "https://pdfella.tharidulakmal.com/faq",
     images: ["/og-image.jpg"],
   },
@@ -60,7 +60,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Can I use PDFella completely offline?",
         answer:
-          "Yes. Once the web application has finished loading in your browser, you can disconnect from Wi-Fi or cellular networks and continue merging, splitting, and organizing PDFs seamlessly.",
+          "Yes. Once the web application has finished loading in your browser, you can disconnect from Wi-Fi or cellular networks and continue merging, splitting, and organizing PDFs without an active connection.",
       },
       {
         question: "Are there any watermarks added to the downloaded documents?",

@@ -42,7 +42,7 @@ export function SignaturesSidebar({
     <div className="lg:col-span-4 flex flex-col gap-6">
       <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm space-y-6">
         <div>
-          <h2 className="text-sm font-bold text-neutral-900 mb-1">Sign & Annotate</h2>
+          <h2 className="text-base font-bold text-neutral-900 mb-1">Sign & Annotate</h2>
           <p className="text-xs text-neutral-500 mb-4">
             Add custom signatures or official date stamps, then drag them anywhere on the page.
           </p>
@@ -51,7 +51,7 @@ export function SignaturesSidebar({
             <button
               type="button"
               onClick={onOpenCreateModal}
-              className="w-full flex items-center justify-center gap-2.5 rounded-xl bg-brand-primary px-4 py-3 text-xs font-bold text-white shadow-xs hover:bg-brand-primary-hover transition-all cursor-pointer hover:shadow-sm"
+              className="w-full flex items-center justify-center gap-2.5 rounded-xl bg-brand-primary px-4 py-3 text-xs font-bold text-white shadow-xs hover:bg-brand-primary-hover transition-colors duration-150 cursor-pointer"
             >
               <FaSignature className="w-4 h-4" />
               <span>Create New Signature</span>
@@ -72,8 +72,8 @@ export function SignaturesSidebar({
 
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-              Placed Elements ({placements.length})
+            <h3 className="text-xs font-semibold text-neutral-700">
+              Placed elements ({placements.length})
             </h3>
             {placements.length > 0 && (
               <button
@@ -96,7 +96,7 @@ export function SignaturesSidebar({
                 <div
                   key={p.id}
                   onClick={() => onSelectPlacement(p.id, p.pageNumber)}
-                  className={`flex items-center justify-between p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${
+                  className={`flex items-center justify-between p-2.5 rounded-xl border text-xs cursor-pointer transition-colors duration-150 ${
                     selectedPlacementId === p.id
                       ? "border-neutral-300 bg-neutral-100/70 shadow-2xs"
                       : "border-neutral-200 hover:border-neutral-300 bg-white"
@@ -137,10 +137,10 @@ export function SignaturesSidebar({
 
                     {sidebarDownloadMenuId === p.id && (
                       <div
-                        className="absolute right-0 bottom-full mb-1 w-48 rounded-xl bg-white border border-neutral-200 shadow-xl p-1.5 z-30 animate-in fade-in zoom-in-95 duration-100"
+                        className="absolute right-0 bottom-full mb-1 w-48 rounded-xl bg-white border border-neutral-200 shadow-md p-1.5 z-30 animate-in fade-in zoom-in-95 duration-100"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-400 border-b border-neutral-100 mb-1">
+                        <div className="px-2 py-1 text-[10px] font-semibold text-neutral-500 border-b border-neutral-100 mb-1">
                           Download Format
                         </div>
                         <button
@@ -203,7 +203,7 @@ export function SignaturesSidebar({
             type="button"
             onClick={onSignPdf}
             disabled={placements.length === 0 || isProcessing}
-            className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer hover:shadow"
+            className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
           >
             {isProcessing ? (
               <>

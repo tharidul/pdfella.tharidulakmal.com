@@ -101,7 +101,7 @@ export function DropZone({
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className={`group w-full rounded-2xl py-10 px-6 sm:py-12 sm:px-8 text-center cursor-pointer mb-6 transition-all duration-150 flex flex-col items-center justify-center select-none ${
+      className={`group w-full rounded-2xl py-10 px-6 sm:py-12 sm:px-8 text-center cursor-pointer mb-6 transition-colors duration-150 flex flex-col items-center justify-center select-none ${
         isDragging
           ? "border-2 border-solid border-brand-primary bg-brand-subtle ring-4 ring-brand-border shadow-sm"
           : "border border-neutral-200/90 bg-neutral-50/40 hover:bg-neutral-50/90 hover:border-neutral-300 shadow-2xs hover:shadow-xs"
@@ -117,7 +117,7 @@ export function DropZone({
       />
 
       <div
-        className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3.5 transition-all duration-150 ${
+        className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3.5 transition-colors duration-150 ${
           isDragging
             ? "bg-brand-primary text-white ring-4 ring-brand-border"
             : "bg-white text-brand-primary border border-neutral-200/80 shadow-2xs group-hover:border-brand-border"
@@ -126,7 +126,7 @@ export function DropZone({
         <HiArrowUpTray className="w-5 h-5" />
       </div>
 
-      <h2 className="text-base font-bold text-neutral-900 leading-snug">
+      <h2 className="text-base sm:text-lg font-bold text-neutral-900 leading-snug">
         {isDragging ? "Release to drop files here" : title}
       </h2>
 

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "PDFella — Fast, Free & 100% Private PDF Utilities",
+    name: "PDFella: Fast, Free & 100% Private PDF Utilities",
     short_name: "PDFella",
     description:
       "Merge, split, remove pages, organize, and compress PDF files 100% locally in your browser. Zero server uploads, total document privacy.",

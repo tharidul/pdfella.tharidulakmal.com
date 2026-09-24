@@ -30,7 +30,7 @@ export function WatermarkPreviewStage({
   return (
     <div className="md:col-span-7 flex flex-col bg-white rounded-2xl border border-neutral-200/80 p-5 sm:p-6 shadow-2xs items-center justify-between">
       <div className="w-full text-center pb-3 border-b border-neutral-100">
-        <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">Real-Time Document Preview</span>
+        <span className="text-xs font-semibold text-neutral-800">Document preview</span>
         <p className="text-[11px] text-neutral-400 mt-0.5">
           Visual approximation of watermark placement on Page 1
         </p>
@@ -58,7 +58,7 @@ export function WatermarkPreviewStage({
         >
           {watermarkType === "text" ? (
             <span
-              className="font-black whitespace-nowrap uppercase tracking-widest transition-all duration-150 text-center select-none"
+              className="font-black whitespace-nowrap uppercase tracking-widest transition-[transform,color,font-size] duration-150 text-center select-none"
               style={{
                 transform: `rotate(${rotation}deg)`,
                 color: colorHex,
@@ -69,7 +69,7 @@ export function WatermarkPreviewStage({
             </span>
           ) : imagePreviewUrl ? (
             <div
-              className="relative transition-all duration-150 flex items-center justify-center pointer-events-none"
+              className="relative transition-[transform,width,height] duration-150 flex items-center justify-center pointer-events-none"
               style={{
                 transform: `rotate(${rotation}deg)`,
                 width: `${Math.round(imageScale * 100)}%`,

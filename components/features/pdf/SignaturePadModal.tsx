@@ -125,8 +125,8 @@ export function SignaturePadModal({ isOpen, onClose, onSave }: SignaturePadModal
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs animate-in fade-in duration-150">
-      <div className="w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl border border-neutral-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 animate-in fade-in duration-150">
+      <div className="w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-lg border border-neutral-200">
         <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-4">
           <div>
             <h3 className="text-lg font-bold text-neutral-900">Create Signature</h3>
@@ -235,7 +235,7 @@ export function SignaturePadModal({ isOpen, onClose, onSave }: SignaturePadModal
                 (activeTab === "upload" && !uploadedImageUrl)
               }
               title="Download signature with transparent background (PNG)"
-              className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-xl border border-neutral-300 bg-white text-neutral-800 hover:bg-neutral-50 hover:border-neutral-400 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-2xs cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-xl border border-neutral-300 bg-white text-neutral-800 hover:bg-neutral-50 hover:border-neutral-400 disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-150 shadow-2xs cursor-pointer"
             >
               <HiArrowDownTray className="w-3.5 h-3.5 text-neutral-600" />
               <span>Transparent</span>
@@ -253,7 +253,7 @@ export function SignaturePadModal({ isOpen, onClose, onSave }: SignaturePadModal
                 (activeTab === "upload" && !uploadedImageUrl)
               }
               title="Download signature with solid white background (PNG)"
-              className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-xl border border-neutral-300 bg-white text-neutral-800 hover:bg-neutral-50 hover:border-neutral-400 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-2xs cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-xl border border-neutral-300 bg-white text-neutral-800 hover:bg-neutral-50 hover:border-neutral-400 disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-150 shadow-2xs cursor-pointer"
             >
               <HiArrowDownTray className="w-3.5 h-3.5 text-neutral-600" />
               <span>White BG</span>
@@ -279,7 +279,7 @@ export function SignaturePadModal({ isOpen, onClose, onSave }: SignaturePadModal
                 (activeTab === "type" && !typedText.trim()) ||
                 (activeTab === "upload" && !uploadedImageUrl)
               }
-              className="flex items-center gap-2 rounded-xl bg-brand-primary px-5 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-brand-primary-hover disabled:opacity-40 disabled:cursor-not-allowed transition-all cursor-pointer"
+              className="flex items-center gap-2 rounded-xl bg-brand-primary px-5 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-brand-primary-hover disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
             >
               <HiCheck className="w-4 h-4" />
               <span>Place on Document</span>

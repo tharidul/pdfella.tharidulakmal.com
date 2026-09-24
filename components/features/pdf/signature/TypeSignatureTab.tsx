@@ -44,7 +44,7 @@ export function TypeSignatureTab({
               key={font.id}
               type="button"
               onClick={() => setSelectedFont(font.id)}
-              className={`p-4 rounded-xl text-center transition-all cursor-pointer bg-white ${
+              className={`p-4 rounded-xl text-center transition-colors duration-150 cursor-pointer bg-white ${
                 selectedFont === font.id
                   ? "border-2 border-brand-primary text-brand-primary shadow-xs"
                   : "border border-neutral-200 hover:border-neutral-300 text-neutral-800"
@@ -73,10 +73,10 @@ export function TypeSignatureTab({
               type="button"
               onClick={() => setTypeColor(c.value)}
               title={c.label}
-              className={`w-7 h-7 rounded-full border transition-transform cursor-pointer ${
+              className={`w-7 h-7 rounded-full border transition-colors duration-150 cursor-pointer ${
                 typeColor === c.value
-                  ? "scale-110 ring-2 ring-offset-2 ring-neutral-400 border-white"
-                  : "border-neutral-300 hover:scale-105"
+                  ? "ring-2 ring-offset-2 ring-neutral-400 border-white shadow-2xs"
+                  : "border-neutral-300 hover:border-neutral-500"
               }`}
               style={{ backgroundColor: c.value }}
             />

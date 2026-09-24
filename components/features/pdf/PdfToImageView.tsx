@@ -219,8 +219,8 @@ export function PdfToImageView() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <div className="lg:col-span-8 border border-neutral-200 rounded-2xl bg-white p-4 sm:p-5 shadow-2xs">
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100">
-                <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
-                  Document Pages ({pages.length})
+                <span className="text-xs font-semibold text-neutral-800">
+                  Document pages ({pages.length})
                 </span>
                 <span className="text-xs text-neutral-500">
                   Select pages to package or download individual images
@@ -232,7 +232,7 @@ export function PdfToImageView() {
                   <div
                     key={p.pageNumber}
                     onClick={() => togglePageSelection(p.pageNumber)}
-                    className={`group relative rounded-xl p-2 flex flex-col bg-white shadow-xs transition-all cursor-pointer select-none ${
+                    className={`group relative rounded-xl p-2 flex flex-col bg-white shadow-xs transition-colors duration-150 cursor-pointer select-none ${
                       p.selected
                         ? "border-2 border-brand-primary"
                         : "border border-neutral-200 hover:border-neutral-300"
@@ -295,8 +295,8 @@ export function PdfToImageView() {
               <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-xs flex flex-col gap-5">
                 <div className="space-y-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
-                      Image Format
+                    <label className="text-xs font-semibold text-neutral-700 block">
+                      Image format
                     </label>
                     <div className="grid grid-cols-2 gap-2">
                       <button
@@ -325,7 +325,7 @@ export function PdfToImageView() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
+                    <label className="text-xs font-semibold text-neutral-700 block">
                       Resolution
                     </label>
                     <div className="grid grid-cols-2 gap-2">
@@ -359,8 +359,8 @@ export function PdfToImageView() {
 
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                      Selection Summary
+                    <span className="text-xs font-semibold text-neutral-700">
+                      Selection summary
                     </span>
                     <div className="flex items-center gap-2">
                       <button
@@ -400,7 +400,7 @@ export function PdfToImageView() {
                     type="button"
                     onClick={handleDownloadZip}
                     disabled={isExportingZip || selectedCount === 0}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer hover:shadow"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
                   >
                     {isExportingZip ? (
                       <>

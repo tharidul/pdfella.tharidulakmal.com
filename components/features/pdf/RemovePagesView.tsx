@@ -216,8 +216,8 @@ export function RemovePagesView() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <div className="lg:col-span-8 border border-neutral-200 rounded-2xl bg-white p-4 sm:p-5 shadow-2xs">
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100">
-                <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
-                  Document Pages ({pages.length})
+                <span className="text-xs font-semibold text-neutral-800">
+                  Document pages ({pages.length})
                 </span>
                 <span className="text-xs text-neutral-500">
                   Click pages to mark for deletion
@@ -229,7 +229,7 @@ export function RemovePagesView() {
                   <div
                     key={page.number}
                     onClick={() => togglePage(page.number)}
-                    className={`relative rounded-xl p-3 flex flex-col items-center justify-between h-40 cursor-pointer select-none transition-all bg-white ${
+                    className={`relative rounded-xl p-3 flex flex-col items-center justify-between h-40 cursor-pointer select-none transition-colors duration-150 bg-white ${
                       page.markedForRemoval
                         ? "border-2 border-brand-primary shadow-xs"
                         : "border border-neutral-200 hover:border-neutral-300"
@@ -255,7 +255,7 @@ export function RemovePagesView() {
                     <div className="w-full flex-1 bg-white border border-neutral-100 rounded p-1.5 flex flex-col justify-between relative overflow-hidden">
                       {page.markedForRemoval && (
                         <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                          <span className="text-[10px] font-bold text-brand-primary bg-white border border-brand-primary px-2 py-0.5 rounded shadow-xs uppercase tracking-wider">
+                          <span className="text-[10px] font-semibold text-brand-primary bg-white border border-brand-primary px-2 py-0.5 rounded shadow-xs">
                             Remove
                           </span>
                         </div>
@@ -292,7 +292,7 @@ export function RemovePagesView() {
                 <div className="space-y-2">
                   <label
                     htmlFor="removeRange"
-                    className="text-xs font-bold uppercase tracking-wider text-neutral-500 block"
+                    className="text-xs font-semibold text-neutral-700 block"
                   >
                     Pages to Delete
                   </label>
@@ -326,8 +326,8 @@ export function RemovePagesView() {
                 <hr className="border-neutral-100" />
 
                 <div className="space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
-                    Removal Summary
+                  <span className="text-xs font-semibold text-neutral-700 block">
+                    Removal summary
                   </span>
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-neutral-500">Pages to remove:</span>
@@ -348,7 +348,7 @@ export function RemovePagesView() {
                     type="button"
                     disabled={markedCount === 0 || isAllMarked || isRemoving}
                     onClick={handleRemovePages}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer hover:shadow"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
                   >
                     {isRemoving ? (
                       <>

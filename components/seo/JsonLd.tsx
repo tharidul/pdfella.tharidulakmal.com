@@ -29,7 +29,7 @@ export const JsonLd: FC<JsonLdProps> = ({
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      name: toolName ? `${toolName} — PDFella` : "PDFella",
+      name: toolName ? `${toolName} | PDFella` : "PDFella",
       url,
       description:
         toolDescription ||

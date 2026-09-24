@@ -168,8 +168,8 @@ export function CompressPdfView() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
-              Compression Level
+            <span className="text-xs font-semibold text-neutral-700">
+              Compression level
             </span>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -181,7 +181,7 @@ export function CompressPdfView() {
                     key={option.id}
                     type="button"
                     onClick={() => setSelectedTier(option.id)}
-                    className={`text-left p-4 rounded-xl transition-all cursor-pointer flex flex-col justify-between gap-2 bg-white ${
+                    className={`text-left p-4 rounded-xl transition-colors duration-150 cursor-pointer flex flex-col justify-between gap-2 bg-white ${
                       isSelected
                         ? "border-2 border-brand-primary shadow-2xs"
                         : "border border-neutral-200 hover:border-neutral-300"

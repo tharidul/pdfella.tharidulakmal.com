@@ -85,7 +85,7 @@ export function Divider({
         <div
           className={cn("grow border-t", COLOR_STYLES[color], BORDER_STYLES[variant])}
         />
-        <span className="shrink-0 px-3 text-xs font-medium uppercase tracking-wider text-neutral-500">
+        <span className="shrink-0 px-3 text-xs font-medium text-neutral-500">
           {label}
         </span>
         <div

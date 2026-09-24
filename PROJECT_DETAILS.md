@@ -1,6 +1,6 @@
-# PDFella — Complete Project Features & Functional Specification
+# PDFella: Complete Project Features & Functional Specification
 
-> **Overview:** PDFella is a free, fast, and 100% private client-side PDF utility suite. All PDF processing happens entirely inside the user's browser—no files are ever uploaded to any server.
+> **Overview:** PDFella is a free, fast, and 100% private client-side PDF utility suite. All PDF processing happens entirely inside the user's browser; no files are ever uploaded to any server.
 
 ---
 
@@ -174,7 +174,7 @@ The Watermark PDF tool stamps customized text or logo watermarks onto PDF pages 
 - **Mobile-First Layout:**
   - Mobile header with collapsible navigation dropdown.
   - Compact mode switch pills optimized for touch targets.
-  - Full-width responsive dropzones and grids adapting seamlessly from smartphones to 4K monitors.
+  - Full-width responsive dropzones and grids adapting across smartphones, tablets, and desktop displays.
 
 ### 5.2 File Security & Input Validation
 - **Magic Byte Verification:** Checks binary file headers (`%PDF`) to ensure the file is an authentic PDF and prevent extension spoofing.

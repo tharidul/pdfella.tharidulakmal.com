@@ -210,8 +210,8 @@ export function SplitPdfView() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <div className="lg:col-span-8 border border-neutral-200 rounded-2xl bg-white p-4 sm:p-5 shadow-2xs">
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100">
-                <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
-                  Document Pages ({pages.length})
+                <span className="text-xs font-semibold text-neutral-800">
+                  Document pages ({pages.length})
                 </span>
                 <span className="text-xs text-neutral-500">
                   Click to select pages to extract
@@ -223,7 +223,7 @@ export function SplitPdfView() {
                   <div
                     key={page.number}
                     onClick={() => togglePage(page.number)}
-                    className={`relative rounded-xl p-3 flex flex-col items-center justify-between h-40 cursor-pointer select-none transition-all bg-white ${
+                    className={`relative rounded-xl p-3 flex flex-col items-center justify-between h-40 cursor-pointer select-none transition-colors duration-150 bg-white ${
                       page.selected
                         ? "border-2 border-brand-primary shadow-xs"
                         : "border border-neutral-200 hover:border-neutral-300"
@@ -282,7 +282,7 @@ export function SplitPdfView() {
                 <div className="space-y-2">
                   <label
                     htmlFor="pageRange"
-                    className="text-xs font-bold uppercase tracking-wider text-neutral-500 block"
+                    className="text-xs font-semibold text-neutral-700 block"
                   >
                     Page Range Syntax
                   </label>
@@ -315,8 +315,8 @@ export function SplitPdfView() {
                 <hr className="border-neutral-100" />
 
                 <div className="space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block">
-                    Selection Summary
+                  <span className="text-xs font-semibold text-neutral-700 block">
+                    Selection summary
                   </span>
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-neutral-500">Selected pages:</span>
@@ -337,7 +337,7 @@ export function SplitPdfView() {
                     type="button"
                     disabled={selectedCount === 0 || isExtracting}
                     onClick={handleExtract}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer hover:shadow"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
                   >
                     {isExtracting ? (
                       <>

@@ -126,11 +126,11 @@ export function PlacementBox({
 
           {activeDownloadMenuId === placement.id && (
             <div
-              className="absolute bottom-full right-0 mb-2 w-48 rounded-xl bg-white border border-neutral-200 shadow-xl p-1.5 z-40 animate-in fade-in zoom-in-95 duration-100"
+              className="absolute bottom-full right-0 mb-2 w-48 rounded-xl bg-white border border-neutral-200 shadow-md p-1.5 z-40 animate-in fade-in zoom-in-95 duration-100"
               onPointerDown={(e) => e.stopPropagation()}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-400 border-b border-neutral-100 mb-1">
+              <div className="px-2.5 py-1 text-[10px] font-semibold text-neutral-500 border-b border-neutral-100 mb-1">
                 Download Signature
               </div>
               <button

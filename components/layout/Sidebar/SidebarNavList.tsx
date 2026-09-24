@@ -19,7 +19,7 @@ export function SidebarNavList({
   if (isMobile) {
     return (
       <nav aria-label="Mobile Tools Navigation" className="flex flex-col space-y-1">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 px-3 mb-1">
+        <span className="text-xs font-semibold text-neutral-500 px-3 mb-1">
           PDF Utilities
         </span>
         {PRIMARY_TOOLS.map((item: NavItem) => {

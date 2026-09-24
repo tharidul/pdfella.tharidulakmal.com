@@ -67,7 +67,7 @@ export default function AboutPage() {
 
         <div className="space-y-6">
           <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs space-y-3">
-            <h2 className="text-base font-bold text-neutral-900">
+            <h2 className="text-lg sm:text-xl font-bold text-neutral-900">
               Why We Built PDFella
             </h2>
             <div className="space-y-3 text-xs sm:text-sm text-neutral-600 leading-relaxed">
@@ -84,7 +84,7 @@ export default function AboutPage() {
           </section>
 
           <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs">
-            <h2 className="text-base font-bold text-neutral-900 mb-4">
+            <h2 className="text-lg sm:text-xl font-bold text-neutral-900 mb-4">
               Core Principles
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -113,7 +113,7 @@ export default function AboutPage() {
           </section>
 
           <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs">
-            <h2 className="text-base font-bold text-neutral-900 mb-2">
+            <h2 className="text-lg sm:text-xl font-bold text-neutral-900 mb-2">
               Technology
             </h2>
             <p className="text-xs sm:text-sm text-neutral-600 mb-4 leading-relaxed">
@@ -149,7 +149,7 @@ export default function AboutPage() {
           </section>
 
           <section className="bg-white rounded-xl border border-neutral-200/80 p-6 shadow-2xs">
-            <h2 className="text-base font-bold text-neutral-900 mb-2">
+            <h2 className="text-lg sm:text-xl font-bold text-neutral-900 mb-2">
               Developer
             </h2>
             <p className="text-xs sm:text-sm text-neutral-600 mb-4 leading-relaxed">

@@ -196,8 +196,8 @@ export function PageNumbersView() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
             <div className="md:col-span-7 flex flex-col bg-white rounded-2xl border border-neutral-200/80 p-5 sm:p-6 shadow-2xs items-center justify-between">
               <div className="w-full text-center pb-3 border-b border-neutral-100">
-                <span className="text-xs font-bold text-neutral-800 uppercase tracking-wider">
-                  Real-Time Document Preview
+                <span className="text-xs font-semibold text-neutral-800">
+                  Document preview
                 </span>
                 <p className="text-[11px] text-neutral-400 mt-0.5">
                   Visual approximation of page number placement on Page 1
@@ -221,7 +221,7 @@ export function PageNumbersView() {
                 )}
 
                 <div
-                  className={`absolute px-2 py-0.5 rounded-sm border border-dotted border-neutral-400/60 bg-white/40 font-sans font-medium pointer-events-none transition-all duration-200 ${
+                  className={`absolute px-2 py-0.5 rounded-sm border border-dotted border-neutral-400/60 bg-white/40 font-sans font-medium pointer-events-none transition-[top,bottom,left,right,transform] duration-150 ${
                     position.startsWith("top") ? "top-4" : "bottom-4"
                   } ${
                     position.endsWith("left")
@@ -243,8 +243,8 @@ export function PageNumbersView() {
             <div className="md:col-span-5 md:sticky md:top-6 self-start">
               <div className="flex flex-col gap-5 bg-white rounded-2xl border border-neutral-200/90 p-5 shadow-xs">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block mb-3">
-                    Page Numbering Configuration
+                  <span className="text-xs font-semibold text-neutral-700 block mb-3">
+                    Page numbering configuration
                   </span>
 
                   <div className="flex flex-col space-y-2">
@@ -259,7 +259,7 @@ export function PageNumbersView() {
                             key={pos.id}
                             type="button"
                             onClick={() => setPosition(pos.id)}
-                            className={`py-2 px-1.5 rounded-lg text-xs font-semibold flex flex-col items-center justify-center transition-all cursor-pointer ${
+                            className={`py-2 px-1.5 rounded-lg text-xs font-semibold flex flex-col items-center justify-center transition-colors duration-150 cursor-pointer ${
                               isSelected
                                 ? "bg-brand-primary text-white shadow-xs"
                                 : "bg-white text-neutral-700 hover:bg-neutral-50 border border-neutral-200/60"
@@ -306,10 +306,10 @@ export function PageNumbersView() {
                           type="button"
                           onClick={() => setColorHex(c.value)}
                           title={c.label}
-                          className={`w-7 h-7 rounded-full border-2 transition-transform cursor-pointer ${
+                          className={`w-7 h-7 rounded-full border-2 transition-colors duration-150 cursor-pointer ${
                             colorHex === c.value
-                              ? "border-brand-primary scale-110 shadow-xs"
-                              : "border-transparent hover:scale-105"
+                              ? "border-brand-primary ring-2 ring-brand-primary/30"
+                              : "border-neutral-200 hover:border-neutral-400"
                           }`}
                           style={{ backgroundColor: c.value }}
                         />
@@ -352,7 +352,7 @@ export function PageNumbersView() {
                     type="button"
                     onClick={handleProcess}
                     disabled={isProcessing}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer hover:shadow"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
                   >
                     {isProcessing ? (
                       <>

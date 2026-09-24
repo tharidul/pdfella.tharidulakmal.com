@@ -53,7 +53,7 @@ export function Sidebar() {
   return (
     <>
       <div
-        className={`fixed inset-0 bg-black/40 backdrop-blur-xs z-40 transition-opacity duration-300 md:hidden cursor-pointer ${
+        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 md:hidden cursor-pointer ${
           isMobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={closeMobile}
@@ -104,12 +104,12 @@ export function Sidebar() {
                   onClick={() => setIsCollapsed(false)}
                   aria-label="Expand sidebar"
                   title="Expand sidebar"
-                  className="relative group w-10 h-10 rounded-xl flex items-center justify-center border border-transparent hover:border-neutral-200 hover:bg-neutral-100 hover:shadow-xs transition-all duration-200 cursor-pointer"
+                  className="relative group w-10 h-10 rounded-xl flex items-center justify-center border border-transparent hover:border-neutral-200 hover:bg-neutral-100 hover:shadow-xs transition-colors duration-150 cursor-pointer"
                 >
-                  <div className="transition-all duration-200 group-hover:opacity-0 group-hover:scale-75 flex items-center justify-center">
+                  <div className="transition-opacity duration-150 group-hover:opacity-0 flex items-center justify-center">
                     <Logo isCollapsed size="md" />
                   </div>
-                  <div className="absolute inset-0 flex items-center justify-center text-neutral-600 group-hover:text-brand-primary opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200">
+                  <div className="absolute inset-0 flex items-center justify-center text-neutral-600 group-hover:text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                     <PanelLeftOpenIcon className="w-5 h-5" />
                   </div>
                 </button>

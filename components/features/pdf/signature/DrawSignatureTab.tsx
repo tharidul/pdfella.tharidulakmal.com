@@ -178,7 +178,7 @@ export function DrawSignatureTab({
         <div className="pointer-events-none absolute bottom-12 inset-x-8 flex items-center gap-3">
           <span className="text-sm font-bold text-neutral-400 select-none">✕</span>
           <div className="h-px flex-1 border-b border-neutral-200" />
-          <span className="text-[11px] font-medium text-neutral-400 select-none tracking-wider uppercase">
+          <span className="text-[11px] font-medium text-neutral-400 select-none">
             Sign on line
           </span>
         </div>
@@ -211,7 +211,7 @@ export function DrawSignatureTab({
                   key={pen.id}
                   type="button"
                   onClick={() => setSelectedPenStyle(pen.id)}
-                  className={`px-3 py-1 text-xs rounded-md font-medium transition-all cursor-pointer ${
+                  className={`px-3 py-1 text-xs rounded-md font-medium transition-colors duration-150 cursor-pointer ${
                     selectedPenStyle === pen.id
                       ? "bg-white text-neutral-900 shadow-2xs font-semibold"
                       : "text-neutral-600 hover:text-neutral-900"
@@ -232,10 +232,10 @@ export function DrawSignatureTab({
                   type="button"
                   onClick={() => setSelectedColor(c.value)}
                   title={c.label}
-                  className={`w-6 h-6 rounded-full border transition-all cursor-pointer ${
+                  className={`w-6 h-6 rounded-full border transition-colors duration-150 cursor-pointer ${
                     selectedColor === c.value
-                      ? "scale-110 ring-2 ring-offset-2 ring-neutral-400 border-white shadow-2xs"
-                      : "border-neutral-300 hover:scale-105"
+                      ? "ring-2 ring-offset-2 ring-neutral-400 border-white shadow-2xs"
+                      : "border-neutral-300 hover:border-neutral-500"
                   }`}
                   style={{ backgroundColor: c.value }}
                 />
@@ -251,7 +251,7 @@ export function DrawSignatureTab({
                   key={w.value}
                   type="button"
                   onClick={() => setSelectedWidth(w.value)}
-                  className={`px-3 py-1 text-xs rounded-md font-medium transition-all cursor-pointer ${
+                  className={`px-3 py-1 text-xs rounded-md font-medium transition-colors duration-150 cursor-pointer ${
                     selectedWidth === w.value
                       ? "bg-white text-neutral-900 shadow-2xs font-semibold"
                       : "text-neutral-600 hover:text-neutral-900"

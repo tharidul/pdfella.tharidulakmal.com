@@ -62,7 +62,7 @@ export function UploadSignatureTab({
             onImageFileSelected(file);
           }
         }}
-        className={`w-full rounded-2xl p-8 text-center cursor-pointer transition-all duration-150 ${
+        className={`w-full rounded-2xl p-8 text-center cursor-pointer transition-colors duration-150 ${
           isDraggingUpload
             ? "border-2 border-solid border-brand-primary bg-brand-subtle ring-4 ring-brand-border shadow-sm"
             : "border border-neutral-200 bg-neutral-50/40 hover:bg-neutral-50/90 hover:border-neutral-300 shadow-2xs"

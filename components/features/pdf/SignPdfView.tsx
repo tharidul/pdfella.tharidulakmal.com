@@ -272,7 +272,7 @@ export function SignPdfView() {
                     width: `${Math.round((700 * zoomLevel) / 100)}px`,
                     maxWidth: "100%",
                   }}
-                  className="relative rounded-lg shadow-xl overflow-hidden bg-white border border-neutral-300 select-none transition-all duration-75 shrink-0"
+                  className="relative rounded-lg shadow-sm overflow-hidden bg-white border border-neutral-300 select-none transition-transform duration-75 shrink-0"
                 >
                   {isLoadingThumb ? (
                     <div
