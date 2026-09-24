@@ -55,7 +55,7 @@ const PRINCIPLES = [
 export default function AboutPage() {
   return (
     <AppLayout>
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="mb-10 text-left">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
             About PDFella
@@ -174,7 +174,7 @@ export default function AboutPage() {
             </a>
           </section>
         </div>
-      </main>
+      </div>
       <JsonLd
         toolName="About PDFella"
         toolDescription="About PDFella - 100% private PDF utility suite created by Tharidu Lakmal. Your files never leave your device."

@@ -117,6 +117,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`h-full antialiased ${inter.variable}`}>
       <body className={`min-h-full flex flex-col bg-white text-neutral-900 ${inter.className}`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-brand-primary focus:text-white focus:font-semibold focus:rounded-xl focus:shadow-lg focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary cursor-pointer transition-all"
+        >
+          Skip to main content
+        </a>
         {children}
         <Toaster />
       </body>

@@ -162,7 +162,7 @@ export function OrganizePdfView() {
   };
 
   return (
-    <main
+    <div
       className={
         hasFile
           ? "w-full max-w-6xl mx-auto px-4 py-6 flex flex-col"
@@ -173,7 +173,7 @@ export function OrganizePdfView() {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Reorder, rotate & manage PDF pages
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500">
+        <p className="text-xs sm:text-sm text-neutral-600">
           Reorder pages, rotate individual sheets, and delete unwanted pages
           before creating the final document.
         </p>
@@ -192,7 +192,7 @@ export function OrganizePdfView() {
                 <span className="text-sm font-bold text-neutral-900 truncate max-w-xs sm:max-w-md">
                   {fileName}
                 </span>
-                <span className="text-xs text-neutral-400 mt-0.5">
+                <span className="text-xs text-neutral-600 mt-0.5">
                   {formatFileSize(fileSize)} • {pages.length} pages
                 </span>
               </div>
@@ -210,7 +210,7 @@ export function OrganizePdfView() {
                 setFileBuffer(null);
                 setPages([]);
               }}
-              className="text-xs font-semibold text-neutral-500 hover:text-neutral-800 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+              className="text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer min-h-[36px] inline-flex items-center"
             >
               Choose different file
             </button>
@@ -222,7 +222,7 @@ export function OrganizePdfView() {
                 <span className="text-xs font-semibold text-neutral-800">
                   Page order and rotations ({pages.length})
                 </span>
-                <span className="text-xs text-neutral-500">
+                <span className="text-xs text-neutral-600">
                   Drag & drop to reorder • Hover to rotate
                 </span>
               </div>
@@ -248,7 +248,7 @@ export function OrganizePdfView() {
                     <button
                       type="button"
                       onClick={() => rotateAll(-90)}
-                      className="py-2.5 px-3 rounded-xl border border-neutral-200 bg-neutral-50/50 hover:bg-neutral-100 text-xs font-semibold text-neutral-800 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                      className="py-2.5 px-3 rounded-xl border border-neutral-200 bg-neutral-50/50 hover:bg-neutral-100 text-xs font-semibold text-neutral-800 flex items-center justify-center gap-1.5 transition-colors cursor-pointer min-h-[36px]"
                     >
                       <LuRotateCcw className="w-3.5 h-3.5" />
                       <span>Rotate Left</span>
@@ -256,7 +256,7 @@ export function OrganizePdfView() {
                     <button
                       type="button"
                       onClick={() => rotateAll(90)}
-                      className="py-2.5 px-3 rounded-xl border border-neutral-200 bg-neutral-50/50 hover:bg-neutral-100 text-xs font-semibold text-neutral-800 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                      className="py-2.5 px-3 rounded-xl border border-neutral-200 bg-neutral-50/50 hover:bg-neutral-100 text-xs font-semibold text-neutral-800 flex items-center justify-center gap-1.5 transition-colors cursor-pointer min-h-[36px]"
                     >
                       <LuRotateCw className="w-3.5 h-3.5" />
                       <span>Rotate Right</span>
@@ -265,7 +265,7 @@ export function OrganizePdfView() {
                   <button
                     type="button"
                     onClick={resetAll}
-                    className="w-full py-2 px-3 rounded-xl border border-neutral-200 hover:bg-neutral-100 text-xs font-semibold text-neutral-600 transition-colors cursor-pointer text-center"
+                    className="w-full py-2 px-3 rounded-xl border border-neutral-200 hover:bg-neutral-100 text-xs font-semibold text-neutral-700 transition-colors cursor-pointer text-center min-h-[36px]"
                   >
                     Reset Order & Rotations
                   </button>
@@ -278,11 +278,11 @@ export function OrganizePdfView() {
                     Document summary
                   </span>
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-neutral-500">Output pages:</span>
+                    <span className="text-neutral-600">Output pages:</span>
                     <span className="font-bold text-brand-primary">{pages.length} {pages.length === 1 ? "page" : "pages"}</span>
                   </div>
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-neutral-500">Initial size:</span>
+                    <span className="text-neutral-600">Initial size:</span>
                     <span className="font-semibold text-neutral-800">{formatFileSize(fileSize)}</span>
                   </div>
                 </div>
@@ -294,7 +294,7 @@ export function OrganizePdfView() {
                     type="button"
                     disabled={pages.length === 0 || isOrganizing}
                     onClick={handleSaveOrganized}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer min-h-[44px]"
                   >
                     {isOrganizing ? (
                       <>
@@ -309,7 +309,7 @@ export function OrganizePdfView() {
                     )}
                   </button>
 
-                  <p className="text-[11px] text-neutral-400 text-center leading-relaxed">
+                  <p className="text-xs text-neutral-600 text-center leading-relaxed">
                     All organizing executes locally in your browser.
                   </p>
                 </div>
@@ -318,6 +318,6 @@ export function OrganizePdfView() {
           </div>
         </div>
       )}
-    </main>
+    </div>
   );
 }

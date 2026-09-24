@@ -318,7 +318,7 @@ const TOOLS_GUIDE: ToolGuideItem[] = [
 export default function HowToUsePage() {
   return (
     <AppLayout>
-      <main className="w-full max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12 flex flex-col">
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12 flex flex-col">
         <div className="flex flex-col mb-10 text-left">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
             How to Use PDFella
@@ -346,7 +346,7 @@ export default function HowToUsePage() {
                       <h2 className="text-lg sm:text-xl font-bold text-neutral-900">
                         {tool.name}
                       </h2>
-                      <p className="text-xs text-neutral-500 mt-0.5">
+                      <p className="text-xs text-neutral-600 mt-0.5">
                         {tool.description}
                       </p>
                     </div>
@@ -354,7 +354,7 @@ export default function HowToUsePage() {
 
                   <Link
                     href={tool.href}
-                    className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-semibold transition-colors shrink-0 shadow-2xs cursor-pointer"
+                    className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-semibold transition-colors shrink-0 shadow-2xs cursor-pointer min-h-[36px]"
                   >
                     <span>Open Tool</span>
                     <HiArrowRight className="w-3.5 h-3.5" />
@@ -397,7 +397,7 @@ export default function HowToUsePage() {
                           <h4 className="text-xs font-bold text-neutral-800">
                             {highlight.title}
                           </h4>
-                          <p className="text-[11px] text-neutral-500 mt-1 leading-relaxed">
+                          <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
                             {highlight.detail}
                           </p>
                         </div>
@@ -409,7 +409,7 @@ export default function HowToUsePage() {
             );
           })}
         </div>
-      </main>
+      </div>
       <JsonLd
         toolName="How to Use PDFella"
         toolDescription="Complete guide to using PDFella utilities securely on your device."

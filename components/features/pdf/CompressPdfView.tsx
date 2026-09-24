@@ -110,12 +110,12 @@ export function CompressPdfView() {
   };
 
   return (
-    <main className="w-full max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-8 flex flex-col">
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-8 flex flex-col">
       <div className="flex flex-col mb-6">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Reduce PDF file size
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500">
+        <p className="text-xs sm:text-sm text-neutral-600">
           Compress and optimize your PDF documents to make them lightweight for
           email and web sharing.
         </p>
@@ -149,7 +149,7 @@ export function CompressPdfView() {
                 <span className="text-sm font-bold text-neutral-900 truncate max-w-xs sm:max-w-md">
                   {fileName}
                 </span>
-                <span className="text-xs text-neutral-400 mt-0.5">
+                <span className="text-xs text-neutral-600 mt-0.5">
                   {formatFileSize(originalBytes)} · {pageCount} {pageCount === 1 ? "page" : "pages"}
                 </span>
               </div>
@@ -163,7 +163,7 @@ export function CompressPdfView() {
                 setFileBuffer(null);
                 setActualResult(null);
               }}
-              className="text-xs font-semibold text-neutral-500 hover:text-neutral-800 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+              className="text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer min-h-[36px] inline-flex items-center"
             >
               Change file
             </button>
@@ -174,7 +174,7 @@ export function CompressPdfView() {
               Compression level
             </span>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3" role="radiogroup" aria-label="Compression level">
               {COMPRESSION_OPTIONS.map((option) => {
                 const isSelected = option.id === selectedTier;
 
@@ -182,6 +182,9 @@ export function CompressPdfView() {
                   <button
                     key={option.id}
                     type="button"
+                    role="radio"
+                    aria-checked={isSelected}
+                    aria-label={`${option.title}: ${option.description}`}
                     onClick={() => setSelectedTier(option.id)}
                     className={`text-left p-4 rounded-xl transition-colors duration-150 cursor-pointer flex flex-col justify-between gap-2 bg-white ${
                       isSelected
@@ -206,7 +209,7 @@ export function CompressPdfView() {
                           )}
                         </span>
                       </div>
-                      <p className="text-[11px] text-neutral-500 leading-relaxed">
+                      <p className="text-xs text-neutral-600 leading-relaxed">
                         {option.description}
                       </p>
                     </div>
@@ -217,7 +220,7 @@ export function CompressPdfView() {
           </div>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-neutral-100">
-            <span className="text-xs text-neutral-400">
+            <span className="text-xs text-neutral-600">
               All compression executes locally in your browser.
             </span>
 
@@ -225,10 +228,10 @@ export function CompressPdfView() {
               type="button"
               disabled={isCompressing || !fileBuffer}
               onClick={handleCompress}
-              className={`w-full sm:w-auto px-7 py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-colors ${
+              className={`w-full sm:w-auto px-7 py-3 rounded-xl font-bold text-sm min-h-[44px] flex items-center justify-center gap-2 shadow-xs transition-colors ${
                 !isCompressing && fileBuffer
                   ? "bg-brand-primary hover:bg-brand-primary-hover text-white cursor-pointer"
-                  : "bg-neutral-200 text-neutral-400 cursor-not-allowed"
+                  : "bg-neutral-100 text-neutral-400 cursor-not-allowed"
               }`}
             >
               {isCompressing ? (
@@ -246,6 +249,6 @@ export function CompressPdfView() {
           </div>
         </div>
       )}
-    </main>
+    </div>
   );
 }

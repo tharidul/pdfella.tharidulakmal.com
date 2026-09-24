@@ -134,7 +134,7 @@ export function MergePdfView() {
   const canMerge = files.length >= 2 && !isMerging;
 
   return (
-    <main
+    <div
       className={
         files.length > 0
           ? "w-full max-w-6xl mx-auto px-4 py-6 flex flex-col"
@@ -145,7 +145,7 @@ export function MergePdfView() {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Combine multiple PDFs into one
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500">
+        <p className="text-xs sm:text-sm text-neutral-600">
           Add PDF files, arrange them in the desired order, and merge them into a
           single document.
         </p>
@@ -162,7 +162,7 @@ export function MergePdfView() {
                   <span className="text-xs font-semibold text-neutral-800">
                     Document order ({files.length})
                   </span>
-                  <span className="text-xs text-neutral-500">
+                  <span className="text-xs text-neutral-600">
                     Drag handles or arrows to rearrange
                   </span>
                 </div>
@@ -197,19 +197,19 @@ export function MergePdfView() {
                     <button
                       type="button"
                       onClick={handleClearAll}
-                      className="text-xs font-semibold text-brand-primary hover:text-brand-primary-hover transition-colors cursor-pointer"
+                      className="text-xs font-semibold text-brand-primary hover:text-brand-primary-hover transition-colors cursor-pointer min-h-[32px] inline-flex items-center"
                     >
                       Clear all
                     </button>
                   </div>
 
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-neutral-500">Documents:</span>
+                    <span className="text-neutral-600">Documents:</span>
                     <span className="font-bold text-brand-primary">{files.length}</span>
                   </div>
 
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-neutral-500">Total pages:</span>
+                    <span className="text-neutral-600">Total pages:</span>
                     <span className="font-semibold text-neutral-800">
                       {totalPages > 0 ? `${totalPages} pages` : "Calculating..."}
                     </span>
@@ -223,7 +223,7 @@ export function MergePdfView() {
                     type="button"
                     disabled={!canMerge}
                     onClick={handleMerge}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer min-h-[44px]"
                   >
                     {isMerging ? (
                       <>
@@ -238,7 +238,7 @@ export function MergePdfView() {
                     )}
                   </button>
 
-                  <p className="text-[11px] text-neutral-400 text-center leading-relaxed">
+                  <p className="text-xs text-neutral-600 text-center leading-relaxed">
                     {files.length < 2
                       ? "Add at least 2 PDF documents to merge."
                       : "All merging executes locally in your browser."}
@@ -249,6 +249,6 @@ export function MergePdfView() {
           </div>
         </div>
       )}
-    </main>
+    </div>
   );
 }

@@ -12,7 +12,7 @@ export function PdfToolLayout({
   children,
 }: PdfToolLayoutProps) {
   return (
-    <main
+    <div
       className={
         hasFile
           ? "w-full max-w-6xl mx-auto px-4 py-6 flex flex-col"
@@ -23,12 +23,12 @@ export function PdfToolLayout({
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           {heading}
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500">
+        <p className="text-xs sm:text-sm text-neutral-600">
           {subheading}
         </p>
       </div>
 
       {children}
-    </main>
+    </div>
   );
 }

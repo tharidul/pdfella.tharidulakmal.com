@@ -13,10 +13,10 @@ export function Footer() {
             <Link href="/" className="inline-flex items-center gap-2 cursor-pointer" aria-label="PDFella Home">
               <Logo size="sm" />
             </Link>
-            <p className="text-[11px] text-neutral-500 leading-relaxed max-w-xs">
+            <p className="text-xs text-neutral-600 leading-relaxed max-w-xs">
               Fast, free, and 100% private PDF utilities. Your files stay on your device and are never uploaded to any server.
             </p>
-            <div className="pt-1 text-[11px] text-neutral-400">
+            <div className="pt-1 text-xs text-neutral-600">
               &copy; {currentYear} PDFella &bull; 100% Private &bull; Zero Server Uploads
             </div>
           </div>
@@ -90,13 +90,13 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-            <div className="pt-2 text-[11px] text-neutral-400">
+            <div className="pt-2 text-xs text-neutral-600">
               By{" "}
               <a
                 href="https://tharidulakmal.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-neutral-600 hover:text-brand-primary underline font-medium"
+                className="text-neutral-700 hover:text-brand-primary underline font-medium cursor-pointer"
               >
                 Tharidu Lakmal
               </a>

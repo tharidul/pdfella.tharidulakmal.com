@@ -31,7 +31,7 @@ export function WatermarkPreviewStage({
     <div className="md:col-span-7 flex flex-col bg-white rounded-2xl border border-neutral-200/80 p-5 sm:p-6 shadow-2xs items-center justify-between">
       <div className="w-full text-center pb-3 border-b border-neutral-100">
         <span className="text-xs font-semibold text-neutral-800">Document preview</span>
-        <p className="text-[11px] text-neutral-400 mt-0.5">
+        <p className="text-xs text-neutral-600 mt-0.5">
           Visual approximation of watermark placement on Page 1
         </p>
       </div>
@@ -46,9 +46,9 @@ export function WatermarkPreviewStage({
             className="object-contain p-1"
           />
         ) : (
-          <div className="flex flex-col items-center justify-center text-neutral-400 gap-1">
-            <HiSquares2X2 className="w-8 h-8 animate-pulse text-neutral-300" />
-            <span className="text-[10px]">Loading preview...</span>
+          <div className="flex flex-col items-center justify-center text-neutral-500 gap-1">
+            <HiSquares2X2 className="w-8 h-8 animate-pulse text-neutral-400" />
+            <span className="text-xs">Loading preview...</span>
           </div>
         )}
 
@@ -85,7 +85,7 @@ export function WatermarkPreviewStage({
               />
             </div>
           ) : (
-            <span className="text-xs font-bold text-neutral-400">No logo uploaded</span>
+            <span className="text-xs font-bold text-neutral-600">No logo uploaded</span>
           )}
         </div>
       </div>

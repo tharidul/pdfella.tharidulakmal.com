@@ -136,7 +136,7 @@ export function WatermarkPdfView() {
   };
 
   return (
-    <main
+    <div
       className={
         hasFile
           ? "w-full max-w-6xl mx-auto px-4 py-6 flex flex-col"
@@ -147,7 +147,7 @@ export function WatermarkPdfView() {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Add watermark to PDF
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500">
+        <p className="text-xs sm:text-sm text-neutral-600">
           Stamp text or image watermarks onto your PDF pages with custom position, rotation, and opacity.
         </p>
       </div>
@@ -165,7 +165,7 @@ export function WatermarkPdfView() {
                 <span className="text-sm font-bold text-neutral-900 truncate max-w-xs sm:max-w-md">
                   {fileName}
                 </span>
-                <span className="text-xs text-neutral-400 mt-0.5">
+                <span className="text-xs text-neutral-600 mt-0.5">
                   {formatFileSize(fileSize)} • {pageCount} {pageCount === 1 ? "page" : "pages"}
                 </span>
               </div>
@@ -174,7 +174,7 @@ export function WatermarkPdfView() {
             <button
               type="button"
               onClick={resetAll}
-              className="text-xs font-semibold text-neutral-500 hover:text-neutral-800 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+              className="text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer min-h-[36px] inline-flex items-center"
             >
               Choose different file
             </button>
@@ -219,6 +219,6 @@ export function WatermarkPdfView() {
           </div>
         </div>
       )}
-    </main>
+    </div>
   );
 }

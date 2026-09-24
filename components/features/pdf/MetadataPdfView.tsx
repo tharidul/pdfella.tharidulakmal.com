@@ -7,18 +7,21 @@ import {
   HiArrowPath,
   HiOutlineDocumentText,
   HiIdentification,
-  HiSparkles,
+  HiTrash,
   HiArrowDownTray,
   HiCheck,
   HiInformationCircle,
 } from "react-icons/hi2";
 import { toast } from "@/components/ui/sonner";
+import { Combobox } from "@/components/ui/Combobox";
 import { DropZone } from "./DropZone";
 import { validatePdfFile } from "@/lib/pdf/validation";
 import {
   extractPdfMetadata,
   updateMetadataAndDownload,
   sanitizeMetadataAndDownload,
+  OFFICIAL_CREATOR_OPTIONS,
+  OFFICIAL_PRODUCER_OPTIONS,
   type PdfDocumentMetadata,
   type UpdatePdfMetadataOptions,
 } from "@/lib/pdf";
@@ -163,7 +166,7 @@ export function MetadataPdfView() {
     setIsSanitizing(true);
     try {
       await sanitizeMetadataAndDownload(fileBuffer, fileName);
-      toast.success("100% sanitized PDF downloaded! All tracking metadata removed.");
+      toast.success("PDF downloaded with all metadata removed.");
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to sanitize PDF metadata.";
       toast.error(msg);
@@ -205,8 +208,8 @@ export function MetadataPdfView() {
   return (
     <PdfToolLayout
       hasFile={hasFile}
-      heading="Edit PDF Metadata & Privacy Cleaner"
-      subheading="View, modify document properties, or sanitize sensitive author and software tracking tags with 100% browser-based privacy."
+      heading="Edit PDF Metadata"
+      subheading="View, update, or remove document properties and metadata."
     >
       {!hasFile ? (
         <DropZone onFilesSelected={handleFilesSelected} />
@@ -220,17 +223,17 @@ export function MetadataPdfView() {
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Left Column: Document Overview & Privacy Status */}
+            {/* Left Column: Document Overview */}
             <div className="lg:col-span-5 flex flex-col gap-5">
               {/* Document Preview Card */}
               <div className="bg-white rounded-2xl border border-neutral-200 p-5 shadow-2xs flex flex-col items-center">
-                <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider self-start mb-3">
+                <h3 className="text-sm font-semibold text-neutral-800 self-start mb-3">
                   Document Preview
-                </span>
+                </h3>
 
                 <div className="relative w-48 h-64 rounded-xl border border-neutral-200 bg-neutral-100 flex items-center justify-center overflow-hidden shadow-inner">
                   {isLoadingThumb ? (
-                    <div className="flex flex-col items-center gap-2 text-neutral-400">
+                    <div className="flex flex-col items-center gap-2 text-neutral-500">
                       <HiArrowPath className="w-6 h-6 animate-spin text-brand-primary" />
                       <span className="text-xs">Generating preview...</span>
                     </div>
@@ -243,7 +246,7 @@ export function MetadataPdfView() {
                       unoptimized
                     />
                   ) : (
-                    <div className="flex flex-col items-center gap-2 text-neutral-400">
+                    <div className="flex flex-col items-center gap-2 text-neutral-500">
                       <HiOutlineDocumentText className="w-10 h-10" />
                       <span className="text-xs">Page 1</span>
                     </div>
@@ -252,69 +255,47 @@ export function MetadataPdfView() {
 
                 <div className="w-full mt-4 pt-4 border-t border-neutral-100 grid grid-cols-2 gap-3 text-xs">
                   <div>
-                    <span className="text-neutral-400 block font-medium">Pages</span>
+                    <span className="text-neutral-600 block font-medium">Pages</span>
                     <span className="font-semibold text-neutral-800">{pageCount}</span>
                   </div>
                   <div>
-                    <span className="text-neutral-400 block font-medium">Original Size</span>
+                    <span className="text-neutral-600 block font-medium">Original Size</span>
                     <span className="font-semibold text-neutral-800">{originalMeta?.formattedSize}</span>
                   </div>
                   <div>
-                    <span className="text-neutral-400 block font-medium">Created Date</span>
+                    <span className="text-neutral-600 block font-medium">Created Date</span>
                     <span className="font-semibold text-neutral-800 truncate block">
                       {originalMeta?.creationDate ? originalMeta.creationDate.toLocaleDateString() : "Not set"}
                     </span>
                   </div>
                   <div>
-                    <span className="text-neutral-400 block font-medium">Modified Date</span>
+                    <span className="text-neutral-600 block font-medium">Modified Date</span>
                     <span className="font-semibold text-neutral-800 truncate block">
                       {originalMeta?.modificationDate ? originalMeta.modificationDate.toLocaleDateString() : "Not set"}
                     </span>
                   </div>
                 </div>
-              </div>
 
-              {/* Privacy Analysis Card */}
-              <div className="bg-white rounded-2xl border border-neutral-200 p-5 shadow-2xs flex flex-col gap-3">
-                <div className="flex items-center gap-2.5">
-                  <div
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                      hasOriginalIdentifiers
-                        ? "bg-amber-100 text-amber-700"
-                        : "bg-emerald-100 text-emerald-700"
-                    }`}
-                  >
-                    <HiShieldCheck className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-neutral-900">Privacy & Metadata Check</h3>
-                    <span className="text-xs text-neutral-500">
-                      {hasOriginalIdentifiers
-                        ? "Original document contains identifiable metadata"
-                        : "No tracking metadata detected"}
-                    </span>
-                  </div>
+                <div className="w-full mt-3 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs">
+                  <span className="text-neutral-600 font-medium">Metadata Status</span>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-700 font-medium">
+                    {hasOriginalIdentifiers ? "Contains metadata" : "No metadata detected"}
+                  </span>
                 </div>
 
-                <p className="text-xs text-neutral-600 leading-relaxed bg-neutral-50 p-3 rounded-xl border border-neutral-100">
-                  PDF documents often embed personal identifiers like your name, device username, author profile, and the exact software/printer used to generate the file.
-                </p>
-
-                <div className="flex flex-col gap-2 pt-1">
-                  <button
-                    type="button"
-                    onClick={handleDirectSanitize}
-                    disabled={isSanitizing || isProcessing}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-2xs disabled:opacity-50"
-                  >
-                    {isSanitizing ? (
-                      <HiArrowPath className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <HiShieldCheck className="w-4 h-4" />
-                    )}
-                    <span>One-Click Sanitize & Download</span>
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={handleDirectSanitize}
+                  disabled={isSanitizing || isProcessing}
+                  className="w-full mt-4 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-neutral-200 bg-neutral-50 hover:bg-neutral-100 text-neutral-700 text-xs font-semibold transition-colors cursor-pointer disabled:opacity-50 min-h-[40px]"
+                >
+                  {isSanitizing ? (
+                    <HiArrowPath className="w-4 h-4 animate-spin text-neutral-500" />
+                  ) : (
+                    <HiShieldCheck className="w-4 h-4 text-neutral-500" />
+                  )}
+                  <span>Strip Metadata & Download</span>
+                </button>
               </div>
             </div>
 
@@ -323,25 +304,25 @@ export function MetadataPdfView() {
               <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
                 <div className="flex items-center gap-2">
                   <HiIdentification className="w-5 h-5 text-brand-primary" />
-                  <h2 className="text-base font-bold text-neutral-900">Document Properties</h2>
+                  <h2 className="text-lg font-bold text-neutral-900">Document Properties</h2>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={handleApplySanitizePreset}
-                    className="text-xs font-semibold text-rose-600 hover:bg-rose-50 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1"
-                    title="Clear all fields to strip metadata"
+                    className="text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1 min-h-[36px]"
+                    title="Clear all fields"
                   >
-                    <HiSparkles className="w-3.5 h-3.5" />
+                    <HiTrash className="w-3.5 h-3.5" />
                     <span>Clear All</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={handleResetToOriginal}
-                    className="text-xs font-semibold text-neutral-600 hover:bg-neutral-100 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1"
-                    title="Restore original file properties"
+                    className="text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1 min-h-[36px]"
+                    title="Restore original properties"
                   >
                     <HiArrowPath className="w-3.5 h-3.5" />
                     <span>Reset</span>
@@ -361,12 +342,9 @@ export function MetadataPdfView() {
                     type="text"
                     value={form.title}
                     onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
-                    placeholder="e.g. Annual Financial Report 2026"
-                    className="w-full text-xs sm:text-sm rounded-xl border border-neutral-200 px-3.5 py-2.5 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+                    placeholder="e.g. Annual Financial Report"
+                    className="w-full text-xs sm:text-sm rounded-xl border border-neutral-200 px-3.5 py-2.5 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-[border-color,box-shadow] duration-150 ease-out"
                   />
-                  <span className="text-[11px] text-neutral-400">
-                    Displayed in PDF reader window headers and search engines.
-                  </span>
                 </div>
 
                 {/* Author */}
@@ -379,8 +357,8 @@ export function MetadataPdfView() {
                     type="text"
                     value={form.author}
                     onChange={(e) => setForm((prev) => ({ ...prev, author: e.target.value }))}
-                    placeholder="e.g. John Doe / Acme Corp"
-                    className="w-full text-xs sm:text-sm rounded-xl border border-neutral-200 px-3.5 py-2.5 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+                    placeholder="e.g. Acme Corp"
+                    className="w-full text-xs sm:text-sm rounded-xl border border-neutral-200 px-3.5 py-2.5 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-[border-color,box-shadow] duration-150 ease-out"
                   />
                 </div>
 
@@ -394,8 +372,8 @@ export function MetadataPdfView() {
                     type="text"
                     value={form.subject}
                     onChange={(e) => setForm((prev) => ({ ...prev, subject: e.target.value }))}
-                    placeholder="e.g. Q4 Executive Summary"
-                    className="w-full text-xs sm:text-sm rounded-xl border border-neutral-200 px-3.5 py-2.5 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+                    placeholder="e.g. Summary of operations"
+                    className="w-full text-xs sm:text-sm rounded-xl border border-neutral-200 px-3.5 py-2.5 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-[border-color,box-shadow] duration-150 ease-out"
                   />
                 </div>
 
@@ -409,47 +387,36 @@ export function MetadataPdfView() {
                     type="text"
                     value={form.keywords}
                     onChange={(e) => setForm((prev) => ({ ...prev, keywords: e.target.value }))}
-                    placeholder="e.g. finance, quarterly, report, 2026 (comma separated)"
-                    className="w-full text-xs sm:text-sm rounded-xl border border-neutral-200 px-3.5 py-2.5 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+                    placeholder="e.g. finance, quarterly, report (comma separated)"
+                    className="w-full text-xs sm:text-sm rounded-xl border border-neutral-200 px-3.5 py-2.5 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-[border-color,box-shadow] duration-150 ease-out"
                   />
-                  <span className="text-[11px] text-neutral-400">
-                    Helps index and categorize document in archiving systems.
-                  </span>
                 </div>
 
-                {/* Creator Application */}
+                {/* Creator Software */}
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="meta-creator" className="text-xs font-bold text-neutral-700 flex items-center gap-1">
-                    <span>Creator Software</span>
-                    <span title="The original program that authored the document" className="cursor-help text-neutral-400">
-                      <HiInformationCircle className="w-3.5 h-3.5" />
-                    </span>
+                  <label htmlFor="meta-creator" className="text-xs font-bold text-neutral-700">
+                    Creator Software
                   </label>
-                  <input
+                  <Combobox
                     id="meta-creator"
-                    type="text"
                     value={form.creator}
-                    onChange={(e) => setForm((prev) => ({ ...prev, creator: e.target.value }))}
-                    placeholder="e.g. Microsoft Word / InDesign"
-                    className="w-full text-xs sm:text-sm rounded-xl border border-neutral-200 px-3.5 py-2.5 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+                    onChange={(val) => setForm((prev) => ({ ...prev, creator: val }))}
+                    placeholder="e.g. Microsoft® Word for Microsoft 365"
+                    options={OFFICIAL_CREATOR_OPTIONS.map((item) => item.value)}
                   />
                 </div>
 
                 {/* Producer Engine */}
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="meta-producer" className="text-xs font-bold text-neutral-700 flex items-center gap-1">
-                    <span>PDF Producer</span>
-                    <span title="The conversion tool or PDF library" className="cursor-help text-neutral-400">
-                      <HiInformationCircle className="w-3.5 h-3.5" />
-                    </span>
+                  <label htmlFor="meta-producer" className="text-xs font-bold text-neutral-700">
+                    PDF Producer
                   </label>
-                  <input
+                  <Combobox
                     id="meta-producer"
-                    type="text"
                     value={form.producer}
-                    onChange={(e) => setForm((prev) => ({ ...prev, producer: e.target.value }))}
-                    placeholder="e.g. Acrobat Distiller"
-                    className="w-full text-xs sm:text-sm rounded-xl border border-neutral-200 px-3.5 py-2.5 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+                    onChange={(val) => setForm((prev) => ({ ...prev, producer: val }))}
+                    placeholder="e.g. Adobe PDF Library 17.0"
+                    options={OFFICIAL_PRODUCER_OPTIONS.map((item) => item.value)}
                   />
                 </div>
               </div>
@@ -460,7 +427,7 @@ export function MetadataPdfView() {
                   type="button"
                   onClick={handleUpdate}
                   disabled={isProcessing || isSanitizing}
-                  className="w-full sm:flex-1 flex items-center justify-center gap-2 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-white text-sm font-bold py-3.5 px-6 transition-colors shadow-sm cursor-pointer disabled:opacity-50"
+                  className="w-full sm:flex-1 flex items-center justify-center gap-2 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-white text-sm font-bold py-3.5 px-6 transition-colors shadow-sm cursor-pointer disabled:opacity-50 min-h-[44px]"
                 >
                   {isProcessing ? (
                     <>
@@ -479,10 +446,10 @@ export function MetadataPdfView() {
                   type="button"
                   onClick={handleDirectSanitize}
                   disabled={isProcessing || isSanitizing}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 hover:bg-neutral-100 text-neutral-700 text-sm font-semibold py-3.5 px-5 transition-colors cursor-pointer disabled:opacity-50"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 hover:bg-neutral-100 text-neutral-700 text-sm font-semibold py-3.5 px-5 transition-colors cursor-pointer disabled:opacity-50 min-h-[44px]"
                 >
                   <HiArrowDownTray className="w-4 h-4 text-neutral-500" />
-                  <span>Sanitize & Download</span>
+                  <span>Strip Metadata & Download</span>
                 </button>
               </div>
             </div>

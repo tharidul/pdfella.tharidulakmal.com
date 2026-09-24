@@ -158,7 +158,7 @@ export function ImageToPdfView() {
 
 
   return (
-    <main
+    <div
       className={
         images.length > 0
           ? "w-full max-w-6xl mx-auto px-4 py-6 flex flex-col"
@@ -169,7 +169,7 @@ export function ImageToPdfView() {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Convert images to PDF
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500">
+        <p className="text-xs sm:text-sm text-neutral-600">
           Upload JPG, PNG, or WebP images and compile them into a PDF document.
         </p>
       </div>
@@ -199,7 +199,7 @@ export function ImageToPdfView() {
               <button
                 type="button"
                 onClick={handleSelectFiles}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-neutral-200 text-neutral-700 bg-white hover:bg-neutral-50 text-xs font-semibold transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-neutral-200 text-neutral-700 bg-white hover:bg-neutral-50 text-xs font-semibold transition-colors cursor-pointer min-h-[36px]"
               >
                 <HiPlus className="w-4 h-4 text-brand-primary" />
                 <span>Add More Images</span>
@@ -207,7 +207,7 @@ export function ImageToPdfView() {
               <button
                 type="button"
                 onClick={handleClearAll}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-neutral-500 hover:text-brand-primary hover:bg-brand-subtle text-xs font-semibold transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-neutral-600 hover:text-brand-primary hover:bg-brand-subtle text-xs font-semibold transition-colors cursor-pointer min-h-[36px]"
               >
                 <HiTrash className="w-4 h-4" />
                 <span>Clear All</span>
@@ -225,7 +225,7 @@ export function ImageToPdfView() {
                 <span className="text-xs font-semibold text-neutral-800">
                   Images sequence ({images.length})
                 </span>
-                <span className="text-xs text-neutral-500">
+                <span className="text-xs text-neutral-600">
                   Use arrows to reorder pages
                 </span>
               </div>
@@ -244,7 +244,7 @@ export function ImageToPdfView() {
                         unoptimized
                         className="object-contain p-2"
                       />
-                      <span className="absolute top-2 left-2 bg-neutral-900/75 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-xs">
+                      <span className="absolute top-2 left-2 bg-neutral-900/75 text-white text-xs font-bold px-1.5 py-0.5 rounded shadow-xs">
                         {index + 1}
                       </span>
                     </div>
@@ -254,7 +254,7 @@ export function ImageToPdfView() {
                         <p className="text-xs font-bold text-neutral-800 truncate" title={item.name}>
                           {item.name}
                         </p>
-                        <span className="text-[10px] text-neutral-400">
+                        <span className="text-xs text-neutral-600">
                           {formatFileSize(item.size)}
                         </span>
                       </div>
@@ -266,7 +266,8 @@ export function ImageToPdfView() {
                             onClick={() => handleMoveUp(index)}
                             disabled={index === 0}
                             title="Move Left/Up"
-                            className="w-6 h-6 rounded flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 disabled:opacity-20 cursor-pointer disabled:cursor-not-allowed"
+                            aria-label={`Move image ${index + 1} up`}
+                            className="w-8 h-8 min-w-[32px] min-h-[32px] rounded flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 disabled:opacity-20 cursor-pointer disabled:cursor-not-allowed"
                           >
                             <HiArrowUp className="w-3.5 h-3.5" />
                           </button>
@@ -275,7 +276,8 @@ export function ImageToPdfView() {
                             onClick={() => handleMoveDown(index)}
                             disabled={index === images.length - 1}
                             title="Move Right/Down"
-                            className="w-6 h-6 rounded flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 disabled:opacity-20 cursor-pointer disabled:cursor-not-allowed"
+                            aria-label={`Move image ${index + 1} down`}
+                            className="w-8 h-8 min-w-[32px] min-h-[32px] rounded flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 disabled:opacity-20 cursor-pointer disabled:cursor-not-allowed"
                           >
                             <HiArrowDown className="w-3.5 h-3.5" />
                           </button>
@@ -285,7 +287,8 @@ export function ImageToPdfView() {
                           type="button"
                           onClick={() => handleDelete(item.id)}
                           title="Remove image"
-                          className="w-6 h-6 rounded flex items-center justify-center text-neutral-400 hover:text-brand-primary hover:bg-brand-subtle cursor-pointer transition-colors"
+                          aria-label={`Remove image ${index + 1}`}
+                          className="w-8 h-8 min-w-[32px] min-h-[32px] rounded flex items-center justify-center text-neutral-500 hover:text-brand-primary hover:bg-brand-subtle cursor-pointer transition-colors"
                         >
                           <HiTrash className="w-3.5 h-3.5" />
                         </button>
@@ -342,7 +345,7 @@ export function ImageToPdfView() {
                     Document summary
                   </span>
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-neutral-500">Output document:</span>
+                    <span className="text-neutral-600">Output document:</span>
                     <span className="font-bold text-brand-primary">
                       {images.length} {images.length === 1 ? "page" : "pages"}
                     </span>
@@ -356,7 +359,7 @@ export function ImageToPdfView() {
                     type="button"
                     onClick={handleConvert}
                     disabled={isConverting || images.length === 0}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer min-h-[44px]"
                   >
                     {isConverting ? (
                       <>
@@ -371,7 +374,7 @@ export function ImageToPdfView() {
                     )}
                   </button>
 
-                  <p className="text-[11px] text-neutral-400 text-center leading-relaxed">
+                  <p className="text-xs text-neutral-600 text-center leading-relaxed">
                     All conversion executes locally in your browser.
                   </p>
                 </div>
@@ -381,6 +384,6 @@ export function ImageToPdfView() {
         </div>
       )}
 
-    </main>
+    </div>
   );
 }

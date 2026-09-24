@@ -188,7 +188,7 @@ export function PdfToImageView() {
   };
 
   return (
-    <main
+    <div
       className={
         hasFile
           ? "w-full max-w-6xl mx-auto px-4 py-6 flex flex-col"
@@ -199,7 +199,7 @@ export function PdfToImageView() {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Extract PDF pages as images
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500">
+        <p className="text-xs sm:text-sm text-neutral-600">
           Convert PDF pages into PNG or JPG images, or download all pages in a single ZIP file.
         </p>
       </div>
@@ -217,7 +217,7 @@ export function PdfToImageView() {
                 <span className="text-sm font-bold text-neutral-900 truncate max-w-xs sm:max-w-md">
                   {fileName}
                 </span>
-                <span className="text-xs text-neutral-400 mt-0.5">
+                <span className="text-xs text-neutral-600 mt-0.5">
                   {formatFileSize(fileSize)} • {pageCount} pages
                 </span>
               </div>
@@ -226,7 +226,7 @@ export function PdfToImageView() {
             <button
               type="button"
               onClick={resetAll}
-              className="text-xs font-semibold text-neutral-500 hover:text-neutral-800 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+              className="text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer min-h-[36px] inline-flex items-center"
             >
               Choose different file
             </button>
@@ -238,7 +238,7 @@ export function PdfToImageView() {
                 <span className="text-xs font-semibold text-neutral-800">
                   Document pages ({pages.length})
                 </span>
-                <span className="text-xs text-neutral-500">
+                <span className="text-xs text-neutral-600">
                   Select pages to package or download individual images
                 </span>
               </div>
@@ -247,8 +247,18 @@ export function PdfToImageView() {
                 {pages.map((p) => (
                   <div
                     key={p.pageNumber}
+                    role="checkbox"
+                    tabIndex={0}
+                    aria-checked={p.selected}
+                    aria-label={`Page ${p.pageNumber}, ${p.selected ? "selected" : "not selected"}`}
                     onClick={() => togglePageSelection(p.pageNumber)}
-                    className={`group relative rounded-xl p-2 flex flex-col bg-white shadow-xs transition-colors duration-150 cursor-pointer select-none ${
+                    onKeyDown={(e) => {
+                      if (e.key === " " || e.key === "Enter") {
+                        e.preventDefault();
+                        togglePageSelection(p.pageNumber);
+                      }
+                    }}
+                    className={`group relative rounded-xl p-2 flex flex-col bg-white shadow-xs transition-colors duration-150 cursor-pointer select-none focus:outline-hidden focus:ring-2 focus:ring-brand-primary ${
                       p.selected
                         ? "border-2 border-brand-primary"
                         : "border border-neutral-200 hover:border-neutral-300"
@@ -264,9 +274,9 @@ export function PdfToImageView() {
                           className="object-contain p-2"
                         />
                       ) : (
-                        <div className="flex flex-col items-center justify-center text-neutral-400 gap-1">
-                          <HiSquares2X2 className="w-8 h-8 animate-pulse text-neutral-300" />
-                          <span className="text-[10px]">Loading preview...</span>
+                        <div className="flex flex-col items-center justify-center text-neutral-500 gap-1">
+                          <HiSquares2X2 className="w-8 h-8 animate-pulse text-neutral-400" />
+                          <span className="text-xs">Loading preview...</span>
                         </div>
                       )}
                     </div>
@@ -292,7 +302,8 @@ export function PdfToImageView() {
                           handleDownloadSingle(p.pageNumber);
                         }}
                         disabled={exportingPageNum === p.pageNumber}
-                        className="inline-flex items-center gap-1 text-[11px] font-bold text-brand-primary hover:bg-brand-subtle px-2 py-1 rounded-md transition-colors cursor-pointer disabled:opacity-50"
+                        aria-label={`Download Page ${p.pageNumber} as ${format.toUpperCase()}`}
+                        className="inline-flex items-center gap-1 text-xs font-bold text-brand-primary hover:bg-brand-subtle px-2.5 py-1.5 rounded-md transition-colors cursor-pointer disabled:opacity-50 min-h-[32px]"
                       >
                         {exportingPageNum === p.pageNumber ? (
                           <HiArrowPath className="w-3.5 h-3.5 animate-spin" />
@@ -311,14 +322,14 @@ export function PdfToImageView() {
               <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-xs flex flex-col gap-5">
                 <div className="space-y-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-neutral-700 block">
+                    <span className="text-xs font-semibold text-neutral-700 block">
                       Image format
-                    </label>
+                    </span>
                     <div className="grid grid-cols-2 gap-2">
                       <button
                         type="button"
                         onClick={() => setFormat("png")}
-                        className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer border ${
+                        className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer border min-h-[36px] ${
                           format === "png"
                             ? "bg-brand-primary text-white border-brand-primary"
                             : "bg-neutral-50 text-neutral-700 border-neutral-200 hover:bg-neutral-100"
@@ -329,7 +340,7 @@ export function PdfToImageView() {
                       <button
                         type="button"
                         onClick={() => setFormat("jpeg")}
-                        className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer border ${
+                        className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer border min-h-[36px] ${
                           format === "jpeg"
                             ? "bg-brand-primary text-white border-brand-primary"
                             : "bg-neutral-50 text-neutral-700 border-neutral-200 hover:bg-neutral-100"
@@ -341,14 +352,14 @@ export function PdfToImageView() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-neutral-700 block">
+                    <span className="text-xs font-semibold text-neutral-700 block">
                       Resolution
-                    </label>
+                    </span>
                     <div className="grid grid-cols-2 gap-2">
                       <button
                         type="button"
                         onClick={() => setResolution("standard")}
-                        className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer border ${
+                        className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer border min-h-[36px] ${
                           resolution === "standard"
                             ? "bg-brand-primary text-white border-brand-primary"
                             : "bg-neutral-50 text-neutral-700 border-neutral-200 hover:bg-neutral-100"
@@ -359,7 +370,7 @@ export function PdfToImageView() {
                       <button
                         type="button"
                         onClick={() => setResolution("high")}
-                        className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer border ${
+                        className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-colors cursor-pointer border min-h-[36px] ${
                           resolution === "high"
                             ? "bg-brand-primary text-white border-brand-primary"
                             : "bg-neutral-50 text-neutral-700 border-neutral-200 hover:bg-neutral-100"
@@ -382,7 +393,7 @@ export function PdfToImageView() {
                       <button
                         type="button"
                         onClick={() => selectAll(true)}
-                        className="text-xs font-semibold text-brand-primary hover:underline cursor-pointer"
+                        className="text-xs font-semibold text-brand-primary hover:underline cursor-pointer min-h-[32px] px-1.5 py-1 inline-flex items-center"
                       >
                         All
                       </button>
@@ -390,7 +401,7 @@ export function PdfToImageView() {
                       <button
                         type="button"
                         onClick={() => selectAll(false)}
-                        className="text-xs font-semibold text-neutral-500 hover:underline cursor-pointer"
+                        className="text-xs font-semibold text-neutral-600 hover:underline cursor-pointer min-h-[32px] px-1.5 py-1 inline-flex items-center"
                       >
                         None
                       </button>
@@ -398,11 +409,11 @@ export function PdfToImageView() {
                   </div>
 
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-neutral-500">Selected pages:</span>
+                    <span className="text-neutral-600">Selected pages:</span>
                     <span className="font-bold text-brand-primary">{selectedCount} of {pages.length}</span>
                   </div>
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-neutral-500">Output package:</span>
+                    <span className="text-neutral-600">Output package:</span>
                     <span className="font-semibold text-neutral-800">
                       {selectedCount} {selectedCount === 1 ? "image" : "images"} in .ZIP
                     </span>
@@ -416,7 +427,7 @@ export function PdfToImageView() {
                     type="button"
                     onClick={handleDownloadZip}
                     disabled={isExportingZip || selectedCount === 0}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer min-h-[44px]"
                   >
                     {isExportingZip ? (
                       <>
@@ -431,7 +442,7 @@ export function PdfToImageView() {
                     )}
                   </button>
 
-                  <p className="text-[11px] text-neutral-400 text-center leading-relaxed">
+                  <p className="text-xs text-neutral-600 text-center leading-relaxed">
                     All image extraction executes locally in your browser.
                   </p>
                 </div>
@@ -441,6 +452,6 @@ export function PdfToImageView() {
         </div>
       )}
 
-    </main>
+    </div>
   );
 }

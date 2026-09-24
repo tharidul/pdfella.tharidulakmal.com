@@ -122,14 +122,32 @@ export function SignaturePadModal({ isOpen, onClose, onSave }: SignaturePadModal
     onClose();
   };
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 animate-in fade-in duration-150">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="signature-dialog-title"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 animate-in fade-in duration-150"
+    >
       <div className="w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-lg border border-neutral-200">
         <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-4">
           <div>
-            <h3 className="text-lg font-bold text-neutral-900">Create Signature</h3>
+            <h3 id="signature-dialog-title" className="text-lg font-bold text-neutral-900">
+              Create Signature
+            </h3>
             <p className="text-xs text-neutral-600 mt-0.5">
               Draw, type, or upload your signature. All processing is 100% private in your browser.
             </p>
@@ -137,9 +155,10 @@ export function SignaturePadModal({ isOpen, onClose, onSave }: SignaturePadModal
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-800 transition-colors cursor-pointer"
+            aria-label="Close signature dialog"
+            className="min-w-[44px] min-h-[44px] rounded-lg flex items-center justify-center text-neutral-500 hover:bg-neutral-100 hover:text-neutral-800 transition-colors cursor-pointer"
           >
-            <HiXMark className="w-5 h-5" />
+            <HiXMark className="w-5 h-5" aria-hidden="true" />
           </button>
         </div>
 

@@ -66,8 +66,11 @@ export function SidebarNavList({
 
         if (isActive) {
           return (
-            <div
+            <Link
               key={item.id}
+              href={item.href}
+              prefetch={false}
+              aria-current="page"
               title={item.name}
               className="relative flex items-center px-5 py-3 bg-brand-subtle rounded-r-xl transition-colors duration-200 cursor-pointer"
             >
@@ -89,7 +92,7 @@ export function SidebarNavList({
                   {item.description}
                 </span>
               </div>
-            </div>
+            </Link>
           );
         }
 

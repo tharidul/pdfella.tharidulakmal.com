@@ -91,8 +91,11 @@ export function WatermarkControls({
         {watermarkType === "text" ? (
           <>
             <div className="flex flex-col space-y-2">
-              <label className="text-xs font-bold text-neutral-700">Watermark Text</label>
+              <label htmlFor="watermark-text-input" className="text-xs font-bold text-neutral-700">
+                Watermark Text
+              </label>
               <input
+                id="watermark-text-input"
                 type="text"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
@@ -105,7 +108,7 @@ export function WatermarkControls({
                     key={preset}
                     type="button"
                     onClick={() => setText(preset)}
-                    className="px-2.5 py-1 text-[10px] font-bold rounded-md bg-neutral-100 text-neutral-600 hover:bg-brand-primary hover:text-white transition-colors cursor-pointer"
+                    className="px-2.5 py-1 text-xs font-semibold rounded-md bg-neutral-100 text-neutral-700 hover:bg-brand-primary hover:text-white transition-colors cursor-pointer min-h-[30px] flex items-center"
                   >
                     {preset}
                   </button>
@@ -115,10 +118,11 @@ export function WatermarkControls({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col space-y-2">
-                <label className="text-xs font-bold text-neutral-700">
+                <label htmlFor="watermark-font-size-input" className="text-xs font-bold text-neutral-700">
                   Font Size ({fontSize} pt)
                 </label>
                 <input
+                  id="watermark-font-size-input"
                   type="range"
                   min="24"
                   max="80"
@@ -130,7 +134,7 @@ export function WatermarkControls({
               </div>
 
               <div className="flex flex-col space-y-2">
-                <label className="text-xs font-bold text-neutral-700">Color</label>
+                <span className="text-xs font-bold text-neutral-700">Color</span>
                 <div className="flex items-center gap-2">
                   {COLOR_PRESETS.map((c) => (
                     <button
@@ -138,7 +142,8 @@ export function WatermarkControls({
                       type="button"
                       onClick={() => setColorHex(c.value)}
                       title={c.label}
-                      className={`w-7 h-7 rounded-full border-2 transition-colors duration-150 cursor-pointer ${
+                      aria-label={`Watermark color: ${c.label}`}
+                      className={`w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-2 transition-colors duration-150 cursor-pointer ${
                         colorHex === c.value
                           ? "border-brand-primary ring-2 ring-brand-primary/30"
                           : "border-neutral-200 hover:border-neutral-400"
@@ -152,12 +157,13 @@ export function WatermarkControls({
           </>
         ) : (
           <div className="flex flex-col space-y-3">
-            <label className="text-xs font-bold text-neutral-700">Watermark Image / Logo</label>
+            <span className="text-xs font-bold text-neutral-700">Watermark Image / Logo</span>
             <input
               ref={imageInputRef}
+              id="watermark-image-input"
               type="file"
               accept="image/png,image/jpeg"
-              className="hidden"
+              className="sr-only"
               onChange={onImageUploaded}
             />
 
@@ -177,28 +183,31 @@ export function WatermarkControls({
                   <button
                     type="button"
                     onClick={() => imageInputRef.current?.click()}
-                    className="text-[11px] text-brand-primary hover:underline font-medium text-left mt-0.5 cursor-pointer"
+                    className="text-xs text-brand-primary hover:underline font-semibold text-left mt-1 cursor-pointer"
                   >
                     Change Logo Image
                   </button>
                 </div>
               </div>
             ) : (
-              <div
+              <button
+                type="button"
                 onClick={() => imageInputRef.current?.click()}
-                className="border border-neutral-200 bg-neutral-50/40 rounded-xl p-6 text-center cursor-pointer hover:bg-neutral-50 hover:border-neutral-300 transition-colors shadow-2xs"
+                aria-label="Upload watermark logo image"
+                className="w-full border border-neutral-200 bg-neutral-50/40 rounded-xl p-6 text-center cursor-pointer hover:bg-neutral-50 hover:border-neutral-300 transition-colors shadow-2xs block"
               >
-                <HiPhoto className="w-8 h-8 text-neutral-400 mx-auto mb-1" />
-                <span className="text-xs font-bold text-neutral-700">Click to upload logo</span>
-                <p className="text-[11px] text-neutral-400">PNG with transparency recommended</p>
-              </div>
+                <HiPhoto className="w-8 h-8 text-neutral-500 mx-auto mb-1" />
+                <span className="text-xs font-bold text-neutral-700 block">Click to upload logo</span>
+                <p className="text-xs text-neutral-600 mt-0.5">PNG with transparency recommended</p>
+              </button>
             )}
 
             <div className="flex flex-col space-y-2 pt-2">
-              <label className="text-xs font-bold text-neutral-700">
+              <label htmlFor="watermark-scale-input" className="text-xs font-bold text-neutral-700">
                 Logo Scale ({Math.round(imageScale * 100)}%)
               </label>
               <input
+                id="watermark-scale-input"
                 type="range"
                 min="0.2"
                 max="1.0"
@@ -213,9 +222,9 @@ export function WatermarkControls({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-neutral-100">
           <div className="flex flex-col space-y-2">
-            <label className="text-xs font-bold text-neutral-700">
+            <span className="text-xs font-bold text-neutral-700">
               Rotation ({rotation}&deg;)
-            </label>
+            </span>
             <div className="grid grid-cols-3 gap-1.5">
               {[
                 { label: "-45°", val: -45 },
@@ -226,7 +235,8 @@ export function WatermarkControls({
                   key={item.val}
                   type="button"
                   onClick={() => setRotation(item.val)}
-                  className={`py-1.5 text-[11px] font-bold rounded-lg transition-colors cursor-pointer border ${
+                  aria-label={`Rotate watermark ${item.label}`}
+                  className={`py-1.5 text-xs font-semibold rounded-lg transition-colors cursor-pointer border min-h-[32px] ${
                     rotation === item.val
                       ? "bg-brand-primary text-white border-brand-primary"
                       : "bg-neutral-50 text-neutral-700 border-neutral-200 hover:bg-neutral-100"
@@ -239,10 +249,11 @@ export function WatermarkControls({
           </div>
 
           <div className="flex flex-col space-y-2">
-            <label className="text-xs font-bold text-neutral-700">
+            <label htmlFor="watermark-opacity-input" className="text-xs font-bold text-neutral-700">
               Opacity ({Math.round(opacity * 100)}%)
             </label>
             <input
+              id="watermark-opacity-input"
               type="range"
               min="0.1"
               max="0.8"
@@ -275,7 +286,7 @@ export function WatermarkControls({
             type="button"
             onClick={onProcess}
             disabled={isProcessing}
-            className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer min-h-[44px]"
           >
             {isProcessing ? (
               <>
@@ -290,7 +301,7 @@ export function WatermarkControls({
             )}
           </button>
 
-          <p className="text-[11px] text-neutral-400 text-center leading-relaxed">
+          <p className="text-xs text-neutral-600 text-center leading-relaxed">
             All watermarking executes locally in your browser.
           </p>
         </div>

@@ -97,12 +97,21 @@ export function DropZone({
 
   return (
     <div
+      role="button"
+      tabIndex={0}
+      aria-label={`${title}. Drag and drop files here, or press Enter or Space to browse files.`}
       onClick={handleButtonClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleButtonClick();
+        }
+      }}
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className={`group w-full rounded-2xl py-10 px-6 sm:py-12 sm:px-8 text-center cursor-pointer mb-6 transition-colors duration-150 flex flex-col items-center justify-center select-none ${
+      className={`group w-full rounded-2xl py-10 px-6 sm:py-12 sm:px-8 text-center cursor-pointer mb-6 transition-colors duration-150 flex flex-col items-center justify-center select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 ${
         isDragging
           ? "border-2 border-solid border-brand-primary bg-brand-subtle ring-4 ring-brand-border shadow-sm"
           : "border border-neutral-200/90 bg-neutral-50/40 hover:bg-neutral-50/90 hover:border-neutral-300 shadow-2xs hover:shadow-xs"
@@ -113,7 +122,8 @@ export function DropZone({
         type="file"
         multiple={multiple}
         accept={accept}
-        className="hidden"
+        className="sr-only"
+        tabIndex={-1}
         onChange={handleInputChange}
       />
 
@@ -131,17 +141,18 @@ export function DropZone({
         {isDragging ? "Release to drop files here" : title}
       </h2>
 
-      <p className="text-xs text-neutral-500 mt-1 max-w-md leading-relaxed">
+      <p className="text-xs text-neutral-600 mt-1 max-w-md leading-relaxed">
         {subtitle}
       </p>
 
       <button
         type="button"
+        tabIndex={-1}
         onClick={(e) => {
           e.stopPropagation();
           handleButtonClick();
         }}
-        className="mt-4 px-4 py-2 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-semibold transition-colors shadow-2xs hover:shadow-xs cursor-pointer inline-flex items-center gap-1.5"
+        className="mt-4 px-5 py-2.5 min-h-[40px] rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-semibold transition-colors shadow-2xs hover:shadow-xs cursor-pointer inline-flex items-center gap-1.5"
       >
         <HiPlus className="w-3.5 h-3.5" />
         <span>Select Files</span>

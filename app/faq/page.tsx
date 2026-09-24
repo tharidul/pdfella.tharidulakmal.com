@@ -121,7 +121,7 @@ const ALL_FAQS: FaqItem[] = FAQ_CATEGORIES.flatMap((c) => c.items);
 export default function FaqPage() {
   return (
     <AppLayout>
-      <main className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex flex-col">
+      <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex flex-col">
         <div className="mb-10 text-left">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
             Frequently Asked Questions
@@ -159,7 +159,7 @@ export default function FaqPage() {
             </div>
           ))}
         </div>
-      </main>
+      </div>
       <JsonLd
         toolName="PDFella FAQs"
         toolDescription="Frequently Asked Questions about PDFella: 100% browser-based security, document limits, offline capabilities, and features."

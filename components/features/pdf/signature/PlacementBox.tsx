@@ -48,7 +48,16 @@ export function PlacementBox({
 
   return (
     <div
+      role="region"
+      aria-label={`Signature stamp: ${placement.label ?? "Signature"}`}
+      tabIndex={0}
       onPointerDown={onDragStart}
+      onKeyDown={(e) => {
+        if (!isSelected && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          onSelect();
+        }
+      }}
       style={{
         left: `${leftPct}%`,
         top: `${topPct}%`,
@@ -58,7 +67,7 @@ export function PlacementBox({
         willChange: isCurrentDragged ? "transform" : undefined,
         zIndex: isSelected ? 20 : 10,
       }}
-      className={`group absolute cursor-move select-none touch-none ${
+      className={`group absolute cursor-move select-none touch-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary ${
         isSelected
           ? "border-2 border-dashed border-brand-primary rounded shadow-xs"
           : "border border-transparent hover:border-neutral-400/50 rounded"
@@ -100,9 +109,9 @@ export function PlacementBox({
         <div
           onPointerDown={onDragStart}
           title="Drag to move signature"
-          className="flex items-center gap-1 text-[11px] font-semibold text-neutral-600 px-1 py-0.5 rounded cursor-grab active:cursor-grabbing hover:bg-neutral-100 transition-colors"
+          className="flex items-center gap-1 text-xs font-semibold text-neutral-700 px-1 py-0.5 rounded cursor-grab active:cursor-grabbing hover:bg-neutral-100 transition-colors"
         >
-          <RxDragHandleDots2 className="w-3.5 h-3.5 text-neutral-400" />
+          <RxDragHandleDots2 className="w-4 h-4 text-neutral-500" />
           <span>Move</span>
         </div>
 
@@ -116,12 +125,13 @@ export function PlacementBox({
               e.stopPropagation();
               setActiveDownloadMenuId((prev) => (prev === placement.id ? null : placement.id));
             }}
+            aria-label="Download signature PNG"
             title="Download signature PNG"
-            className={`p-1 rounded text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 transition-colors cursor-pointer ${
+            className={`min-w-[32px] min-h-[32px] flex items-center justify-center p-1 rounded text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 transition-colors cursor-pointer ${
               activeDownloadMenuId === placement.id ? "bg-neutral-100 text-neutral-900" : ""
             }`}
           >
-            <HiArrowDownTray className="w-3.5 h-3.5" />
+            <HiArrowDownTray className="w-4 h-4" />
           </button>
 
           {activeDownloadMenuId === placement.id && (
@@ -130,7 +140,7 @@ export function PlacementBox({
               onPointerDown={(e) => e.stopPropagation()}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="px-2.5 py-1 text-[10px] font-semibold text-neutral-500 border-b border-neutral-100 mb-1">
+              <div className="px-2.5 py-1 text-xs font-semibold text-neutral-600 border-b border-neutral-100 mb-1">
                 Download Signature
               </div>
               <button
@@ -148,7 +158,7 @@ export function PlacementBox({
                 className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-neutral-800 hover:bg-brand-subtle hover:text-brand-primary flex items-center justify-between cursor-pointer transition-colors"
               >
                 <span>Transparent PNG</span>
-                <span className="text-[10px] text-neutral-500 bg-neutral-100 px-1.5 py-0.5 rounded font-medium">Clear</span>
+                <span className="text-xs text-neutral-600 bg-neutral-100 px-1.5 py-0.5 rounded font-medium">Clear</span>
               </button>
               <button
                 type="button"
@@ -165,7 +175,7 @@ export function PlacementBox({
                 className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-neutral-800 hover:bg-brand-subtle hover:text-brand-primary flex items-center justify-between cursor-pointer transition-colors"
               >
                 <span>White BG PNG</span>
-                <span className="text-[10px] text-neutral-500 bg-neutral-100 px-1.5 py-0.5 rounded font-medium">Solid</span>
+                <span className="text-xs text-neutral-600 bg-neutral-100 px-1.5 py-0.5 rounded font-medium">Solid</span>
               </button>
             </div>
           )}
@@ -178,14 +188,18 @@ export function PlacementBox({
             e.stopPropagation();
             onDelete();
           }}
+          aria-label="Delete signature"
           title="Delete signature"
-          className="p-1 text-neutral-400 hover:text-brand-primary hover:bg-brand-subtle rounded transition-colors cursor-pointer"
+          className="min-w-[32px] min-h-[32px] flex items-center justify-center p-1 text-neutral-500 hover:text-brand-primary hover:bg-brand-subtle rounded transition-colors cursor-pointer"
         >
-          <HiTrash className="w-3.5 h-3.5" />
+          <HiTrash className="w-4 h-4" />
         </button>
       </div>
 
       <div
+        role="button"
+        tabIndex={0}
+        aria-label="Resize signature top-left"
         onPointerDown={(e) => onResizeStart(e, "tl")}
         title="Resize signature"
         className={`absolute -top-1.5 -left-1.5 w-3.5 h-3.5 bg-white border-2 border-brand-primary rounded-full shadow-xs cursor-nwse-resize transition-opacity z-20 ${
@@ -194,6 +208,9 @@ export function PlacementBox({
       />
 
       <div
+        role="button"
+        tabIndex={0}
+        aria-label="Resize signature top-right"
         onPointerDown={(e) => onResizeStart(e, "tr")}
         title="Resize signature"
         className={`absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-white border-2 border-brand-primary rounded-full shadow-xs cursor-nesw-resize transition-opacity z-20 ${
@@ -202,6 +219,9 @@ export function PlacementBox({
       />
 
       <div
+        role="button"
+        tabIndex={0}
+        aria-label="Resize signature bottom-left"
         onPointerDown={(e) => onResizeStart(e, "bl")}
         title="Resize signature"
         className={`absolute -bottom-1.5 -left-1.5 w-3.5 h-3.5 bg-white border-2 border-brand-primary rounded-full shadow-xs cursor-nesw-resize transition-opacity z-20 ${
@@ -210,13 +230,16 @@ export function PlacementBox({
       />
 
       <div
+        role="button"
+        tabIndex={0}
+        aria-label="Resize signature bottom-right"
         onPointerDown={(e) => onResizeStart(e, "br")}
         title="Resize signature (aspect ratio locked)"
         className={`absolute -bottom-2.5 -right-2.5 w-5 h-5 bg-brand-primary text-white rounded-full shadow-md cursor-nwse-resize transition-opacity z-20 flex items-center justify-center ${
           isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-100"
         }`}
       >
-        <span className="text-[10px] font-bold leading-none select-none">⤡</span>
+        <span className="text-xs font-bold leading-none select-none">⤡</span>
       </div>
     </div>
   );

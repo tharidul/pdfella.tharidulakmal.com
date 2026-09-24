@@ -75,7 +75,7 @@ export function Sidebar() {
               type="button"
               onClick={closeMobile}
               aria-label="Close menu"
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-colors cursor-pointer"
+              className="min-w-[44px] min-h-[44px] w-11 h-11 rounded-lg flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-colors cursor-pointer"
             >
               <HiXMark className="w-5 h-5" />
             </button>

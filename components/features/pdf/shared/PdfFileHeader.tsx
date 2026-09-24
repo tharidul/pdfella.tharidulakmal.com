@@ -32,7 +32,7 @@ export function PdfFileHeader({
           <span className="text-sm font-bold text-neutral-900 truncate max-w-xs sm:max-w-md">
             {fileName}
           </span>
-          <div className="flex items-center gap-2 text-xs text-neutral-400 mt-0.5">
+          <div className="flex items-center gap-2 text-xs text-neutral-600 mt-0.5">
             <span>{sizeDisplay}</span>
             {pageCount !== undefined && (
               <>
@@ -48,7 +48,7 @@ export function PdfFileHeader({
       <button
         type="button"
         onClick={onReset}
-        className="text-xs font-semibold text-neutral-500 hover:text-neutral-800 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+        className="text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 px-3 py-2 min-h-[36px] flex items-center rounded-lg transition-colors cursor-pointer"
       >
         {resetLabel}
       </button>

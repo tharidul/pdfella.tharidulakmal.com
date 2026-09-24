@@ -86,8 +86,18 @@ export function SplitPdfView() {
                 {pages.map((page) => (
                   <div
                     key={page.number}
+                    role="checkbox"
+                    aria-checked={page.selected}
+                    aria-label={`Page ${page.number}${page.selected ? ", selected" : ""}`}
+                    tabIndex={0}
                     onClick={() => togglePage(page.number)}
-                    className={`relative rounded-xl p-3 flex flex-col items-center justify-between h-40 cursor-pointer select-none transition-colors duration-150 bg-white ${
+                    onKeyDown={(e) => {
+                      if (e.key === " " || e.key === "Enter") {
+                        e.preventDefault();
+                        togglePage(page.number);
+                      }
+                    }}
+                    className={`relative rounded-xl p-3 flex flex-col items-center justify-between h-40 cursor-pointer select-none transition-colors duration-150 bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 ${
                       page.selected
                         ? "border-2 border-brand-primary shadow-xs"
                         : "border border-neutral-200 hover:border-neutral-300"
@@ -130,7 +140,7 @@ export function SplitPdfView() {
                             <div className="h-1 bg-neutral-200 rounded-full w-4/5" />
                             <div className="h-1 bg-neutral-200 rounded-full w-2/3" />
                           </div>
-                          <span className="text-[9px] text-center text-neutral-400 font-medium">
+                          <span className="text-xs text-center text-neutral-600 font-medium">
                             Page {page.number}
                           </span>
                         </>
@@ -162,14 +172,14 @@ export function SplitPdfView() {
                     <button
                       type="button"
                       onClick={selectAll}
-                      className="flex-1 text-xs font-semibold py-1.5 px-2 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 transition-colors cursor-pointer text-center"
+                      className="flex-1 text-xs font-semibold py-2 px-3 min-h-[38px] rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-800 transition-colors cursor-pointer text-center flex items-center justify-center"
                     >
                       Select All
                     </button>
                     <button
                       type="button"
                       onClick={clearSelection}
-                      className="flex-1 text-xs font-semibold py-1.5 px-2 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 transition-colors cursor-pointer text-center"
+                      className="flex-1 text-xs font-semibold py-2 px-3 min-h-[38px] rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-800 transition-colors cursor-pointer text-center flex items-center justify-center"
                     >
                       Clear
                     </button>
@@ -179,15 +189,15 @@ export function SplitPdfView() {
                 <hr className="border-neutral-100" />
 
                 <div className="space-y-2">
-                  <span className="text-xs font-semibold text-neutral-700 block">
+                  <span className="text-xs font-semibold text-neutral-800 block">
                     Selection summary
                   </span>
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-neutral-500">Selected pages:</span>
+                    <span className="text-neutral-600">Selected pages:</span>
                     <span className="font-bold text-brand-primary">{selectedCount} of {pages.length}</span>
                   </div>
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-neutral-500">Output document:</span>
+                    <span className="text-neutral-600">Output document:</span>
                     <span className="font-semibold text-neutral-800">
                       {selectedCount} {selectedCount === 1 ? "page" : "pages"}
                     </span>

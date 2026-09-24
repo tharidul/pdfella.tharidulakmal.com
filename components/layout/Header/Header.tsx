@@ -15,7 +15,7 @@ export function Header() {
           type="button"
           onClick={toggle}
           aria-label="Open navigation menu"
-          className="w-9 h-9 flex items-center justify-center rounded-lg text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100 transition-colors cursor-pointer"
+          className="min-w-[44px] min-h-[44px] w-11 h-11 flex items-center justify-center rounded-lg text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100 transition-colors cursor-pointer"
         >
           <HiBars3 className="w-6 h-6" />
         </button>

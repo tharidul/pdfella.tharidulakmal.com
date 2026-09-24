@@ -149,7 +149,7 @@ export function PageNumbersView() {
   };
 
   return (
-    <main
+    <div
       className={
         hasFile
           ? "w-full max-w-6xl mx-auto px-4 py-6 flex flex-col"
@@ -160,7 +160,7 @@ export function PageNumbersView() {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
           Add page numbers to PDF
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500">
+        <p className="text-xs sm:text-sm text-neutral-600">
           Insert customizable page numbers, position them, and format numbers directly in your browser.
         </p>
       </div>
@@ -178,7 +178,7 @@ export function PageNumbersView() {
                 <span className="text-sm font-bold text-neutral-900 truncate max-w-xs sm:max-w-md">
                   {fileName}
                 </span>
-                <span className="text-xs text-neutral-400 mt-0.5">
+                <span className="text-xs text-neutral-600 mt-0.5">
                   {formatFileSize(fileSize)} • {pageCount} {pageCount === 1 ? "page" : "pages"}
                 </span>
               </div>
@@ -187,7 +187,7 @@ export function PageNumbersView() {
             <button
               type="button"
               onClick={resetAll}
-              className="text-xs font-semibold text-neutral-500 hover:text-neutral-800 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+              className="text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer min-h-[36px] inline-flex items-center"
             >
               Choose different file
             </button>
@@ -199,7 +199,7 @@ export function PageNumbersView() {
                 <span className="text-xs font-semibold text-neutral-800">
                   Document preview
                 </span>
-                <p className="text-[11px] text-neutral-400 mt-0.5">
+                <p className="text-xs text-neutral-600 mt-0.5">
                   Visual approximation of page number placement on Page 1
                 </p>
               </div>
@@ -214,9 +214,9 @@ export function PageNumbersView() {
                     className="object-contain p-1"
                   />
                 ) : (
-                  <div className="flex flex-col items-center justify-center text-neutral-400 gap-1">
-                    <HiSquares2X2 className="w-8 h-8 animate-pulse text-neutral-300" />
-                    <span className="text-[10px]">Loading preview...</span>
+                  <div className="flex flex-col items-center justify-center text-neutral-500 gap-1">
+                    <HiSquares2X2 className="w-8 h-8 animate-pulse text-neutral-400" />
+                    <span className="text-xs">Loading preview...</span>
                   </div>
                 )}
 
@@ -248,9 +248,9 @@ export function PageNumbersView() {
                   </span>
 
                   <div className="flex flex-col space-y-2">
-                    <label className="text-xs font-bold text-neutral-700">
+                    <span className="text-xs font-bold text-neutral-700">
                       Placement on Page
-                    </label>
+                    </span>
                     <div className="grid grid-cols-3 gap-2 bg-neutral-100/70 p-2.5 rounded-xl border border-neutral-200/60">
                       {POSITIONS.map((pos) => {
                         const isSelected = position === pos.id;
@@ -259,7 +259,8 @@ export function PageNumbersView() {
                             key={pos.id}
                             type="button"
                             onClick={() => setPosition(pos.id)}
-                            className={`py-2 px-1.5 rounded-lg text-xs font-semibold flex flex-col items-center justify-center transition-colors duration-150 cursor-pointer ${
+                            aria-label={`Position: ${pos.label}`}
+                            className={`py-2 px-1.5 rounded-lg text-xs font-semibold flex flex-col items-center justify-center transition-colors duration-150 cursor-pointer min-h-[38px] ${
                               isSelected
                                 ? "bg-brand-primary text-white shadow-xs"
                                 : "bg-white text-neutral-700 hover:bg-neutral-50 border border-neutral-200/60"
@@ -274,7 +275,7 @@ export function PageNumbersView() {
                 </div>
 
                 <div className="flex flex-col space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-700">Text Format</label>
+                  <span className="text-xs font-bold text-neutral-700">Text Format</span>
                   <Select
                     value={format}
                     onChange={(val) => setFormat(val as PageNumberFormat)}
@@ -285,8 +286,11 @@ export function PageNumbersView() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col space-y-2">
-                    <label className="text-xs font-bold text-neutral-700">Font Size ({fontSize} pt)</label>
+                    <label htmlFor="page-number-font-size" className="text-xs font-bold text-neutral-700">
+                      Font Size ({fontSize} pt)
+                    </label>
                     <input
+                      id="page-number-font-size"
                       type="range"
                       min="9"
                       max="18"
@@ -298,7 +302,7 @@ export function PageNumbersView() {
                   </div>
 
                   <div className="flex flex-col space-y-2">
-                    <label className="text-xs font-bold text-neutral-700">Text Color</label>
+                    <span className="text-xs font-bold text-neutral-700">Text Color</span>
                     <div className="flex items-center gap-2">
                       {COLOR_PRESETS.map((c) => (
                         <button
@@ -306,7 +310,8 @@ export function PageNumbersView() {
                           type="button"
                           onClick={() => setColorHex(c.value)}
                           title={c.label}
-                          className={`w-7 h-7 rounded-full border-2 transition-colors duration-150 cursor-pointer ${
+                          aria-label={`Number color: ${c.label}`}
+                          className={`w-8 h-8 min-w-[32px] min-h-[32px] rounded-full border-2 transition-colors duration-150 cursor-pointer ${
                             colorHex === c.value
                               ? "border-brand-primary ring-2 ring-brand-primary/30"
                               : "border-neutral-200 hover:border-neutral-400"
@@ -332,10 +337,11 @@ export function PageNumbersView() {
                   </label>
 
                   <div className="flex items-center justify-between">
-                    <label className="text-xs text-neutral-600 font-medium">
+                    <label htmlFor="start-number-input" className="text-xs text-neutral-700 font-medium">
                       Start counting from:
                     </label>
                     <input
+                      id="start-number-input"
                       type="number"
                       min="1"
                       value={startNumber}
@@ -352,7 +358,7 @@ export function PageNumbersView() {
                     type="button"
                     onClick={handleProcess}
                     disabled={isProcessing}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 px-4 text-sm font-bold text-white shadow-sm hover:bg-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 cursor-pointer min-h-[44px]"
                   >
                     {isProcessing ? (
                       <>
@@ -367,7 +373,7 @@ export function PageNumbersView() {
                     )}
                   </button>
 
-                  <p className="text-[11px] text-neutral-400 text-center leading-relaxed">
+                  <p className="text-xs text-neutral-600 text-center leading-relaxed">
                     All page numbering executes locally in your browser.
                   </p>
                 </div>
@@ -377,6 +383,6 @@ export function PageNumbersView() {
         </div>
       )}
 
-    </main>
+    </div>
   );
 }

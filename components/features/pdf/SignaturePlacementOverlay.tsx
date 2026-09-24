@@ -46,16 +46,41 @@ export function SignaturePlacementOverlay({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName?.toLowerCase();
+      if (tag === "input" || tag === "textarea") return;
+
       if ((e.key === "Delete" || e.key === "Backspace") && selectedId) {
-        const tag = (e.target as HTMLElement)?.tagName?.toLowerCase();
-        if (tag === "input" || tag === "textarea") return;
         e.preventDefault();
         onDeletePlacement(selectedId);
+        return;
+      }
+
+      if (
+        selectedId &&
+        (e.key === "ArrowLeft" ||
+          e.key === "ArrowRight" ||
+          e.key === "ArrowUp" ||
+          e.key === "ArrowDown")
+      ) {
+        const current = placements.find((p) => p.id === selectedId);
+        if (!current) return;
+        e.preventDefault();
+        const step = e.shiftKey ? 2 : 0.5;
+        let deltaX = 0;
+        let deltaY = 0;
+        if (e.key === "ArrowLeft") deltaX = -step;
+        if (e.key === "ArrowRight") deltaX = step;
+        if (e.key === "ArrowUp") deltaY = -step;
+        if (e.key === "ArrowDown") deltaY = step;
+
+        const newX = Math.max(0, Math.min(100 - current.widthPercent, current.xPercent + deltaX));
+        const newY = Math.max(0, Math.min(100 - current.heightPercent, current.yPercent + deltaY));
+        onUpdatePlacement(selectedId, { xPercent: newX, yPercent: newY });
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedId, onDeletePlacement]);
+  }, [selectedId, onDeletePlacement, onUpdatePlacement, placements]);
 
   return (
     <div

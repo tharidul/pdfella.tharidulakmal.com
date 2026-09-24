@@ -79,7 +79,7 @@ export function SignaturesSidebar({
               <button
                 type="button"
                 onClick={onClearAllPlacements}
-                className="text-[11px] font-bold text-brand-primary hover:text-brand-primary-hover hover:underline cursor-pointer"
+                className="text-xs font-bold text-brand-primary hover:text-brand-primary-hover hover:underline cursor-pointer"
               >
                 Clear All
               </button>
@@ -87,7 +87,7 @@ export function SignaturesSidebar({
           </div>
 
           {placements.length === 0 ? (
-            <div className="text-center py-4 text-xs text-neutral-400 border border-neutral-100 rounded-xl bg-neutral-50/60">
+            <div className="text-center py-4 text-xs text-neutral-600 border border-neutral-100 rounded-xl bg-neutral-50/60">
               No signatures placed yet. Click above to add a signature.
             </div>
           ) : (
@@ -122,17 +122,18 @@ export function SignaturesSidebar({
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-0.5 relative">
+                    <div className="flex items-center gap-0.5 relative">
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         setSidebarDownloadMenuId((prev) => (prev === p.id ? null : p.id));
                       }}
-                      className="text-neutral-400 hover:text-neutral-700 p-1.5 rounded-md hover:bg-neutral-200/50 transition-colors cursor-pointer"
+                      aria-label="Download signature"
                       title="Download signature (Transparent or White BG)"
+                      className="min-w-[32px] min-h-[32px] flex items-center justify-center text-neutral-600 hover:text-neutral-900 p-1.5 rounded-lg hover:bg-neutral-200/50 transition-colors cursor-pointer"
                     >
-                      <HiArrowDownTray className="w-3.5 h-3.5" />
+                      <HiArrowDownTray className="w-4 h-4" />
                     </button>
 
                     {sidebarDownloadMenuId === p.id && (
@@ -140,7 +141,7 @@ export function SignaturesSidebar({
                         className="absolute right-0 bottom-full mb-1 w-48 rounded-xl bg-white border border-neutral-200 shadow-md p-1.5 z-30 animate-in fade-in zoom-in-95 duration-100"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <div className="px-2 py-1 text-[10px] font-semibold text-neutral-500 border-b border-neutral-100 mb-1">
+                        <div className="px-2 py-1 text-xs font-semibold text-neutral-600 border-b border-neutral-100 mb-1">
                           Download Format
                         </div>
                         <button
@@ -157,7 +158,7 @@ export function SignaturesSidebar({
                           className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-neutral-800 hover:bg-brand-subtle hover:text-brand-primary flex items-center justify-between cursor-pointer transition-colors"
                         >
                           <span>Transparent PNG</span>
-                          <span className="text-[9px] text-neutral-500 bg-neutral-100 px-1.5 py-0.5 rounded font-medium">Clear</span>
+                          <span className="text-xs text-neutral-600 bg-neutral-100 px-1.5 py-0.5 rounded font-medium">Clear</span>
                         </button>
                         <button
                           type="button"
@@ -173,7 +174,7 @@ export function SignaturesSidebar({
                           className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold text-neutral-800 hover:bg-brand-subtle hover:text-brand-primary flex items-center justify-between cursor-pointer transition-colors"
                         >
                           <span>White BG PNG</span>
-                          <span className="text-[9px] text-neutral-500 bg-neutral-100 px-1.5 py-0.5 rounded font-medium">Solid</span>
+                          <span className="text-xs text-neutral-600 bg-neutral-100 px-1.5 py-0.5 rounded font-medium">Solid</span>
                         </button>
                       </div>
                     )}
@@ -184,8 +185,9 @@ export function SignaturesSidebar({
                         e.stopPropagation();
                         onDeletePlacement(p.id);
                       }}
-                      className="text-neutral-400 hover:text-brand-primary p-1.5 transition-colors cursor-pointer"
+                      aria-label="Delete signature stamp"
                       title="Delete stamp"
+                      className="min-w-[32px] min-h-[32px] flex items-center justify-center text-neutral-600 hover:text-brand-primary hover:bg-brand-subtle p-1.5 rounded-lg transition-colors cursor-pointer"
                     >
                       <HiPlus className="w-4 h-4 rotate-45" />
                     </button>
@@ -218,7 +220,7 @@ export function SignaturesSidebar({
             )}
           </button>
 
-          <p className="text-[11px] text-neutral-400 text-center leading-relaxed">
+          <p className="text-xs text-neutral-600 text-center leading-relaxed">
             All embedding executes locally on your device. Zero server uploads.
           </p>
         </div>

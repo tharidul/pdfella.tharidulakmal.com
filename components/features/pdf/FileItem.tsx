@@ -76,25 +76,25 @@ export function FileItem({
           <span className="text-xs sm:text-sm font-semibold text-neutral-900 truncate">
             {file.name}
           </span>
-          <span className="text-[11px] sm:text-xs text-neutral-400 mt-0.5 truncate">
+          <span className="text-xs text-neutral-600 mt-0.5 truncate">
             {file.size}, {file.pages} pages
           </span>
         </div>
       </div>
 
-      <div className="flex items-center gap-1 sm:gap-2 shrink-0 ml-2 sm:ml-4">
+      <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 ml-2 sm:ml-4">
         <button
           type="button"
           aria-label="Move file up"
           disabled={isFirst}
           onClick={onMoveUp}
-          className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center transition-colors ${
+          className={`min-w-[36px] min-h-[36px] sm:min-w-[38px] sm:min-h-[38px] p-1.5 rounded-lg flex items-center justify-center transition-colors ${
             isFirst
               ? "bg-neutral-100/60 text-neutral-300 cursor-not-allowed"
-              : "bg-neutral-100 hover:bg-neutral-200 text-neutral-600 cursor-pointer"
+              : "bg-neutral-100 hover:bg-neutral-200 text-neutral-700 cursor-pointer"
           }`}
         >
-          <ArrowUpIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <ArrowUpIcon className="w-4 h-4" />
         </button>
 
         <button
@@ -102,22 +102,22 @@ export function FileItem({
           aria-label="Move file down"
           disabled={isLast}
           onClick={onMoveDown}
-          className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center transition-colors ${
+          className={`min-w-[36px] min-h-[36px] sm:min-w-[38px] sm:min-h-[38px] p-1.5 rounded-lg flex items-center justify-center transition-colors ${
             isLast
               ? "bg-neutral-100/60 text-neutral-300 cursor-not-allowed"
-              : "bg-neutral-100 hover:bg-neutral-200 text-neutral-600 cursor-pointer"
+              : "bg-neutral-100 hover:bg-neutral-200 text-neutral-700 cursor-pointer"
           }`}
         >
-          <ArrowDownIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <ArrowDownIcon className="w-4 h-4" />
         </button>
 
         <button
           type="button"
           aria-label="Remove file"
           onClick={onDelete}
-          className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center bg-white hover:bg-neutral-50 text-neutral-400 hover:text-brand-primary border border-neutral-200 cursor-pointer transition-colors"
+          className="min-w-[36px] min-h-[36px] sm:min-w-[38px] sm:min-h-[38px] p-1.5 rounded-lg flex items-center justify-center bg-white hover:bg-neutral-50 text-neutral-600 hover:text-brand-primary border border-neutral-200 cursor-pointer transition-colors"
         >
-          <TrashIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <TrashIcon className="w-4 h-4" />
         </button>
       </div>
     </div>

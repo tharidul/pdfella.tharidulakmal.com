@@ -176,7 +176,7 @@ export function SignPdfView() {
   };
 
   return (
-    <main
+    <div
       className={
         hasFile
           ? "w-full max-w-6xl mx-auto px-4 py-6 flex flex-col"
@@ -188,7 +188,7 @@ export function SignPdfView() {
           <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-1.5">
             Sign PDF Online Free
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-500">
+          <p className="text-xs sm:text-sm text-neutral-600">
             Draw, type, or upload electronic signatures and add date stamps. 100% private in your browser with zero server uploads.
           </p>
         </div>
@@ -203,14 +203,14 @@ export function SignPdfView() {
               <div className="text-xs font-bold text-neutral-800">
                 Only need a standalone digital signature image?
               </div>
-              <div className="text-[11px] text-neutral-500 mt-0.5">
+              <div className="text-xs text-neutral-600 mt-0.5">
                 Draw, type, or upload to download as a Transparent or White Background PNG.
               </div>
             </div>
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-brand-primary text-white text-xs font-semibold hover:bg-brand-primary-hover transition-colors cursor-pointer shadow-2xs shrink-0"
+              className="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-brand-primary text-white text-xs font-semibold hover:bg-brand-primary-hover transition-colors cursor-pointer shadow-2xs shrink-0 min-h-[40px]"
             >
               <FaSignature className="w-3.5 h-3.5" />
               <span>Create & Download Signature PNG</span>
@@ -230,7 +230,7 @@ export function SignPdfView() {
                 <h3 className="text-xs font-bold text-neutral-900 truncate max-w-xs sm:max-w-md">
                   {fileName}
                 </h3>
-                <div className="flex items-center gap-2 text-[11px] text-neutral-500 mt-0.5">
+                <div className="flex items-center gap-2 text-xs text-neutral-600 mt-0.5">
                   <span>{formatFileSize(fileSize)}</span>
                   <span>•</span>
                   <span>{pageCount} {pageCount === 1 ? "page" : "pages"}</span>
@@ -245,7 +245,7 @@ export function SignPdfView() {
             <button
               type="button"
               onClick={handleReset}
-              className="text-xs font-bold text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
+              className="text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors cursor-pointer min-h-[36px] inline-flex items-center"
             >
               Choose different file
             </button>
@@ -280,7 +280,7 @@ export function SignPdfView() {
                       style={{ aspectRatio }}
                     >
                       <HiArrowPath className="w-8 h-8 text-brand-primary animate-spin" />
-                      <span className="text-xs font-semibold text-neutral-500">
+                      <span className="text-xs font-semibold text-neutral-600">
                         Rendering Page {activePage}...
                       </span>
                     </div>
@@ -315,7 +315,7 @@ export function SignPdfView() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 mt-2.5 text-[11px] text-neutral-400">
+              <div className="flex items-center gap-2 mt-2.5 text-xs text-neutral-600">
                 <span>Tip: Click and drag any stamp to reposition. Drag the bottom-right corner to resize.</span>
               </div>
             </div>
@@ -346,6 +346,6 @@ export function SignPdfView() {
           onSave={handleSaveSignature}
         />
       )}
-    </main>
+    </div>
   );
 }

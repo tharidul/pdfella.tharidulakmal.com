@@ -136,3 +136,9 @@ export {
 } from "./sign";
 
 export { loadPdfLib } from "./loader";
+
+export {
+  OFFICIAL_CREATOR_OPTIONS,
+  OFFICIAL_PRODUCER_OPTIONS,
+  type MetadataOption,
+} from "./metadataPresets";
