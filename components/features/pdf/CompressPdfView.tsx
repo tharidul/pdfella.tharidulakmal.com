@@ -10,6 +10,7 @@ import { toast } from "@/components/ui/sonner";
 import { DropZone } from "./DropZone";
 import { formatFileSize, validatePdfFile } from "@/lib/pdf/validation";
 import { extractPdfMetadata } from "@/lib/pdf/metadata";
+import { releasePdfDocument } from "@/lib/pdf/render";
 import {
   compressAndDownloadPdf,
   type CompressionTier,
@@ -157,6 +158,7 @@ export function CompressPdfView() {
             <button
               type="button"
               onClick={() => {
+                if (fileBuffer) void releasePdfDocument(fileBuffer);
                 setHasFile(false);
                 setFileBuffer(null);
                 setActualResult(null);

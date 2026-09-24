@@ -57,6 +57,9 @@ export function Footer() {
               <Link href="/page-numbers" className="hover:text-brand-primary transition-colors py-0.5">
                 Page Numbers
               </Link>
+              <Link href="/metadata" className="hover:text-brand-primary transition-colors py-0.5">
+                Edit Metadata
+              </Link>
             </div>
           </div>
 

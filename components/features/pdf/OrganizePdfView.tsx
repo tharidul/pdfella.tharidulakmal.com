@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import {
   HiDocumentText,
@@ -10,7 +10,7 @@ import {
 import { toast } from "@/components/ui/sonner";
 import { LuRotateCw, LuRotateCcw } from "react-icons/lu";
 import { DropZone } from "./DropZone";
-import { validatePdfFile } from "@/lib/pdf/validation";
+import { validatePdfFile, formatFileSize } from "@/lib/pdf/validation";
 import { extractPdfMetadata } from "@/lib/pdf/metadata";
 import { renderDocumentThumbnailsBatch, releasePdfDocument } from "@/lib/pdf/render";
 import { organizeAndDownloadPdf } from "@/lib/pdf/organize";
@@ -31,10 +31,17 @@ const OrganizePageGrid = dynamic(
 export function OrganizePdfView() {
   const [hasFile, setHasFile] = useState(false);
   const [fileName, setFileName] = useState("");
-  const [fileSize, setFileSize] = useState("");
+  const [fileSize, setFileSize] = useState(0);
   const [fileBuffer, setFileBuffer] = useState<ArrayBuffer | null>(null);
   const [pages, setPages] = useState<OrganizeCardItem[]>([]);
   const [isOrganizing, setIsOrganizing] = useState(false);
+  const abortRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    return () => {
+      abortRef.current?.abort();
+    };
+  }, []);
 
   const rotatePage = useCallback((id: string, delta: number) => {
     setPages((prev) =>
@@ -94,14 +101,18 @@ export function OrganizePdfView() {
       const initialPages: OrganizeCardItem[] = Array.from(
         { length: metadata.pageCount },
         (_, i) => ({
-          id: `org-page-${Date.now()}-${i + 1}`,
+          id: crypto.randomUUID(),
           originalNumber: i + 1,
           rotation: 0,
         })
       );
 
+      abortRef.current?.abort();
+      const controller = new AbortController();
+      abortRef.current = controller;
+
       setFileName(file.name);
-      setFileSize(metadata.formattedSize);
+      setFileSize(metadata.size);
       setFileBuffer(buffer);
       setPages(initialPages);
       setHasFile(true);
@@ -112,6 +123,7 @@ export function OrganizePdfView() {
         pageNumbers,
         { width: 140, height: 180 },
         (batch) => {
+          if (controller.signal.aborted) return;
           setPages((currentPages) =>
             currentPages.map((item) =>
               batch[item.originalNumber]
@@ -120,7 +132,8 @@ export function OrganizePdfView() {
             )
           );
         },
-        12
+        12,
+        controller.signal
       );
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to load PDF.";
@@ -180,7 +193,7 @@ export function OrganizePdfView() {
                   {fileName}
                 </span>
                 <span className="text-xs text-neutral-400 mt-0.5">
-                  {fileSize} • {pages.length} pages
+                  {formatFileSize(fileSize)} • {pages.length} pages
                 </span>
               </div>
             </div>
@@ -188,8 +201,12 @@ export function OrganizePdfView() {
             <button
               type="button"
               onClick={() => {
+                abortRef.current?.abort();
+                abortRef.current = null;
                 if (fileBuffer) void releasePdfDocument(fileBuffer);
                 setHasFile(false);
+                setFileName("");
+                setFileSize(0);
                 setFileBuffer(null);
                 setPages([]);
               }}
@@ -266,7 +283,7 @@ export function OrganizePdfView() {
                   </div>
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-neutral-500">Initial size:</span>
-                    <span className="font-semibold text-neutral-800">{fileSize}</span>
+                    <span className="font-semibold text-neutral-800">{formatFileSize(fileSize)}</span>
                   </div>
                 </div>
 

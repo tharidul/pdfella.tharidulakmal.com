@@ -17,10 +17,23 @@ export interface PdfDocumentMetadata {
   pageCount: number;
   title?: string;
   author?: string;
+  subject?: string;
+  keywords?: string;
   creator?: string;
   producer?: string;
   creationDate?: Date;
   modificationDate?: Date;
+}
+
+export interface UpdatePdfMetadataOptions {
+  title?: string;
+  author?: string;
+  subject?: string;
+  keywords?: string;
+  creator?: string;
+  producer?: string;
+  creationDate?: Date | null;
+  modificationDate?: Date | null;
 }
 
 export interface PageRangeParseSuccess {

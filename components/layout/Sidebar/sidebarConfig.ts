@@ -9,6 +9,7 @@ import {
   PageNumbersIcon,
   WatermarkIcon,
   SignPdfIcon,
+  MetadataIcon,
 } from "@/components/common/icons";
 
 export interface NavItem {
@@ -89,6 +90,13 @@ export const PRIMARY_TOOLS: NavItem[] = [
     description: "Add e-signatures & stamps",
     icon: SignPdfIcon,
     href: "/sign",
+  },
+  {
+    id: "metadata",
+    name: "Edit Metadata",
+    description: "Edit & sanitize PDF properties",
+    icon: MetadataIcon,
+    href: "/metadata",
   },
 ];
 

@@ -78,7 +78,7 @@ export function ImageToPdfView() {
     }
 
     const newItems: ImageItem[] = validImages.map((file) => ({
-      id: `${file.name}-${file.size}-${Math.random()}`,
+      id: crypto.randomUUID(),
       file,
       name: file.name,
       size: file.size,
@@ -156,11 +156,6 @@ export function ImageToPdfView() {
     }
   };
 
-  const formatSize = (bytes: number) => {
-    if (bytes < 1024) return `${bytes} B`;
-    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-  };
 
   return (
     <main
@@ -260,7 +255,7 @@ export function ImageToPdfView() {
                           {item.name}
                         </p>
                         <span className="text-[10px] text-neutral-400">
-                          {formatSize(item.size)}
+                          {formatFileSize(item.size)}
                         </span>
                       </div>
 

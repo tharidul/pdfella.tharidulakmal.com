@@ -15,6 +15,7 @@ import {
   HiHashtag,
   HiArrowDownTray,
   HiShieldCheck,
+  HiIdentification,
 } from "react-icons/hi2";
 import { FaScissors, FaSignature } from "react-icons/fa6";
 import { RxDragHandleDots2 } from "react-icons/rx";
@@ -50,3 +51,4 @@ export const PdfToImageIcon = HiArrowDownTray;
 export const PageNumbersIcon = HiHashtag;
 export const WatermarkIcon = HiShieldCheck;
 export const SignPdfIcon = FaSignature;
+export const MetadataIcon = HiIdentification;

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { HiBars3 } from "react-icons/hi2";
-import { SunIcon, Logo } from "@/components/common";
+import { Logo } from "@/components/common";
 import { useMobileNav } from "../MobileNavContext";
 
 export function Header() {
@@ -48,14 +48,6 @@ export function Header() {
             About
           </Link>
         </nav>
-
-        <button
-          type="button"
-          aria-label="Toggle theme"
-          className="w-9 h-9 flex items-center justify-center rounded-lg text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 transition-colors cursor-pointer"
-        >
-          <SunIcon className="w-5 h-5" />
-        </button>
       </div>
     </header>
   );

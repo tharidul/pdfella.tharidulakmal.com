@@ -53,14 +53,11 @@ const renderQueue = new ConcurrencyQueue(getOptimalConcurrency());
 function getDocumentFingerprint(data: ArrayBuffer | Uint8Array): string {
   const bytes = data instanceof Uint8Array ? data : new Uint8Array(data);
   const len = bytes.byteLength;
+  const sampleCount = Math.min(256, len);
   let hash = `doc_${len}_`;
-  const sampleLen = Math.min(32, len);
-  for (let i = 0; i < sampleLen; i++) {
-    hash += (bytes[i] ?? 0).toString(16);
-  }
-  const tailStart = Math.max(0, len - sampleLen);
-  for (let i = tailStart; i < len; i++) {
-    hash += (bytes[i] ?? 0).toString(16);
+  for (let i = 0; i < sampleCount; i++) {
+    const offset = Math.floor((i * (len - 1)) / Math.max(1, sampleCount - 1));
+    hash += (bytes[offset] ?? 0).toString(16).padStart(2, "0");
   }
   return hash;
 }
@@ -86,11 +83,13 @@ export async function clearThumbnailCache(): Promise<void> {
     try {
       const doc = await entry.docPromise;
       await doc.cleanup();
-    } catch {
+    } catch (e) {
+      console.warn("PDF cleanup failed", e);
     }
     try {
       await entry.loadingTask.destroy();
-    } catch {
+    } catch (e) {
+      console.warn("PDF task destroy failed", e);
     }
   }
 }
@@ -103,11 +102,13 @@ export async function releasePdfDocument(data: ArrayBuffer | Uint8Array): Promis
     try {
       const doc = await entry.docPromise;
       await doc.cleanup();
-    } catch {
+    } catch (e) {
+      console.warn("PDF cleanup failed", e);
     }
     try {
       await entry.loadingTask.destroy();
-    } catch {
+    } catch (e) {
+      console.warn("PDF task destroy failed", e);
     }
   }
 }
@@ -246,37 +247,39 @@ export async function renderDocumentThumbnailsBatch(
   pageNumbers: number[],
   options: PageThumbnailOptions = {},
   onBatch: (thumbnails: Record<number, string>) => void,
-  batchSize = 10
+  batchSize = 10,
+  signal?: AbortSignal
 ): Promise<Record<number, string>> {
+  if (signal?.aborted) return {};
   const docKey = getDocumentFingerprint(data);
   const doc = await getSharedPdfDocument(data);
+  if (signal?.aborted) return {};
   const results: Record<number, string> = {};
-  let pendingBatch: Record<number, string> = {};
-  let pendingCount = 0;
 
-  const flushBatch = () => {
-    if (pendingCount > 0) {
-      onBatch({ ...pendingBatch });
-      pendingBatch = {};
-      pendingCount = 0;
+  for (let i = 0; i < pageNumbers.length; i += batchSize) {
+    if (signal?.aborted) break;
+    const chunk = pageNumbers.slice(i, i + batchSize);
+    const batch: Record<number, string> = {};
+
+    await Promise.all(
+      chunk.map(async (pageNum) => {
+        if (signal?.aborted) return;
+        try {
+          const url = await renderPageFromDocument(doc, pageNum, options, docKey);
+          if (signal?.aborted) return;
+          results[pageNum] = url;
+          batch[pageNum] = url;
+        } catch (e) {
+          console.warn(`Thumbnail render failed for page ${pageNum}`, e);
+        }
+      })
+    );
+
+    if (signal?.aborted) break;
+    if (Object.keys(batch).length > 0) {
+      onBatch(batch);
     }
-  };
-
-  const jobs = pageNumbers.map(async (p) => {
-    try {
-      const url = await renderPageFromDocument(doc, p, options, docKey);
-      results[p] = url;
-      pendingBatch[p] = url;
-      pendingCount++;
-      if (pendingCount >= batchSize) {
-        flushBatch();
-      }
-    } catch {
-    }
-  });
-
-  await Promise.all(jobs);
-  flushBatch();
+  }
 
   return results;
 }

@@ -73,7 +73,7 @@ export function MergePdfView() {
 
         const metadata = await extractPdfMetadata(buffer, file.name);
 
-        const newItemId = `pdf-${Date.now()}-${i}-${Math.random().toString(36).slice(2, 7)}`;
+        const newItemId = crypto.randomUUID();
         const newItem: PdfFileItemData = {
           id: newItemId,
           name: file.name,
@@ -93,7 +93,8 @@ export function MergePdfView() {
               )
             );
           })
-          .catch(() => {
+          .catch((e: unknown) => {
+            console.warn("Thumbnail render failed", e);
           });
       } catch (err) {
         const msg = err instanceof Error ? err.message : "Failed to load PDF.";

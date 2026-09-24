@@ -66,7 +66,8 @@ export function DropZone({
     e.stopPropagation();
     try {
       e.dataTransfer.dropEffect = "copy";
-    } catch {
+    } catch (e) {
+      console.warn("Failed to set dropEffect", e);
     }
     if (!isDragging) {
       setIsDragging(true);

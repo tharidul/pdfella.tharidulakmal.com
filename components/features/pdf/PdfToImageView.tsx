@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import {
   HiDocumentText,
@@ -41,6 +41,13 @@ export function PdfToImageView() {
   const [isExportingZip, setIsExportingZip] = useState(false);
   const [exportingPageNum, setExportingPageNum] = useState<number | null>(null);
   const [progressMsg, setProgressMsg] = useState<string | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    return () => {
+      abortRef.current?.abort();
+    };
+  }, []);
 
   const handleFilesSelected = async (files: FileList) => {
     const file = files[0];
@@ -72,27 +79,34 @@ export function PdfToImageView() {
       }
       setPages(initialPages);
 
-      loadThumbnails(buffer, metadata.pageCount);
+      abortRef.current?.abort();
+      const controller = new AbortController();
+      abortRef.current = controller;
+
+      loadThumbnails(buffer, metadata.pageCount, controller.signal);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to read PDF document.";
       toast.error(msg);
     }
   };
 
-  const loadThumbnails = async (buffer: ArrayBuffer, total: number) => {
+  const loadThumbnails = async (buffer: ArrayBuffer, total: number, signal: AbortSignal) => {
     const pageNumbers = Array.from({ length: total }, (_, i) => i + 1);
     await renderDocumentThumbnailsBatch(
       buffer,
       pageNumbers,
       { width: 180, height: 240, quality: 0.8 },
       (batch) => {
+        if (signal.aborted) return;
         setPages((prev) =>
-          prev.map((p) =>
-            batch[p.pageNumber] ? { ...p, thumbnailUrl: batch[p.pageNumber] } : p
-          )
+          prev.map((p) => {
+            const thumb = batch[p.pageNumber];
+            return thumb ? { ...p, thumbnailUrl: thumb } : p;
+          })
         );
       },
-      8
+      8,
+      signal
     );
   };
 
@@ -162,6 +176,8 @@ export function PdfToImageView() {
   };
 
   const resetAll = () => {
+    abortRef.current?.abort();
+    abortRef.current = null;
     if (fileBuffer) void releasePdfDocument(fileBuffer);
     setHasFile(false);
     setFileName("");

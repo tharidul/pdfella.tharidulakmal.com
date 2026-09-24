@@ -1,13 +1,41 @@
-
 import { loadPdfLib } from "./loader";
 import { downloadPdf } from "./download";
 import {
-  calculateSavings,
   formatFileSize,
   sanitizeFilename,
   validatePdfBuffer,
-  type SavingsResult,
 } from "./validation";
+
+export interface SavingsResult {
+  originalBytes: number;
+  compressedBytes: number;
+  savedBytes: number;
+  savingsPercentage: number;
+  formattedOriginal: string;
+  formattedCompressed: string;
+  formattedSaved: string;
+}
+
+export function calculateSavings(
+  originalBytes: number,
+  compressedBytes: number
+): SavingsResult {
+  const safeOriginal = Math.max(0, originalBytes);
+  const safeCompressed = Math.max(0, compressedBytes);
+  const savedBytes = Math.max(0, safeOriginal - safeCompressed);
+  const savingsPercentage =
+    safeOriginal > 0 ? Math.round((savedBytes / safeOriginal) * 100) : 0;
+
+  return {
+    originalBytes: safeOriginal,
+    compressedBytes: safeCompressed,
+    savedBytes,
+    savingsPercentage,
+    formattedOriginal: formatFileSize(safeOriginal),
+    formattedCompressed: formatFileSize(safeCompressed),
+    formattedSaved: formatFileSize(savedBytes),
+  };
+}
 
 export type CompressionTier = "extreme" | "recommended" | "less";
 

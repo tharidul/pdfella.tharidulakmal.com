@@ -1,7 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export const viewport: Viewport = {
   themeColor: "#800020",
@@ -108,8 +115,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-white text-neutral-900">
+    <html lang="en" className={`h-full antialiased ${inter.variable}`}>
+      <body className={`min-h-full flex flex-col bg-white text-neutral-900 ${inter.className}`}>
         {children}
         <Toaster />
       </body>
