@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AppLayout } from "@/components/layout";
-import { SignPdfView, SIGN_PDF_FAQS } from "@/components/features/pdf";
+import { SignPdfView } from "@/components/features/pdf";
 import { JsonLd } from "@/components/seo";
 
 export const metadata: Metadata = {
@@ -31,7 +31,6 @@ export default function SignPage() {
           { name: "Home", item: "/" },
           { name: "Sign PDF", item: "/sign" },
         ]}
-        faqs={SIGN_PDF_FAQS}
       />
     </AppLayout>
   );

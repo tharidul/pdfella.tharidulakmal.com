@@ -15,7 +15,6 @@ import { SignaturePlacementOverlay } from "./SignaturePlacementOverlay";
 import { useSignaturePlacements } from "./signature/useSignaturePlacements";
 import { PdfViewerToolbar } from "./signature/PdfViewerToolbar";
 import { SignaturesSidebar } from "./signature/SignaturesSidebar";
-import { SignPdfSeoSection } from "./seo/SignPdfSeoSection";
 
 const SignaturePadModal = dynamic(
   () => import("./SignaturePadModal").then((m) => m.SignaturePadModal),
@@ -217,8 +216,6 @@ export function SignPdfView() {
               <span>Create & Download Signature PNG</span>
             </button>
           </div>
-
-          <SignPdfSeoSection onOpenSignatureModal={() => setIsModalOpen(true)} />
         </div>
       )}
 
